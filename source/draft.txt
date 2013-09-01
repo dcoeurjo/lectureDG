@@ -1,0 +1,67 @@
+
+Randomization again
+===================
+
+
+Median extraction
+-----------------
+
+
+**Problem setting**
+
+
+* Find the median of an array `A`:math: of scalars
+* Find the `k`:math:-th value of `A`:math:
+
+
+
+**Random algorithm**
+
+.. code-block:: c
+
+  QuickSelect(A, k) 
+    Pick a pivot element p randomly from A
+    Split A into LESS and GREATER sets
+    L =  number of elements in the LESS array
+    if (L == k-1) 
+       return p;
+
+    if (L > k-1)  
+       return QuickSelect(LESS, k)
+
+    if (L < k-1) 
+       return QuickSelect(GREATER, k - L - 1)
+
+
+
+
+|imp| *O(n) expected time to get the k-rank element*
+
+
+
+
+Proof
+-----
+
+**Notations**
+
+* `T(n,k)`:math: expected time to the kth rank element,
+* `T(n) = \max_k T(n,k)`:math:
+* We demonstrate that
+  
+   .. math::
+      T(n) \leq 4n
+
+**Details**
+
+
+* Split process requires O(n) comparisons
+* Since `p`:math: is random selection, LESS and GREATER have sizes in `\{(i,n-i)\}_{i=0..n}`:math: with uniform probability
+
+* Let suppose we recurse on the worst-case
+
+   .. math::
+        \begin{align*}
+          T(n) &< (n-1) + \frac{2}{n} \sum_{i=n/2}p {n-1} T(i)\\
+          &< 2332
+        \end{align*}

@@ -1,0 +1,54 @@
+\begin{picture}(0,0)%
+\includegraphics{dual_naive4.pdf}%
+\end{picture}%
+\setlength{\unitlength}{3158sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\fi\endgroup
+\begin{picture}(3567,2908)(151,-3194)
+\put(2101,-3136){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$\alpha$}%
+}}}
+\put(151,-1561){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$\beta$}%
+}}}
+\put(1576,-2311){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$D_c$}%
+}}}
+\put(826,-1561){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$D_a$}%
+}}}
+\put(676,-811){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$D_b$}%
+}}}
+\put(3301,-1711){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$D'_a$}%
+}}}
+\put(3301,-2311){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$D'_b$}%
+}}}
+\put(1987,-1555){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$D'_c$}%
+}}}
+\put(511,-2875){\makebox(0,0)[rb]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}0}}}
+\put(511,-2047){\makebox(0,0)[rb]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}1}}}
+\put(511,-1219){\makebox(0,0)[rb]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}2}}}
+\put(511,-391){\makebox(0,0)[rb]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}3}}}
+\put(585,-2999){\makebox(0,0)[b]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}0}}}
+\put(1206,-2999){\makebox(0,0)[b]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}0.2}}}
+\put(1827,-2999){\makebox(0,0)[b]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}0.4}}}
+\put(2449,-2999){\makebox(0,0)[b]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}0.6}}}
+\put(3070,-2999){\makebox(0,0)[b]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}0.8}}}
+\put(3691,-2999){\makebox(0,0)[b]{\smash{\SetFigFont{8}{9.6}{\rmdefault}{\mddefault}{\updefault}1}}}
+\end{picture}

@@ -1,0 +1,2 @@
+ cd .. && make slides && rsync -azv build /Volumes/"Home Directory"/tmp
+

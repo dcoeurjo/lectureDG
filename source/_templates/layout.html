@@ -1,0 +1,5 @@
+{% extends "!layout.html" %}
+{#{%- if slide_numbering %}  ## TODO make this work at some point #}
+{% set css_files = css_files + ["_static/slide-no.css"] %}
+{% set script_files = script_files + ["_static/slide-no.js"] %}
+{#{%- endif %}#}

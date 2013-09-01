@@ -1,0 +1,160 @@
+/*table.field-list, table.columns {
+    border: 1;
+}
+
+table.field-list *, table.columns * {
+    border: 1;
+}*/ 
+
+
+div.topic.contents {
+    border: 0;
+}
+
+
+
+a[class=footnote-reference] {
+    font-size: 50%
+}
+
+
+.slide h3, .slide h4 {
+    margin-top: 0;
+    margin-bottom: 1.2em;
+    font-size: 120%;
+}
+
+.slides >article p,
+.slides >article ul,
+.slides >article table {
+    font-size: 95%;
+}
+
+.center {
+    text-align: center;
+}
+
+.slides >article .small {
+    font-size: 70%;
+}
+
+.figure, .graphviz {
+    text-align: center;
+}
+
+th.head {
+    background-color: #EEE;
+}
+
+/******** table.ld ********/
+
+table{
+    border: 1px;
+}
+
+
+table.th {
+    font-size: 90%;
+    background-color: #EEEEEE;
+}
+
+table.ld tr:nth-child(odd) td {
+    background-color: #EEE;
+}
+
+table.ld tr td:nth-child(3) {
+    font-size: 80%
+}
+
+table.docutils td, table.docutils th {
+    border-bottom: 0px solid #AAA;
+}
+
+
+
+blockquote {
+   /* border: 1px solid #666;
+    border-radius: 5px;*/
+    text-align: center;
+}
+
+
+p.roundedquote {
+    border: 1px solid #666;
+    border-radius: 5px;
+    text-align: center;
+    color: #FF7F00;
+}
+
+strong {
+    color: #BB0000;
+}
+
+
+em {
+    color: #00BB00;
+    font-style:italic;
+}
+
+ul li:before {
+    content: "\2022";
+    font-size:140%;
+}
+
+ul {
+    margin-top: 0.7em;
+}
+
+ul  ul li{
+    font-size: 90%;
+}
+
+
+.slides > article {
+    font-size: 70%;
+}
+
+.slides > h3 {
+    font-size: 1.5em;
+}
+.slides > h2 {
+    font-size: 2em;
+}
+
+.slides > h1 {
+    font-size: 2.5em;
+}
+
+.build > * {
+    transition: opacity 0.3s ease-in-out 0.1s;
+    -o-transition: opacity 0.3s ease-in-out 0.2s;
+    -moz-transition: opacity 0.3s ease-in-out 0.2s;
+    -webkit-transition: opacity 0.3s ease-in-out 0.1s;
+}
+
+/******** fix ul:first-child bug in styles.css ********/
+
+ul.simple li ul:first-child {
+    margin-top: .5ex;
+}
+
+
+
+/******** animation ********/
+
+.build.animation {
+    position: relative; /* ensures that img can be positionned absolutely */
+    padding: 0px;
+}
+
+.build.animation img:first-child {
+    position: relative; /* ensures that the parent reserves enough space */
+}
+
+.build.animation img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
