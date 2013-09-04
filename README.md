@@ -12,7 +12,7 @@ This repository contains all the material to build the lecture slides and the co
 The content is given as collection of ReST (restructured text) files.  To build the slides, you would need:
 
   - Sphinx (Python Documentation Generator, http://sphinx-doc.org) to generate PDF, latex, HTML, ... outputs 
-  - hieroglyph (https://github.com/nyergler/hieroglyph) to generate the slide output.
+  - hieroglyph (https://github.com/nyergler/hieroglyph) to generate the HTML5 slide output.
 
 Once installed, the build is rather simple:
 
