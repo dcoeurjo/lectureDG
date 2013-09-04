@@ -1,10 +1,16 @@
 Image Processing, Digital Geometry and Computational Geometry Course
 ====================================================================
 
-This material corresponds to a course on elementary image processing, digital geometry and computational geometry. In French, it corresponds to the lecture "Images Numériques et Géométrie Discrète" at the ENS-Lyon (Ecole Normale Supérieure de Lyon).
+This material corresponds to a course on elementary image processing, digital geometry and computational geometry. In French, it corresponds to the lecture "Images Numériques et Géométrie Discrète" at the ENS-Lyon (Ecole Normale Supérieure de Lyon) and Univesité Claude Bernard Lyon 1.
 
-First slides are in French but most of them are in English. 
+First slides are in French but most of them are in English. Since the content is updated 
 
+
+Author
+------
+
+David Coeurjolly (http://liris.cnrs.fr/david.coeurjolly)
+david.coeurjolly@liris.cnrs.fr
 
 Copyright
 ---------
