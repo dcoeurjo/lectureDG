@@ -5,6 +5,27 @@ This material corresponds to a course on elementary image processing, digital ge
 
 First slides are in French but most of them are in English. The content is "work in progress" and is updated continously. As a consequence, it may contain errors. If you found ones, please contact the author or create a <a href="https://github.com/dcoeurjo/lectureDG/issues/new">github issue</a>. 
 
+Content
+-------
+
+This repository contains all the material to build the lecture slides and the course notes. 
+The content is given as collection of ReST (restructured text) files.  To build the slides, you would need:
+
+  - Sphinx (Python Documentation Generator, http://sphinx-doc.org) to generate PDF, latex, HTML, ... outputs 
+  - hieroglyph (https://github.com/nyergler/hieroglyph) to generate the slide output.
+
+Once installed, the build is rather simple:
+
+    ./make html
+    ./make pdflatex
+    
+or
+
+    ./make slides
+
+
+Then, the output is given in the *build* folder.
+
 
 Author
 ------
