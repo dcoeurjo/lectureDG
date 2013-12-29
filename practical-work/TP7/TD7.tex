@@ -1,0 +1,122 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{hyperref}
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 22cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+\usepackage{epsfig}  
+\usepackage{setspace}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+	\LARGE \textbf{TD7: DSS Covering and Normal Vector Estimation}
+\end{center}
+
+\bigskip
+\par In this TP, the idea is to implement a multigrid convergent normal vector estimator. We assume that you have:
+\begin{itemize}
+	\item DGtal and DGtalSkel tools updated and running (TP5)
+	\item A function that constructs the Gauss digitalization of an Euclidean disc (TP5)
+	\item A function that tracks the border of a DigitalSet and construct a \texttt{std::vector<Point>} of border points (TP6)
+\end{itemize}
+
+
+% -------------------------------------------------------
+% -------------------------------------------------------
+% -------------------------------------------------------
+\section*{Exercise 1 \rm Digital Tangent}
+
+\par By using the example file \texttt{DSSExample.cpp} and \url{http://libdgtal.org/doc/stable/classDGtal_1_1ArithmeticalDSS.html}, we first focus on the decomposition of a contour (\texttt{std::vector<Point> sequence}) into maximal DSS. The functions are the following:
+\begin{itemize}
+	\item[-] Init a DSS at the "begin()" sequence iterator
+	\item[-] While the \texttt{DSS.extendForward()} returns true, we increment an iterator copy "iter" of the \texttt{sequence.begin()} 
+	\item[-] When the DSS recognition fails, we init a new DSS at "iter" and repeat the above process until "iter" reaches the end of the sequence ( \texttt{sequence.end()})
+\end{itemize}
+
+\noindent {\bf Question:} Implement such DSS decomposition and visualize each DSS segments as shown in \texttt{DSSExample.cpp}
+
+\vspace{0.7cm}
+\par We want to implement the digital tangent estimator, which works in the following way:
+	\begin{itemize}
+	\item[-] Given position \texttt{iter} on the contour, we init a DSS segment at this point and extend the DSS at both sides (\texttt{extendForward()} and \texttt{extendBackward()})
+	\item[-] Returns the DSS slope (\texttt{getA()} and \texttt{getB()}).
+	\end{itemize}
+\noindent {\bf Remarks:} The DSS is defined by $\mu \leq ax - by <\mu + max(|a|,|b|)$. At this point, even if the sequence encodes a closed contour, we suppose that there nothing "backward" the \texttt{sequence.begin()} and nothing after the \texttt{sequence.end()}.
+
+\smallskip
+\noindent {\bf Questions:}
+	\begin{itemize}
+	\item Implement this estimator.
+	\item If you repeat such process at each position on the sequence, what would be the computational cost to estimate all digital tangents?
+	\end{itemize}
+
+\vspace{0.7cm}
+\par Using the above algorithm, the estimations near the sequence extremities are biased and do not take into account the fact the contour is closed (i.e. tangent near the \texttt{sequence.begin()} could contain points near the \texttt{sequence.end()}. To handle extremities, we can use the concept of \texttt{Circulator} instead of \texttt{Iterator}.
+
+\smallskip
+\noindent {\bf Questions:}
+	\begin{itemize}
+	\item Have a look to the \texttt{DSSCirculatorExample.cpp} in the \texttt{DGtalSkel} folder where we give you an example of Circulator construction in DGtal and its use to define DSS on circular contours.
+	\item Update your code to be valid on closed contours.
+	\end{itemize}
+%% Attention, il faut faire un do .. while
+
+\bigskip
+
+\noindent {\bf Remarks:}
+\begin{itemize}
+	\item To display an arrow $(p,p+dp)$  using Board2D, you can use the following  \texttt{draw} function:
+\begin{verbatim}
+ Board2D board;
+ RealPoint p(0.0,0.4), dp(0.33,0.66); 
+ Display2DFactory::draw( board , dp , p);
+\end{verbatim}
+	\item Be careful \texttt{RealPoint} (with "double" coordinates) differs from \texttt{Point} (Integer coordinates)
+	\item Dereferencing an iterator ("*iter") of std::vector returns a Point.
+\end{itemize}
+
+
+
+% -------------------------------------------------------
+% -------------------------------------------------------
+% -------------------------------------------------------
+\section*{Exercise 2 \rm Maximal DSS Covering (from TP6)}
+
+\par In this exercise, we implement the maximal DSS covering of a contour.
+
+\par The algorithm is the following:
+	\begin{itemize}
+	\item We init a DSS (starting from \texttt{sequence.begin()}) and extend it in the "forward" direction. When the DSS recongnition stops, we have out first maximal DSS.
+	\item To get the other ones, remove one point at the left of the DSS (\texttt{dss.retractBackward()}) and extend this new DSS forward.
+	\item We repeat this process until reaching the end of the sequence.
+	\end{itemize}
+	
+
+\noindent {\bf Questions:}
+\begin{itemize}
+	\item If both \texttt{extend} and \texttt{retract} are in $O(1)$, what is the complexity of the maximal covering algorithm?
+	
+	\item Implement this algorithm and display all the maximal DSS (cf \texttt{DSSExample.cpp}).
+	
+	\item When computing the maximal DSS, compute the max, min and mean lenght (using the $l_\infty$ distance, between \texttt{getBackPoint()} and \texttt{getFrontPoint()} DSS points).
+	
+	\item Create a small executable parametrized by a grid step $h$ which digitizes a disk at step $h$ and returns the max/min/mean values.
+Then, using a small script and gnuplot, display the behavior of this quantities when $h \rightarrow 0$. Using logscale mode in gnuplot\footnote{\texttt{set logscale x} and \texttt{set logscale y}}, can you experimentally observed the theoretical bounds on maximal DSS we discussed during the lecture ?
+\end{itemize}
+
+\end{document}
+

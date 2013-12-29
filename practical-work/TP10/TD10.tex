@@ -1,0 +1,65 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{hyperref}
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 23cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+\usepackage{epsfig}  
+\usepackage{setspace}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+	\LARGE \textbf{TD10: Homotopic Skeletons}
+\end{center}
+
+\bigskip
+\par In this TP, the idea is to implement various thinning algorithms preserving the homotopy of the input set. First, update the \texttt{DGtalSkel} svn folder to get the last version of the file \texttt{PGMObject.cpp}. This file illustrates the definition of \texttt{Object} in DGtal: such class is a wrapper around a \texttt{DGtalSet} adding topological information (Jordan pair). Hence, \texttt{Object} instances have topological features such as simple point computation. In this file, we also illustrate the PGM loader in \textsc{DGtal} (already described in the DM).
+
+% -------------------------------------------------------
+\section*{Exercise 1 \rm Ultimate Homotopic Thinning}
+
+{\bf Question} Implement the ultimate homotopic thinning algorithm as described in the lecture (Slide 58\footnote{\url{http://liris.cnrs.fr/david.coeurjolly/cours/ENS2012/html/slides/c-gd-volumique.html\#58}}). You would have to consider the following data structures: \texttt{std::queue<Point>} or \texttt{std::set<Point>}. Accessing and iterating on such \texttt{std::} containers can be done as follows
+\begin{verbatim}
+  std::queue<Point> myQueue;
+  ...
+  myQueue.push( Point(2,3) );  //insert a point
+  Point p = myQueue.front();   //get the point at "front"
+  myQueue.pop();               //remove the "front" point
+  for(std::queue<Point>::const_iterator it = myQueue.begin(), itend =
+      myQueue.end(); it != itend; ++it)
+     // (*it) is a point of the container
+\end{verbatim}
+
+{\bf Question} Use shapes from the DM image database to test the thinning algorithm for the (4,8)- and (8,4)-adjacencies
+
+% ----------------------------------------------------------------------
+\section*{Exercise 2 \rm Anchor Points, Branches and Skeleton pruning}
+
+{\bf Question} Implement the following Anchor point definition: $p$ is an anchor point if it has only one component in $X$. Update the previous thinning algorithm to take into account anchor points (cf Slide 59).
+
+
+{\bf Question} Once the thinning algorithm stops, we would like to classify the topology of remaining point. Generate a board a output of the skeleton with different  colors in order to distinguish extremities, junctions and other points (definitions of such points are quite straightforward). 
+
+
+{\bf Question} Similarly, we can define a branch as the set of pixels between an extremity and a junction. Parts of the skeleton between two junctions are thus not considered in this definition. Propose an algorithm to extract all branches of a skeleton (and display each branch with different color for instance).
+
+
+{\bf Question} A first approach to simplify the skeleton is to perform small branch removal. Implement the following pruning algorithm: for each branch, we count its number of pixels and we remove the branch if the number is less than a given threshold. Experiment this skeleton pruning on several images from the database belonging to the same class. Are these skeletons more stable within image classes ?
+
+\end{document}
+

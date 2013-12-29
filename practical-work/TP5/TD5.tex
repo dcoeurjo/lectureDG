@@ -1,0 +1,111 @@
+\documentclass[a4paper, 11pt]{article}
+
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 23cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+\usepackage{epsfig}  
+\usepackage{setspace}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+	\LARGE \textbf{TD5: DGtal, Tracing and Border Extraction}
+\end{center}
+
+\bigskip
+\par In this TP, we introduce \texttt{DGtal} and do some elementary border processing.
+
+% -------------------------------------------------------
+\section*{The \texttt{DGtal} Project}
+
+\par \texttt{DGtal} is an open-source library focusing on digital geometry tools (\url{http://libdgtal.org}). In this TD, we will only use the DGtal board framework to display elementary digital objects.
+
+\par \texttt{DGtal} has been installed in \texttt{/home/dcoeurjo/DGtal/}, you will just have to specify this path in order to compile something using the library.
+\begin{itemize}
+	\item Get the DGtal \texttt{cmake} project skeleton: 
+\begin{verbatim}
+  svn checkout https://svn.liris.cnrs.fr/dcoeurjo/ENS-TP/DGtalSkel
+\end{verbatim}
+	\item Compile the examples using \texttt{cmake}\footnote{\texttt{cmake} is a project generator (e.g. makefiles on Unix, Xcode projects on MacOS, VisualStudio projects on MS) from a very simple recipe file (see \texttt{CMakeLists.txt})} "out-of-source-build principle":
+\begin{verbatim}
+  cd DGtalSkel
+  mkdir build && cd build && echo "Temporary build folder created"
+  cmake .. -DDGtal_DIR=/home/dcoeurjo/DGtal/build 
+  make
+\end{verbatim}
+	The \texttt{make} command will build examples located in the source folder (path ".." here). If you want to clean your build, just remove the \texttt{build} folder (a "make clean" command also exists in the build folder).
+	\item Execute: in the build folder, you should have \texttt{simpleboard} executable. Run it and you should see several new test.* files (EPS, SVG, ...).
+	\item Have a look to  \texttt{simpleboard.cpp}, \texttt{testSet.cpp} and the EPS files they generates. You will see a very simple description of elementary DGtal objects that will be used here (\texttt{Board2D}, \texttt{Point} and \texttt{DigitalSet}).
+	\item To add a new C++ file, copy and rename one of the example and add its name into the \texttt{CMakeLists.txt} file (\texttt{SRCs} variable). In the build folder, the next \texttt{make} command will build the brand new file.
+	\item If you want to install DGtal and DGtalSkel on your own machine, please see below.
+\end{itemize}
+
+
+% ----------------------------------------------------------------------
+\section*{Exercise 1 \rm Chessboard}
+
+\par Create a program that will generate (EPS file) a black/white 16x16 chessboard.
+
+
+% ----------------------------------------------------------------------
+\section*{Exercise 2 \rm Bresenham DSS Tracing}
+
+\noindent \textbf{Questions:}
+\begin{itemize}
+	\item Let us consider a point $(x,y)$ with $0<y<x$ and the Bresenham's digitization of the Euclidean segment defined by the origin and the point. Build a \texttt{DigitalSet} corresponding to this segment (cf \texttt{testSet.cpp} for a demo on \texttt{DigitalSet}) and display the result in a EPS file (using \texttt{board}). You can use the version of the algorithm you want.
+	
+	\item Customize this function to handle any point position. Again, display an example.
+	
+	\item \textbf{(Optional)} We would like to have a Bresenham-like tracing function to display digital circle. The idea is similar to the DSS case: in the first octant ($0 < y < x$), start from the point $(r,0)$ and use the previous point $(x,y)$ to decide the next one ($(x-1,y+1)$ or $(x,y+1)$). By symmetry of the circle, generalize the first octant circular arc to the other ones. Similarly to the DSS tracing, try to optimize your code to avoid all floating point operations/comparisons.
+\end{itemize}
+
+
+
+% ---------------------------------------------------------------------- 
+\section*{Exercise 3 \rm Border extraction}
+
+\noindent \textbf{Questions:}
+\begin{itemize}
+	\item In a new program, create a function that construct a digital disc, parametrized by a center and a radius. Generate the Gauss digitization of the associated Euclidean disc.
+	
+	\item Given such a disc digital set, and given a ($\kappa,\lambda$)-Jordan pair, iterate over the points of the set and detect the pixels belonging to the border (color them differently in the board output).
+	
+	\item Make the border detector a bit more efficient in the following ways:
+	\begin{itemize}
+		\item Iterate over the domain to get a first point in the set which belongs to the border.
+		\item Look at local neighborhood around this point, decide which pixel would be the next one in the border and iterate (you'll have to fix an orientation). Thanks to the orientation and to make this step as efficient as possible, try to reduce the number of points to "probe" in the neighborhood.
+		\item Repeat the tracking until you have closed your border (i.e. your have found your starting point)
+	\end{itemize}
+\end{itemize}
+
+
+% ----------------------------------------------------------------------
+\appendix
+\section*{Install DGtal on your own machine}
+
+\par If you want to install DGtal on your machine, you will need development  packages for \texttt{boost} and \texttt{boost-programs\_option}. Then, get the code and compile the lib: 
+\begin{verbatim}
+git clone https://github.com/DGtal-team/DGtal.git
+cd DGtal && mkdir build && cd build
+cmake .. -DDGTAL_BUILD_TESTING=OFF
+make
+\end{verbatim}
+\par Then, for the DGtalSkel \texttt{cmake}, replace the \texttt{/home/dcoeurjo/DGtal/build} by your DGtal build folder.
+
+
+\end{document}
+

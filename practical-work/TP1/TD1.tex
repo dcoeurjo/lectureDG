@@ -1,0 +1,162 @@
+\documentclass[a4paper, 11pt, french]{article}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{epsfig}  
+\usepackage{setspace}
+\usepackage{url}
+
+% TODO: redimentionnement de la page à retirer?
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 22cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+
+\title{\bf{TD1 \\ Manipulations d'images}}
+\author{}
+\date{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Debut du document %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+% Intro
+\par Dans ce TD, nous allons étudier les formats de fichiers d'images {\tt PBM}, qui sont largement répandus en raison de leur simplicité. Nous effectuerons quelques opérations simples sur ces formats : lecture, écriture, conversion et affichage.
+
+
+\section*{\bf Introduction. \rm Les formats "portable map"}
+
+\par Les formats de fichiers d'images {\tt PBM} (portable bitmap), {\tt PGM} (portable grayscalemap) et {\tt PPM} (portable pixmap) offrent une solution simple à tout programmeur confronté au problème de la manipulation de fichiers d'images. Dans ces formats, une image est considérée comme une matrice dont les valeurs représentent l'illumination en chaque pixel de l'image : noir ou blanc ({\tt PBM}), un niveau de gris ({\tt PGM}) ou trois niveaux de couleurs RGB (rouge, vert, bleu) ({\tt PPM}).
+
+\bigskip
+\bigskip
+\noindent \textbf{Définition:} Les fichiers correspondants sont constitués des éléments suivants :
+\begin{enumerate}
+	\item Un "nombre magique" pour identifier les type du fichier : P1 ou P4 pour {\tt PBM}, P2 ou P5 pour {\tt PGM} et P3 ou P6 pour {\tt PPM}.
+	\item Un caractère d'espacement (blanc, TABs, CRs, LFs).
+	\item La \textbf{largeur} de l'image (valeur décimale, codée en ASCII) suivie d'un caractère d'espacement, la \textbf{longueur} de l'image (valeur décimale, ASCII) suivie d'un caractère d'espacement.
+	\item Uniquement pour {\tt PGM} et {\tt PPM} : l'intensité maximum (valeur décimale comprise entre 0 et 255, codée en ASCII) suivie d'un caractère d'espacement.
+	\item Une matrice de nombres de taille largeur $\times$ hauteur. Ces nombres sont soit des valeurs décimales codées en ASCII et séparées par des espacements dans le cas des formats P1, P2, P3, soit directement les valeurs binaires sur 1 ou 2 octets dans le cas des formats P4, P5, P6. Dans ce dernier cas, il n'y pas de caractères d'espacement entre les valeurs.
+\end{enumerate}
+
+\noindent \textbf{Remarques:}
+\begin{itemize}
+	\item Les lignes commençant par le caractère "\#" sont ignorées.
+	\item Les lignes contiennent moins de 70 caractères.
+\end{itemize}
+
+
+\subsection*{Exemples}
+
+\begin{verbatim}
+P1
+# feep.pbm
+24 7
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 1 1 1 1 0 0 1 1 1 1 0 0 1 1 1 1 0 0 1 1 1 1 0
+0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 1 0
+0 1 1 1 0 0 0 1 1 1 0 0 0 1 1 1 0 0 0 1 1 1 1 0
+0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0
+0 1 0 0 0 0 0 1 1 1 1 0 0 1 1 1 1 0 0 1 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+\end{verbatim}
+{\it Fichier \texttt{PBM} dune image  24$\times$7 dont les valeurs sont codées en ASCII}
+\begin{verbatim}
+P2
+# feep.pgm
+24 7
+15
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+0  3  3  3  3  0  0  7  7  7  7  0  0 11 11 11 11  0  0 15 15 15 15  0
+0  3  0  0  0  0  0  7  0  0  0  0  0 11  0  0  0  0  0 15  0  0 15  0
+0  3  3  3  0  0  0  7  7  7  0  0  0 11 11 11  0  0  0 15 15 15 15  0
+0  3  0  0  0  0  0  7  0  0  0  0  0 11  0  0  0  0  0 15  0  0  0  0
+0  3  0  0  0  0  0  7  7  7  7  0  0 11 11 11 11  0  0 15  0  0  0  0
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+\end{verbatim}
+{\it Fichier \texttt{PGM} d'une image  24$\times$7. Les valeurs d'intensité codées en ASCII\newline sont au maximum de 15}
+\begin{verbatim} 
+P3
+# pasbeau.ppm
+4 4
+15
+0  0  0    0  0  0    0  0  0   15  0 15
+0  0  0    0 15  7    0  0  0    0  0  0
+0  0  0    0  0  0    0 15  7    0  0  0
+15  0 15   0  0  0    0  0  0    0  0  0
+\end{verbatim}
+{\it Fichier \texttt{PPM} d'une image  4$\times$4. Les valeurs d'intensité codées en ASCII  sont au maximum de 15}
+
+
+\newpage
+\section*{\bf Exercice 1. \rm Mise en bouche}
+
+% TODO: modifier le chemin d'accès selon si accès svn ou mise en ligne... :P
+\par Récupérez les sources du TP1. Ce répertoire contient:
+\begin{itemize}
+	\item Une ``librairie'' \texttt{Util.h/c} comprenant quelques utilitaires pour la lecture de fichiers.
+	\item Un programme de conversion \texttt{pbmtopxm.c}
+	\item Quelques fichiers image (sous-dossier \texttt{images/}).
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Questions:}
+\begin{itemize}
+	\item Testez le programme sur le fichier \texttt{feep\_P1.pbm}. Quel conversion ce programme effectue ?
+	\item De quelle manière est stockée l'image dans le programme ? 
+	\item À quoi servent les fonctions \texttt{pm\_getc} et \texttt{pm\_getint} du fichier \texttt{Util.c} ?
+	\item Quels sont les types impliqués pour manipuler les intensités ? dans le cas de valeurs décimales codées en ASCII (P1, P2, P3) ? dans le cas de valeurs binaires (P4, P5, P6) ? 
+	\item Quelle couleur est associée à la valeur d'intensité maximum ?
+\end{itemize}
+
+
+\section*{\bf Exercice 2. \rm Conversion de format intra-\texttt{PGM}}
+
+\par En s'inspirant de la fonction \texttt{pxmtopbm}, implémentez la fonction de conversion entre les formats \texttt{PGM} (c'est à dire de P2 vers P5 ou de P5 vers P2) : \texttt{pgmtopgm}
+
+\par {\bf Notes :} Avant de générer le nouvel exécutable, renommer l'exécutable de l'exercice précédent. Pour affichez un octet, utiliser \texttt{printf("\%c",...)}.
+
+\section*{\bf Exercice 3. \rm Conversion \texttt{PGM} vers \texttt{PBM}}
+
+\par Le format de fichier d'images {\tt PGM} permet de stocker des images en niveaux de gris. Proposez et implémentez un algorithme de conversion au format {\tt PBM}.
+
+
+\section*{\bf Exercice 4. \rm Conversion \texttt{PPM} vers \texttt{PGM}}
+
+\par De la même manière, le format de fichier d'images {\tt PPM} permet de stocker des images en niveaux de couleurs RGB. Proposez, puis implémentez un algorithme de conversion au format \texttt{PGM}, c'est à dire stocker les trois niveaux de couleurs sur un seul niveau.
+
+\section*{\bf Exercice bonus. \rm Conversion \texttt{PGM} vers \texttt{PPM}}
+
+\par Considérons une image \texttt{PGM} (image de niveaux de gris). On souhaite la convertir en format \texttt{PPM}, ie la colorier.
+
+\smallskip
+\noindent \textbf{Question:}
+\begin{itemize}
+	\item Proposez des idées d'algorithmes de coloriage d'image...
+\end{itemize}
+
+\par Un algorithme général consiste à utiliser une \emph{colormap}, càd une fonction qui associe une couleur (RGV) à un niveau de gris \footnote{Quelques exemples de colormap: \url{http://liris.cnrs.fr/dgtal/doc/nightly/moduleIO.html}}.\\
+
+\smallskip
+\noindent \textbf{Questions:}
+\begin{itemize}
+	\item On suppose qu'on encode la \emph{colormap} comme 3
+          tableaux de type \texttt{int[256]}, nommés
+          \texttt{colormapR}, \texttt{colormapG} et
+          \texttt{colormapB}. Implémentez une fonction de conversion
+          possible avec comme contrainte de renforcer visuellement la
+          perception de l'image (deux niveaux de gris prochent doivent
+          être associée à des couleurs proches mais on associe les
+          niveaux de gris sur une plus large spectre RVB).
+	\item Par exemple, proposez une colormap qui colorie des roses blanches en rouge...
+\end{itemize}
+
+\end{document}
+
