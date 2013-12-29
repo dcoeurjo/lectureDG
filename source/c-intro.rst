@@ -1,6 +1,6 @@
-===========================================================
-Introduction, images numériques, représentation géométrique
-===========================================================
+=============================================================
+Introduction, numerical images and geometrical representation
+=============================================================
 :author: David Coeurjolly
 
 
@@ -13,64 +13,65 @@ Introduction, images numériques, représentation géométrique
      -
 
      - .. image:: ./_static/images/mosaique.png
-          :width: 80%      
+          :width: 80%
      - .. image:: ./_static/images/snapshot-K.png
-          :width: 80% 
-       
+          :width: 80%
 
-Préliminaires
+
+Preliminaries
 =============
 
 
-Objectifs
----------
+Goals
+-----
 
-**Cours**
+**Lecutres**
 
-* Introduire les concepts fondamentaux d'analyse et traitement
-  d'images
-* Liens entre des outils d'analyse géométrique et des disciplines
-  connexes (algorithmique, arithmétique, théorie des mots, ...)
+* Introduce fundamental concepts in computer graphics, image
+  processing, digital geometry and computational geometry
+* Illustrate links between geometrical analysis of shapes and related
+  fields (complexity, arithmetics, word theory, ....)
 
-**TP**
- 
-* Implémentation de certains des outils présentés
-* Principes d'évaluation expérimentale (tests, évaluation, comparaisons...)
+**Practical work (TP)**
+
+* Implement some image processing/shape analysis tools
+* Comparative evaluation principles (tests, asymptotical
+  vs. experimental computational costs...)
 
 
 
-Contexte :   Analyse d'objets géométriques
-------------------------------------------
+Contexte :   Analysis of geometrical objects
+--------------------------------------------
 
-**Objets géométriques**
+**Geometrical objets**
 
-* Issus de capteurs
+* From acquisition devices
 
-  * capteurs CCD
-  * tomographes (IRM, scanners X, ...)
-  
-* Issus d'objets modélisés
+  * CCD devices
+  * tomographic images (IRM, scanners X, ...)
 
-  * modeleurs géométriques, CAO (conception assistée par ordinateur)
-  * modélisation mathématiques
+* From modeling processes
 
-  
-**Analyse**
+  * Geometrical modelers, CAD (computer-aided design)
+  * From mathematical modeling of phenomena
 
-* ... par ordinateurs -> *algorithmique*
+
+**Analysis**
+
+* ... computer-based -> *algorithms*
 * ... quantitative
 
-  * descripteurs "scalaires" 
-  * paramètres géométriques,
-  * invariants topologiques, ...
-  *  -> *qualité, certification résultats, ...*
+  * Scalar shape descriptors
+  * Geometrical paramters
+  * Topological invariants, ...
+  *  -> *quality, robustness, certified computations, ...*
 
 
-Quelques capteurs
-=================
+Couple of Acquisition devices
+=============================
 
-Capteurs "CCD"
---------------
+CCD Device
+----------
 *Charged-Coupled Device*
 
 **Principe de base**  régions/pixels photo-actifs : chaque unité de
@@ -81,23 +82,23 @@ Capteurs "CCD"
 .. list-table::
    :class: columns
 
-   * - .. image:: ./_static/images/CCD_1D.JPG 
-          :width: 100%         
+   * - .. image:: ./_static/images/CCD_1D.JPG
+          :width: 100%
      - .. image:: ./_static/images/CCD_2D.jpg
           :width: 70%
-          :align: center 
+          :align: center
      - .. image:: ./_static/images/Bayer_pattern_on_sensor.*
-          :width: 100% 
-   * - capteur linéaire [#]_      
+          :width: 100%
+   * - capteur linéaire [#]_
      - capteur 2D  [#]_
-     - Bayer pattern [#]_   
+     - Bayer pattern [#]_
 
 
-**Notion physique de pixels** 
+**Notion physique de pixels**
 
 .. image:: ./_static/images/CCD_pixels.png
     :align: center
-    :width: 70% 
+    :width: 70%
 
 [#]_
 
@@ -118,15 +119,15 @@ Par *construction*
 
 .. rst-class:: roundedquote
 
-     Image:`\qquad S \subset \mathbb{Z}^n \rightarrow Q\subset \mathbb{Z}^+`:math: 
+     Image:`\qquad S \subset \mathbb{Z}^n \rightarrow Q\subset \mathbb{Z}^+`:math:
 
 
 Tomographie
 -----------
 
-**Principe de base**  
+**Principe de base**
 
-* des particules énergétiques sont émises (ions, protons, photons, ...) depuis une source 
+* des particules énergétiques sont émises (ions, protons, photons, ...) depuis une source
 
 * un capteur  mesure leur atténuation lors d'une traversée d'un corps ou d'un objet (atténuation fonction de la durée du vol et des interactions entre la particule et la matière rencontrée)
 
@@ -135,14 +136,14 @@ Tomographie
 
 .. list-table::
    :class: columns
-  
+
    * - .. image:: ./_static/images/Line_Beam.jpg
-          :width: 60%         
-          :align: center 
+          :width: 60%
+          :align: center
 
      - .. image:: ./_static/images/Cone_beam.jpg
           :width: 60%
-          :align: center  
+          :align: center
 
 [#]_ [#]_
 
@@ -188,7 +189,7 @@ Tomographie Discrète
 .. list-table::
 
  * - * Nombre de projections
-     * Unicité de la reconstruction 
+     * Unicité de la reconstruction
      * Reconstruction sous hypothèses : convexité, régularité,...
 
 
@@ -204,9 +205,9 @@ Exemple: Transformation Mojette
 .. container:: build animation
 
   .. image:: ./_static/images/mojetteempty.*
-    
+
   .. image:: ./_static/images/mojettefull.*
-    
+
 
 Tomographie: conclusion
 -----------------------
@@ -219,12 +220,12 @@ de projections, la reconstruction est souvent structurée sur une
 
 .. rst-class:: roundedquote
 
-     Image:`\qquad S \subset \mathbb{Z}^n \rightarrow Q\subset \mathbb{Z}^+`:math: 
+     Image:`\qquad S \subset \mathbb{Z}^n \rightarrow Q\subset \mathbb{Z}^+`:math:
 
 Acquisition laser/ultra-son/contact
 -----------------------------------
 
-**Palpation mécanique** : contact physique 
+**Palpation mécanique** : contact physique
 
 **Approches basées sur un calcul de temps de vol** (e.g. télémètre
   laser, sonar, ...)
@@ -234,7 +235,7 @@ Acquisition laser/ultra-son/contact
     * -  * mesure le temps d'aller-retour d'une impulsion émise par le
            capteur (laser, ultra-son, ...)
          * *données*: distance à la source pour un ensemble de directions. Après calibration,  `(x,y,z)\in\mathbb{R}^3`:math:
-         
+
 
       - .. image:: _static/images/Lidar_P1270901.jpg
            :width: 50%
@@ -282,7 +283,7 @@ Approches mixtes : exemple  Kinect
         :align: center
 
 *Donnée brute* : carte de profondeur dans le plan 2D du capteur + image couleur
-  
+
 
 Quiz: pourquoi infrarouge ?
 
@@ -299,7 +300,7 @@ Problématiques
        :align: center
 
 
-* Filtrage (bruit, *outliers*,...) 
+* Filtrage (bruit, *outliers*,...)
 * Alignement  de nuages de points par calibration ou par *recalage*   [#]_
 * Contrôle de la densité locale
 * Que faire des parties occultées ?
@@ -320,7 +321,7 @@ Problématiques (bis)
 .. image:: _static/images/introduction.jpg
    :width: 50%
    :align: center
-   
+
 
 * *Surface* : on verra plus tard
 * *Qualité*
@@ -328,7 +329,7 @@ Problématiques (bis)
   * distance aux échantillons (quelle métrique ? comment être robuste au bruit ?...)
   * caractère lisse de la surface
   * garantie géométrique et topologique de la reconstruction
-* ... 
+* ...
 
 
 .. [#] CGAL.org
@@ -359,11 +360,11 @@ Quelques périphériques
    - .. image:: _static/images/Liquid_Crystal_Display_Macro_Example_zoom_2.jpg
          :width: 80%
          :align: center
-  
+
    - .. image::  _static/images/Synthese.png
          :width: 80%
          :align: center
-  
+
 
 **Problèmatiques**
 
@@ -389,11 +390,11 @@ Imprimantes 3D
 
      - .. image:: _static/images//Rapid_prototyping_slicing.jpg
          :width: 80%
-         :align: center         
+         :align: center
 
      - .. image:: _static/images/3D_scanning_and_printing.jpg
          :width: 80%
-         :align: center         
+         :align: center
 
 
 **Problèmatiques**
@@ -483,5 +484,3 @@ Plan
 * Enveloppes convexes, triangulation de Delaunay,...
 * Structures de données de localisation
 * ...
-
-
