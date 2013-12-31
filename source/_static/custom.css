@@ -4,7 +4,7 @@
 
 table.field-list *, table.columns * {
     border: 1;
-}*/ 
+}*/
 
 
 div.topic.contents {
@@ -78,6 +78,46 @@ blockquote {
     text-align: center;
 }
 
+
+
+
+.first {
+    margin-top: -5px !important;
+}
+
+
+.admonition {
+    border-radius: 15px;
+    padding: 15px;
+    background: #e6e6e6;
+    width: 100%;
+    margin-bottom: 25px;
+    position: relative;
+    box-shadow: 5px 5px 5px 2px #ccc;
+    display: block;
+    text-shadow: 1px 1px 0px #ffffff;
+}
+
+
+p.admonition-title, .admonitiontitle, .admonition[admonition-title]:before {
+    position: relative;
+    right:0;
+    top:0;
+    margin-top: -15px;
+    margin-right: -8px;
+    background: #2659a6;
+    color: #ffffff;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    text-align: center;
+    padding: 2px 40px;
+    float: right;
+    text-shadow: none;
+}
+
+.admonition[admonition-title]:before {
+    content: attr(admonition-title);
+}
 
 p.roundedquote {
     border: 1px solid #666;
@@ -157,4 +197,3 @@ ul.simple li ul:first-child {
     left: 0px;
     width: 100%;
 }
-

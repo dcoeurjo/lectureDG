@@ -25,23 +25,46 @@ Preliminaries
 Goals
 -----
 
-**Lecutres**
+**Lectures**
 
 * Introduce fundamental concepts in computer graphics, image
   processing, digital geometry and computational geometry
 * Illustrate links between geometrical analysis of shapes and related
-  fields (complexity, arithmetics, word theory, ....)
+  fields (complexity, arithmetic, word theory, ....)
 
 **Practical work (TP)**
 
 * Implement some image processing/shape analysis tools
-* Comparative evaluation principles (tests, asymptotical
+* Comparative evaluation principles (tests, asymptotic
   vs. experimental computational costs...)
 
 
+Infrastructure
+--------------
 
-Contexte :   Analysis of geometrical objects
---------------------------------------------
+**Github project**   https://github.com/dcoeurjo/lectureDG
+
+
+* Lecture sources
+* Practical work
+
+.. code-block:: bash
+
+   git clone https://github.com/dcoeurjo/lectureDG.git
+
+**Practical work**
+
+* Mostly based on DGtal (http://libdgtal.org)
+
+   .. image:: ./_static/images/logoDGtal.png
+       :width: 50%
+
+**Homework, projects, exam**
+
+
+
+Context:   Analysis of geometrical objects
+------------------------------------------
 
 **Geometrical objets**
 
@@ -74,10 +97,11 @@ CCD Device
 ----------
 *Charged-Coupled Device*
 
-**Principe de base**  régions/pixels photo-actifs : chaque unité de
-  surface élémentaire accumule une charge électrique proportionnelle
-  à l'intensité  lumineuse reçue.
+**Principles** photo-active regions/pixels : each unit if surface
+element accumulate some electrical charges proportional to the
+intensity of received light
 
+    *photon -> electron charges*
 
 .. list-table::
    :class: columns
@@ -89,12 +113,12 @@ CCD Device
           :align: center
      - .. image:: ./_static/images/Bayer_pattern_on_sensor.*
           :width: 100%
-   * - capteur linéaire [#]_
-     - capteur 2D  [#]_
+   * - Linear device [#]_
+     - 2D device  [#]_
      - Bayer pattern [#]_
 
 
-**Notion physique de pixels**
+**Physical notion of  pixels**
 
 .. image:: ./_static/images/CCD_pixels.png
     :align: center
