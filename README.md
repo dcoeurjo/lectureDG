@@ -49,3 +49,7 @@ If you want to use distribute derivative of this work for your own purposes, con
 
 Illustrations come from many sources (previous lectures, personnal tech reports, wikipedia...). I've tried to detail credits for them but if you see issues, please send me a mail.
 Some of them have been provided by colleagues and I'd like to thank them: Jacques-Olivier Lachaud, Tristan Roussillon, Isabelle Sivignon, Olivier Devillers, Nicolas Normand.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dcoeurjo/lecturedg/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
