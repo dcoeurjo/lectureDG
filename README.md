@@ -48,7 +48,7 @@ The overall material is distributed using the BY-NC-ND Creative Commons Licence 
 If you want to use distribute derivative of this work for your own purposes, contact the author.
 
 Illustrations come from many sources (previous lectures, personnal tech reports, wikipedia...). I've tried to detail credits for them but if you see issues, please send me a mail.
-Some of them have been provided by colleagues and I'd like to thank them: Jacques-Olivier Lachaud, Tristan Roussillon, Isabelle Sivignon, Olivier Devillers, Nicolas Normand.
+Some of them have been provided by colleagues and I'd like to thank them: Jacques-Olivier Lachaud, Tristan Roussillon, Isabelle Sivignon, Olivier Devillers, Nicolas Normand and Guillaume Iooss.
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dcoeurjo/lecturedg/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
