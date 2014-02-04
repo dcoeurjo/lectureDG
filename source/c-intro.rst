@@ -59,8 +59,11 @@ Infrastructure
    .. image:: ./_static/images/logoDGtal.png
        :width: 50%
 
-**Homework, projects, exam**
+**Homework, project, final exam**
 
+* One practical work session will be evaluated
+* Homework
+* Final exam
 
 
 Context:   Analysis of geometrical objects
@@ -90,7 +93,7 @@ Context:   Analysis of geometrical objects
   *  -> *quality, robustness, certified computations, ...*
 
 
-Couple of Acquisition devices
+Couple of Acquisition Devices
 =============================
 
 CCD Device
@@ -126,36 +129,41 @@ intensity of received light
 
 [#]_
 
-.. [#] http://en.wikipedia.org/wiki/File:CCD_line_sensor.JPG
-.. [#] http://fr.wikipedia.org/wiki/Fichier:CCD_in_camera.jpg
-.. [#] http://en.wikipedia.org/wiki/File:Bayer_pattern_on_sensor.*
-.. [#] http://fr.wikipedia.org/wiki/Fichier:CCD_Sensor_Layout_Evolution.png
+.. note ::
+  .. [#] http://en.wikipedia.org/wiki/File:CCD_line_sensor.JPG
+  .. [#] http://fr.wikipedia.org/wiki/Fichier:CCD_in_camera.jpg
+  .. [#] http://en.wikipedia.org/wiki/File:Bayer_pattern_on_sensor.*
+  .. [#] http://fr.wikipedia.org/wiki/Fichier:CCD_Sensor_Layout_Evolution.png
 
 
 
-Modélisation associée
----------------------
+Associated Modeling
+-------------------
 
-Par *construction*
+By *construction*
 
-* Support est induit par un pavage périodique
-* Valeurs quantifiées sur un certain nombre de bits
+* Underlying support geometry is induced by a periodic tiling
+* Values are quantified on a small number of bits
 
-.. rst-class:: roundedquote
+.. admonition:: def.
 
      Image:`\qquad S \subset \mathbb{Z}^n \rightarrow Q\subset \mathbb{Z}^+`:math:
 
 
-Tomographie
------------
+Tomography
+----------
 
-**Principe de base**
+**Principles**
 
-* des particules énergétiques sont émises (ions, protons, photons, ...) depuis une source
+* particles are emitted (ions, protons, photons, ...) from a source
+  device to a target (object, body, ...)
 
-* un capteur  mesure leur atténuation lors d'une traversée d'un corps ou d'un objet (atténuation fonction de la durée du vol et des interactions entre la particule et la matière rencontrée)
+* a detector measures particles intensity after the object
+  traversal. The intensity decay is a function of the time flight and
+  the traversed material)
 
-* l'image est ensuite reconstruite *par inversion des projections*
+* the image is reconstructed from attenuation measurements *using
+  back-projection approaches*
 
 
 .. list-table::
@@ -171,20 +179,21 @@ Tomographie
 
 [#]_ [#]_
 
+.. note ::
 
-.. [#] http://en.wikipedia.org/wiki/File:CT_Scanner_Line_Beam.jpg
-.. [#] http://en.wikipedia.org/wiki/File:Cone_beam_image_Cam_320x240.jpg
-
-
-Tomographie (bis)
------------------
+  .. [#] http://en.wikipedia.org/wiki/File:CT_Scanner_Line_Beam.jpg
+  .. [#] http://en.wikipedia.org/wiki/File:Cone_beam_image_Cam_320x240.jpg
 
 
-**Cas d'école**  Théorème de Radon
+Tomography (bis)
+----------------
+
+
+**Basic Idea**  Randon's Theorem
 
     `[Rf](t,\theta) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x,y)\delta(t-x \cos(\theta) - y \sin(\theta)) dxdy`:math:
 
-`\delta`:math: impulsion de Dirac
+`\delta`:math:  Dirac measures
 
 
     .. image:: ./_static/images/sinogramme.png
@@ -196,25 +205,26 @@ Tomographie (bis)
      *<demo>*
 
 
-Tomographie Discrète
---------------------
+Digital Tomography
+------------------
 
-**Spécificités**
+**Specificities**
 
-* Directions de projection : droites rationnelles `ax-by=c`:math: (`a,b,c\in\mathbb{Z}`:math:)
-* Fonction de projection : somme des valeurs pour les points discrets
-  sur la droite rationnelle
-* Données à reconstruire : donnée binaire {0,1} ou dans
+* Projection directions: rational straight lines  `ax-by=c`:math: (`a,b,c\in\mathbb{Z}`:math:)
+* Projection function: sum of digital point values along the rational
+  straight line
+* Data to reconstruct: binary values {0,1} or in
   `\mathbb{Z}`:math:
 
 
-**Problèmes**
+**Problems**
 
 .. list-table::
 
- * - * Nombre de projections
-     * Unicité de la reconstruction
-     * Reconstruction sous hypothèses : convexité, régularité,...
+ * - * Number of required projections
+     * Uniqueness of the reconstruction
+     * Sometimes, further hypotheses are required (convexity,
+       smoothness, ...)
 
 
    - .. image:: ./_static/images/pasunicite.png
@@ -223,8 +233,8 @@ Tomographie Discrète
 
 
 
-Exemple: Transformation Mojette
--------------------------------
+Example:  Mojette Transform
+----------------------------
 
 .. container:: build animation
 
@@ -233,63 +243,79 @@ Exemple: Transformation Mojette
   .. image:: ./_static/images/mojettefull.*
 
 
-Tomographie: conclusion
------------------------
+Digital Tomography: conclusion
+------------------------------
+
+By  *construction* or for *efficiency* of the reconstruction process
+from projections, the result isusually defined in **regular lattices**
+in 2D or 3D
 
 
-Par *construction* ou par *souci d'efficacité* dans l'inversion du processus
-de projections, la reconstruction est souvent structurée sur une
-**grille régulière** 2D ou 3D.
-
-
-.. rst-class:: roundedquote
+.. admonition:: def.
 
      Image:`\qquad S \subset \mathbb{Z}^n \rightarrow Q\subset \mathbb{Z}^+`:math:
 
-Acquisition laser/ultra-son/contact
------------------------------------
+Acquisition from  laser/ultrasound/contact
+------------------------------------------
 
-**Palpation mécanique** : contact physique
+**Mechanical contacts** probe measurements from motorized systems
 
-**Approches basées sur un calcul de temps de vol** (e.g. télémètre
-  laser, sonar, ...)
+**Approches based on time-of-flight computations** (e.g. laser or
+sonar rangefinder, ...)
 
 .. list-table::
 
-    * -  * mesure le temps d'aller-retour d'une impulsion émise par le
-           capteur (laser, ultra-son, ...)
-         * *données*: distance à la source pour un ensemble de directions. Après calibration,  `(x,y,z)\in\mathbb{R}^3`:math:
-
+    * - * measures the time taken by the pulse to be reflected off
+          the target and returned to the sender
+        * *data* =  distance of the target from the source en a set of
+          directions. After reconstruction, `\{(x,y,z)\}\in\mathbb{R}^3`:math:
 
       - .. image:: _static/images/Lidar_P1270901.jpg
            :width: 50%
            :align: center
 
-Approches basées sur le principe de triangulation
--------------------------------------------------
-
+Reconstruction from triangulation principle
+-------------------------------------------
 
 .. list-table::
 
-    * -  * Une impulsion ou un ensemble d'impulsions est émise et est observée sur un autre capteur
-           (ex. laser + CCD)
-         * La position relative de la source et du capteur étant connue, on
-           en déduit une position par triangulation
-         * *données* : après calibration, nuage de points
-           `(x,y,z)\in\mathbb{R}^3`:math:
+    * -  * Input: a pulse (or series of) is emitted from the source
+               and *observed* if a detector (ex. laser + CCD)
+         * Relative position of the source and the detector is known
+           and thus
+         * From  2D positions in the detector,
+
+         * *data* = After calibration and reconstruction, a point cloud
+           `\{(x,y,z)\}\in\mathbb{R}^3`:math:
 
       - .. image:: _static/images/LaserPrinciple.png
            :width: 100%
            :align: center
 
 
-Approches mixtes : exemple  Kinect
-----------------------------------
+Reconstruction from images: example with Epipolar Geometry
+----------------------------------------------------------
+
+
+.. image:: _static/images/Epipolar_geometry.png
+   :width: 60%
+   :align: center
+
+[#]_
+
+
+
+.. [#] http://en.wikipedia.org/wiki/File:Epipolar_geometry.svg
+
+
+
+Hybrid approach:  Kinect
+------------------------
 
 .. list-table::
 
-   * - * Une caméra couleur (CCD, 640x480)
-       * *Projection de motifs*  infrarouge  + capteur CMOS (~640x480)
+   * - * Color camera (CCD, 640x480)
+       * *Pattern projection in infrared*  +  CMOS  detector (~640x480)
 
      - .. image:: _static/images/Xbox-360-Kinect-Standalone.png
         :width: 80%
@@ -306,13 +332,13 @@ Approches mixtes : exemple  Kinect
         :width: 80%
         :align: center
 
-*Donnée brute* : carte de profondeur dans le plan 2D du capteur + image couleur
+*Raw data* = Depth map in the detector plane  + color image
 
 
-Quiz: pourquoi infrarouge ?
+Quiz: why infrared ?
 
-Problématiques
---------------
+Bottlenecks/Problems to consider
+--------------------------------
 
 .. list-table::
 
@@ -324,10 +350,10 @@ Problématiques
        :align: center
 
 
-* Filtrage (bruit, *outliers*,...)
-* Alignement  de nuages de points par calibration ou par *recalage*   [#]_
-* Contrôle de la densité locale
-* Que faire des parties occultées ?
+* Filtering (noise, *outliers*,...)
+* Point cloud *registration* (by device calibration or from data processing)   [#]_
+* Local density control
+* How to deal wit occluded regions ?
 * ...
 
 
@@ -336,43 +362,45 @@ Problématiques
 .. [#] Point Cloud Library
 
 
+Bottlenecks/Problems to consider (bis)
+--------------------------------------
 
-Problématiques (bis)
---------------------
-
-**Reconstruction géométrique** définir une *surface* de *qualité*   *approximant* ou *interpolant* au mieux le nuage de points. [#]_
+**Geometrical reconstruction** define a  *high quality manifold*
+*approximating* or *interpolating* the point cloud. [#]_
 
 .. image:: _static/images/introduction.jpg
-   :width: 50%
+   :width: 60%
    :align: center
 
 
-* *Surface* : on verra plus tard
-* *Qualité*
+* *Manifold* cf later
+* *Quality*
 
-  * distance aux échantillons (quelle métrique ? comment être robuste au bruit ?...)
-  * caractère lisse de la surface
-  * garantie géométrique et topologique de la reconstruction
+  * distance to samples (which métrique ? how to be robust to noise ?...)
+  * Smoothness of the reconstruction
+  * Geometrical and topological certificate of the  reconstruction
 * ...
 
 
 .. [#] CGAL.org
 
 
-Quelques périphériques
-======================
+Some External Devices
+=====================
 
-Écran matriciel
----------------
+Raster Screens
+--------------
 
 
-**Principe**
+**Principles**
 
-* Luminophores composés de cellules RVB (rouge, vert, bleu)  pour rendu couleur additif
-* Pour ce qui nous concerne:
+* Luminophores with  RGB cells (red, green, blue)  to render colors
+  by additivity
 
-  - Image couleur : `[0..n]\times[0..m] -> Q^3`:math:
-  - `Q`:math: : dynamique de chaque canal couleur (8bits, 24bits, ...)
+* In our context
+
+  - Color image : `[0..n]\times[0..m] -> Q^3`:math:
+  - `Q`:math: : range of each color channel (8bits, 24bits, ...)
 
 
 .. list-table::
@@ -390,19 +418,19 @@ Quelques périphériques
          :align: center
 
 
-**Problèmatiques**
+**Problems**
 
-* Modèles géométrique `\rightarrow`:math: représentation discrète
-* ex: tracé de segments, cercles, ...
+* Rendering problem: geometrical models `\rightarrow`:math: digital representations
+* ex: straight lines/circles drawing...
 
 
-Imprimantes 3D
---------------
+3D printers
+-----------
 
-**Approche par dépôt en couche**
+**Layer based**
 
-* Approche additive : ajoute de  matière couche par couche
-* Plusieurs technologies : dépôt de résine chauffée, stéréolithographie (solidification résine par éclairage ultra-violet), ...
+* Additive approach: material is added layer by layer
+* Several technologies: dépôt de résine chauffée, stéréolithographie (solidification résine par éclairage ultra-violet), ...
 * Point commun : contrôlé par une représentation discrète `\,f: \mathbb{Z}^3 \rightarrow \{0,1\}`:math: de l'objet à "imprimer"
 
 

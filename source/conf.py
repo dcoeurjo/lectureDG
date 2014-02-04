@@ -28,6 +28,11 @@ import sys, os
 extensions = ['sphinx.ext.todo', 'sphinx.ext.mathjax', 'sphinx.ext.ifconfig',
               'hieroglyph']
 
+
+#Static mathjax
+#mathjax_path = ['_']
+
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
