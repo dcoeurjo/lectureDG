@@ -141,8 +141,8 @@ Equalization (bis)
 Histogram based Segmentation
 ----------------------------
 
-**Image Segmentation**  classify pixels into classes such that pixels
-in a class share the same *visual* properties (colorimetric
+**Image Segmentation**  classify pixels into classes such that
+intra-class pixels share the same *visual* properties (colorimetric
 information, geometrical properties ...)
 
 Let's go back to initial image:
@@ -174,7 +174,7 @@ Local Approaches
 ================
 
 Principles
----------
+----------
 
 **Prendre en compte les relations spatiales entre pixels**
 
