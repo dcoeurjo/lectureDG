@@ -430,8 +430,10 @@ Raster Screens
 **Layer based**
 
 * Additive approach: material is added layer by layer
-* Several technologies: dépôt de résine chauffée, stéréolithographie (solidification résine par éclairage ultra-violet), ...
-* Point commun : contrôlé par une représentation discrète `\,f: \mathbb{Z}^3 \rightarrow \{0,1\}`:math: de l'objet à "imprimer"
+* Several technologies: heated plastic layers, stereolithography
+  (solidification of the polymer resin from ultra-violet beam), ...
+* Key point : slice based or discrete representation  `\,f:
+  \mathbb{Z}^3 \rightarrow \{0,1\}`:math: of the object to print
 
 
 .. list-table::
@@ -449,90 +451,94 @@ Raster Screens
          :align: center
 
 
-**Problèmatiques**
+**Problems**
 
-* Modèles géométrique `\rightarrow`:math: représentation discrète en extension
-* Contrôle topologique dans la discrétisation
-* Analyse géométrique géométrie : anticiper la fragilité de certaines structures géométriques...
+* Geometrical model `\rightarrow`:math: layer based  representaiton
+* How to control the topology/surface orientation during the process ?
+* Some geometrical  analysis can be performed to enforce stability,
+  robustness, ...
 
 
-Survol des disciplines
-======================
+Topics Overview
+===============
 
-Glossaire subjectif
--------------------
+(Very) Short (Subjective) Glossary
+----------------------------------
 
 **Image Processing** (traitement et analyse d'images)
 
-* analyse d'image au sens large
-* l'image est souvent vue comme la réalisation d'un signal bi-dimensionnel
-* mots-clefs: filtrage, colorimétrie, segmentation, ...
+* General image related topic
+* Image as the "realization" of a bi-directional signal
+* keywords: image compression, filtering, denoising, color analysis, shape segmentation,...
 
 **Computer Vision** (Vision par ordinateur, reconnaissance de formes,..)
 
-* s'intéresse à la perception des objets
-* mots-clefs: reconnaissance de
-  forme, reconstruction d'environnement basée image, reconstruction stéréoscopique, ...
+* Focusing on object perception
+* Keywords:  Shape recognition, shape/image indexing and retrieval, 3D
+  reconstruction from images, ...
 
 
 
-Glossaire subjectif (bis)
--------------------------
+(Very) Short (Subjective) Glossary
+----------------------------------
 
-**Géométrie Algorithmique**
+**Computational Geometry**
 
-* données discrètes également : structures discrètes (points, ensemble de facettes..)
-* cherche à définir des structures de données (ex. reconstruction) ou
-  algorithmes permettant l'analyse géométrique
-* algorithmique certifiée
-* complexité
-
-
-**Géométrie discrète**
-
-* La structure du support est fondamentale (grille régulière `\Rightarrow`:math: arithmétique entière)
-* Les valeurs sont souvent discrètes, voire binaires
-* *prendre des décisions géométriques exactes sur des objets donnés en extension*  (vs. compréhension)
+* Discrete data  (point sets, simplicial complexes, ...)
+* Aim to first reconstruct structures and perform
+  geometrical/topological computations
+* Certified computations
+* Complexity
 
 
+**Digital Geometry**
 
-Glossaire subjectif (ter)
--------------------------
-**Modélisation géométrique**
-
-* Modélisation d'objets/scènes géométriques 3D
-* Animation, ...
-
-
-**Synthèse d'images**
-
-* Produire des images de qualité à partir d'objets/scènes 3D
-  modélisées
-* Lancer de rayon, radiosité, suivi de photons, ...
+* We focus on discrete data defined on lattices  (`\Rightarrow`:math: integer coordinates, arithmetical properties of objects...)
+* Values are usually binary
+* *take geometrical/topological decisions from objects defined by
+  extension*  (vs. from properties)
 
 
-Plan du cours
-=============
+(Very) Short (Subjective) Glossary
+----------------------------------
 
-Plan
-----
+**Geometric Modeling**
 
-**Analyse et traitement d'images**
+* Model objects and  complex geometrical scenes
+* Procedural modeling, animation, ...
 
-* filtrage, segmentation
-* correction d'histogramme
-* morphologie mathématique
+
+**Image Synthesis**
+
+* Image rendering from geometrical models + material properties +
+  Illumination models
+
+* Ray shooting, radiosity, photon path tracing, ....
+
+
+Overview of the course
+======================
+
+TOC
+---
+
+**Image Processing**
+
+* Image filtering
+* Colorimetric (historgram) processing
+* Mathematical morphology
 * Segmentation
 
-**Géométrie discrète**
+**Digital Geometry**
 
-* Modèle discret, toplogie digitale
-* Analyse surfacique d'objets discrets
-* Analyse volumique
-* Transformations rapides
+* Digital model and Digital topology
+* Digital object surface analysis
+* Volumetric processing
+* Fast arithmetical transforms
 
-**Géométrie algorithmique**
 
-* Enveloppes convexes, triangulation de Delaunay,...
-* Structures de données de localisation
+**Computational Geometry**
+
+* Geometrical predicates, convex hulls, Delaunay triangulations
+* Spatial Data structures
 * ...

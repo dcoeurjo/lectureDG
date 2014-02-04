@@ -1,26 +1,27 @@
-===============================
- Analyse et traitement d'images
-===============================
+================================
+Introduction to Image Processing
+================================
 :author: David Coeurjolly
 
 
-Approches ponctuelles
-=====================
+Value based Approaches
+======================
 
-Principes
----------
+Principles
+----------
 
-On s'intéresse aux valeurs de la fonction  `\, f: S\subset\mathbb{Z}^n\rightarrow Q`:math: par une représentation probabiliste
+We only focus on values of the functions  `\, f:
+S\subset\mathbb{Z}^n\rightarrow Q`:math: using stochastic representation
 
-Objet important **histogramme**
+Important object:  **histograms**
 
     `H: Q \rightarrow [0,1]`:math:
 
     `H(i) = \frac{Card \{ p\in S \,|\, f(p) =i \}}{Card S}`:math:
 
 
-L'image peut-être vue comme une variable aléatoire de densité de
-probabilité `H`:math:
+The image can be seen as a random variable with probability density
+function `H`:math:
 
 
 Exemple: `S=[0,185]\times[0,85],\, Q=[0,255]`:math:
@@ -36,40 +37,44 @@ Exemple: `S=[0,185]\times[0,85],\, Q=[0,255]`:math:
 
 
 
-Histogramme comme outil d'analyse
----------------------------------
+Histogram based image processing
+--------------------------------
 
-L'histogramme résume de manière non structurée spatialement l'information colorimétrique de l'image
-
-* **Description/indexation d'images**
- 
-  * Une image est représentée par son histogramme (ou par des descripteurs construits sur ce dernier)
-  * *distance entre images* == *distance sur des histogrammes* == *distance entre distributions de probabilité*
-
-* **Découverte de structures**
- 
-  * Analyse de la distribution pour segmentation objet/fond
-  * Modélisation du bruit
-
-* **Rehaussement, égalisation, ...**
-
-  * transformation d'histogramme
-  * propagation de la transformation sur l'image initiale
+Histgrams sum up colorimetric information of the image without
+considering spatial relationships.
 
 
-Transformation d'histogramme
-----------------------------
+* **Image description/indexing**
 
-Quelques exemples: 
+  * Image characterized by its histogram (ou by descriptors     consturcted from the histogram)
+  * *distance between two images* == *distance between image
+    histograms* == *distance between two probability distribution*
 
-**Translation** 
+* **Structure recognition**
 
-* variation de la luminosité globale
+  * Foreground/background analysis from histogram shape analysis
+  * Noise modeling
+
+* **Histogram optimization, equalisaion, ...**
+
+  * Perform transformations on the histogram and propagate the changes
+    to image values
+
+
+
+Histogram transformations
+-------------------------
+
+Few examples:
+
+**Translation**
+
+* global luminosity shift
 * `H'(i) = H(i+t)`:math:
 
-**Recadrage d'histogramme** 
+**Histogram remapping**
 
-* transformation (par exemple linéaire) `\,l: [a,b]\subset[0,1] \rightarrow [0,1]`:math:
+* e.g. using linear form `\,l: [a,b]\subset[0,1] \rightarrow [0,1]`:math:
 * `H'(i) = H( a + i(b-a) )`:math:
 
 **Inversion**
@@ -78,26 +83,27 @@ Quelques exemples:
 
 ...
 
-**Plus généralement**
+**More generally**
 
-   `\phi: [0,1] \rightarrow [0,1]`:math:    
+   `\phi: [0,1] \rightarrow [0,1]`:math:
 
    `H'(i) = H(\phi(i))`:math:
 
-Propagation dans l'image `f'(p) = \phi(f(p))`:math:    *<demo>*
+Propagation to image `f'(p) = \phi(f(p))`:math:    *<demo>*
 
-Egalisation et spécification d'histogramme
-------------------------------------------
+Histogram Equalization and Histogram Specifications
+---------------------------------------------------
 
-Dans les exemples précédents, `\phi`:math: était donnée. Maintenant on
-souhaite construire `\phi`:math: permettant de passer de `H`:math:
-(empirique) à `H'`:math: (modèle).
+In previous examples, `\phi`:math: was prescribed. Now, we are looking
+for  `\phi`:math: to map histogram  `H`:math:
+(empiric or observed) to `H'`:math: (model).
 
-**Exemples : égalisation d'histogramme**
+**Example: Equalization**
 
-* Objectifs : égaliser la *dynamique* des intensités par *étalement* de l'histogramme 
-* Distribution cible `H'`:math: : distribution uniforme
-* Effets : réhaussement du contraste
+* Goals : equalize the intensity values *dynamic* using a *spreading*
+  of the histogram
+* Target distribution `H'`:math: : uniform distribution
+* Effect: contrast enhancing
 
 
 .. list-table::
@@ -118,10 +124,10 @@ souhaite construire `\phi`:math: permettant de passer de `H`:math:
        :align: center
 
 
-Egalisation (bis)
------------------
+Equalization (bis)
+------------------
 
-**Attention** Pas toujours une bonne idée..
+**Be careful** not always a good idea
 
 .. list-table::
 
@@ -132,12 +138,14 @@ Egalisation (bis)
        :width: 110%
        :align: center
 
-Segmentation par histogramme
+Histogram based Segmentation
 ----------------------------
 
-**Segmentation d'images** : classifier les pixels en un nombre restreint de classes partageant des propriétés (colorimétrique, géométriques ...) communes 
+**Image Segmentation**  classify pixels into classes such that pixels
+in a class share the same *visual* properties (colorimetric
+information, geometrical properties ...)
 
-Reprenons l'exemple initial :
+Let's go back to initial image:
 
 .. list-table::
 
@@ -155,16 +163,17 @@ Reprenons l'exemple initial :
        :width: 80%
        :align: center
 
-*Seuillage d'histogramme* 
+*Histogram Thresholding*
 
-* Approche naive produisant une segmentation binaire
-* Analyse des propriétés statistiques des deux sous-classes pour trouver le *bon* seuil (minimisation de variance, seuillage entropique, ...) 
-* Cas d'utilisation assez restreints
+* Naive approach to get binary segmentation (2 classes)
+* We can analyze statistical properties of each class to find the
+  *best* threshold (variance minimization, entropic thresholding, ...)
+* Use cases are quite limited
 
-Approches locales
-=================
+Local Approaches
+================
 
-Principes
+Principles
 ---------
 
 **Prendre en compte les relations spatiales entre pixels**
@@ -211,12 +220,12 @@ Principes
 
 Filtrage d'image élémentaire
 ----------------------------
-**Attention :** 
+**Attention :**
     .. math::
       \int_{-\infty}^\infty g(s,t)dsdt = 1
 
 
-**Moyenneurs / passe-bas** 
+**Moyenneurs / passe-bas**
 
     .. math::
        M_{3\times 3} = \frac{1}{9} \begin{bmatrix} 1 & 1 & 1\\1 &1 & 1\\1 & 1 & 1\\ \end{bmatrix}
@@ -278,7 +287,7 @@ Exemples
     - .. image:: _static/images/len_G5bis.*
        :width: 100%
        :align: center
-   
+
 
 Modèle de bruit
 ---------------
@@ -297,7 +306,7 @@ Modèle de bruit
     - .. image:: _static/images/len_bruitGaussienG.*
        :width: 60%
        :align: center
- 
+
   * - Bruit spéculaire *poivre/sel*
     - .. image:: _static/images/len_bruit.*
        :width: 60%
@@ -313,7 +322,7 @@ Modèle de bruit
     - .. image:: _static/images/len_bruit2G.*
        :width: 60%
        :align: center
-  
+
 
 Filtres passe-haut
 ------------------
@@ -337,18 +346,18 @@ Filtres passe-haut
      - .. image:: _static/images/len_hautG.*
         :width: 60%
         :align: center
-  
+
 Filtres non-linéaires
 ---------------------
 
 **Filtre médian**
 
-* Dans le support, on calcul la valeur médiane des intensités 
+* Dans le support, on calcul la valeur médiane des intensités
 
 *exemple*
     .. math::
         \begin{bmatrix} 12 & 13 & 24\\1 &30 & 43\\3  & 15 & 20\\ \end{bmatrix}
- 
+
 `\Rightarrow`:math: 15
 
 * idéal pour du bruit spéculaire
@@ -370,7 +379,7 @@ Exemple
      - .. image:: _static/images/len_bruitMedian.*
         :width: 90%
         :align: center
- 
+
 
 
 Détecteurs de contour et opérateurs différentiels
@@ -399,7 +408,7 @@ Objectifs
      - .. image:: _static/images/NaturalTexture.*
         :width: 80%
         :align: center
- 
+
 
 Nous reviendrons plus tard sur le problème général de segmentation
 
@@ -412,7 +421,7 @@ Gradient d'une image
     .. math::
         \nabla f(x,y) = \left (\frac{\partial f}{\partial x}(x,y),
         \frac{\partial f}{\partial y}(x,y)\right)
- 
+
 
 **Approximation "différence finie"**
 
@@ -439,11 +448,11 @@ Gradient d'une image (bis)
         \|\nabla f\|_1 = \left |\frac{\partial f}{\partial x}\right| +   \left |\frac{\partial f}{\partial y} \right|
 
         \|\nabla f\|_\infty = \max\left(\left |\frac{\partial f}{\partial x}\right|, \left |\frac{\partial f}{\partial y}\right|\right)
-        
+
 
 **Orientation**
 
-    
+
     .. math::
        \theta = atan\left( \frac{\frac{\partial f}{\partial y}}{\frac{\partial f}{\partial x}}\right)
 
@@ -476,7 +485,7 @@ Synthèse de masque
 
 `\Rightarrow`:math: supposons un filtre gaussien  `g(x,y) = \frac{1}{\sqrt{2\pi}\sigma}\exp^{-  \frac{x^2+y^2}{2\sigma} }`:math:, nous avons explicitement
 
-    .. math:: 
+    .. math::
          \frac{\partial g(x,y)}{\partial x} = -\frac{x}{\sigma^2\sqrt{2\pi}\sigma}\exp^{-  \frac{x^2+y^2}{2\sigma} }
 
 .. list-table::
@@ -507,7 +516,7 @@ Ainsi :
     .. math::
         f*g = g_x * (g_y*f)
 
-et pour les dérivées partielles : 
+et pour les dérivées partielles :
 
     .. math::
        \frac{\partial (f*g)(x,y)}{\partial x} = f(x,y)* \left( g_x(x)\frac{dg_y}{dy}(y)\right)
@@ -583,10 +592,10 @@ Principles
 
 **Idea**
 
-* Object defined as sets 
+* Object defined as sets
 * Elementary operators based on boolean operations (union, difference)
 * Notion of structuring elements
-* Study of operator properies 
+* Study of operator properies
 
   * Idempotence `f\circ f=f`:math:
   * Non-linear
@@ -598,7 +607,7 @@ Principles
 
 Operators
 ---------
- 
+
 **Translation**
 
     .. math::
@@ -607,7 +616,7 @@ Operators
 **Dilation by a structuring element B**
 
     .. math::
-       \delta_B(X) =  X \oplus B = \bigcup_{x\in X} B_x = \bigcup_{b\in B} X_b 
+       \delta_B(X) =  X \oplus B = \bigcup_{x\in X} B_x = \bigcup_{b\in B} X_b
 
 **Erosion by a structuring element B**
 
@@ -620,7 +629,7 @@ with `\check{B} = \{ -p \,|\, p \in B\}`:math:  and  `X^c = E \setminus X`:math:
 
     .. math::
       (X \oplus B)^c = X^c \ominus \check{B}
- 
+
     .. math::
       (X \ominus B)^c = X^c \oplus \check{B}
 
@@ -687,14 +696,14 @@ Properties
 ----------
 
 
-**Properties** 
+**Properties**
 
 * Opening is anti-extensive: `A\circ B\subseteq A`:math:
 * Closing is extensive: `A \subseteq A\bullet B`:math:
 * By duality
     .. math::
       A \bullet B = (A^c \circ B^c)^c
- 
+
 **Useful tool for granulometric analysis**
 
 Sequence of increasing structuring elements  `B_k= B\oplus\ldots\oplus B`:math: k times
@@ -704,10 +713,10 @@ Sequence of increasing structuring elements  `B_k= B\oplus\ldots\oplus B`:math: 
 
     .. math::
       G_k = |\gamma_k(X)|
-   
+
     .. math::
       PS_k = G_k(X) - G_{k+1}(X)
-     
+
 
 `G_k`:math: is called the granulometry function of `X`:math: and `PS_k`:math: the spectrum
 
@@ -758,13 +767,13 @@ Generalizations
 
 **Example**
 
-* Let suppose a grayscale image and a constant structuring element (whose origin is it mid-point, so-called *flat structuring element*) 
+* Let suppose a grayscale image and a constant structuring element (whose origin is it mid-point, so-called *flat structuring element*)
 
    .. math::
        B = \begin{bmatrix} 0 & 0^* & 0 \end{bmatrix}
 
 * Then
- 
+
    .. math::
        \begin{bmatrix}13 &  16 & 17\\
        15 & 10 & 13\\
@@ -847,7 +856,7 @@ Morphogical Gradient/Laplacian
 
 **Mathemtatical model**
 
- Operators acting on *complete lattices* `(L, \leq)`:math: 
+ Operators acting on *complete lattices* `(L, \leq)`:math:
 
 
 
@@ -856,7 +865,7 @@ Good morpholigical filters
 
 **Principle**
 
-Given an specific image 
+Given an specific image
 
 * Select the best structuring element(s)
 * Specify the combination of fundamental operators (e.g. series of
