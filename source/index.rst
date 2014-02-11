@@ -1,6 +1,6 @@
-================================================
-Images (géométrie discrète et images numériques)
-================================================
+=============================================================
+Images (Image processing, digital and computational geometry)
+=============================================================
 
 Contents:
 
@@ -27,4 +27,3 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`search`
-
