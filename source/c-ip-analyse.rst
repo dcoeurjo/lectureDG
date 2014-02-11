@@ -10,8 +10,9 @@ Value based Approaches
 Principles
 ----------
 
-We only focus on values of the functions  `\, f:
-S\subset\mathbb{Z}^n\rightarrow Q`:math: using stochastic representation
+We only focus on values of the functions `\, f:
+S\subset\mathbb{Z}^n\rightarrow Q`:math: using stochastic
+representation
 
 Important object:  **histograms**
 
@@ -48,7 +49,7 @@ considering spatial relationships.
 
   * Image characterized by its histogram (ou by descriptors     consturcted from the histogram)
   * *distance between two images* == *distance between image
-    histograms* == *distance between two probability distribution*
+    histograms* == *distance between two probability distributions*
 
 * **Structure recognition**
 
@@ -57,8 +58,7 @@ considering spatial relationships.
 
 * **Histogram optimization, equalization, ...**
 
-  * Perform transformations on the histogram and propagate the changes
-    to image values
+* Perform transformations on the histogram and propagate the changes to image values
 
 
 
@@ -141,7 +141,7 @@ Equalization (bis)
 Histogram based Segmentation
 ----------------------------
 
-**Image Segmentation**  classify pixels into classes such that
+**Image Segmentation** classify pixels into classes such that
 intra-class pixels share the same *visual* properties (colorimetric
 information, geometrical properties ...)
 
@@ -176,34 +176,34 @@ Local Approaches
 Principles
 ----------
 
-**Prendre en compte les relations spatiales entre pixels**
+**Take into account spatial relationships between pixel values**
 
-*Outils de base: convolution*
+*Key tool: convolution*
 
-* L'image est vue comme une fonciton `f:\,\mathbb{R}^2\rightarrow \mathbb{R}`:math:
-* On va s'intéresser au résultat du produit de convolution par `g:\,\mathbb{R}^2\rightarrow \mathbb{R}`:math:
+* Image as a  function `f:\,\mathbb{R}^2\rightarrow \mathbb{R}`:math:
+* We consider the result of the convolution product of `f`:math: by  `g:\,\mathbb{R}^2\rightarrow \mathbb{R}`:math:
 
     .. math::
        (f * g)(x,y) = \int_{-\infty}^\infty f(x-s,y-t)g(s,t)dsdt
 
 
-* ou plutôt à une variante discrète à support compacte :
+* or a discrete version for compact support kernel `g`:math:
 
     .. math::
        (f * g)(x,y) = \sum_{i=-M}^M\sum_{j=-M}^M f(x-i,y-j)g(i,j)
 
-*Algorithmiquement*
+*Algorithmically*
 
-* Calcul direct dans le spacial si le support est *réduit*
-* Par transformation de Fourier:
+* Direct discrete computation of the support is *small*
+* Or by regular product on Fourier space:
 
     .. math::
         f * g = \mathcal{F}^{-1}( \mathcal{F}(f)\cdot\mathcal{F}(g))
 
 
 
-(Transformation de Fourier)
----------------------------
+(Fourier Transform)
+---------------------
 
 
 .. list-table::
@@ -216,16 +216,20 @@ Principles
        :align: center
 
 
+.. math::
+      {\mathcal  {F}}(k)=\sum _{{n=0}}^{{{\mathrm  {N}}-1}}f(n)\cdot e^{{-2i\pi k{\frac  {n}{{\mathrm  {N}}}}}}\qquad {\text{for}}\qquad 0\leqslant k<{\mathrm  {N}}
 
+.. math::
+      f(n)={\frac  {1}{{\mathrm  {N}}}}\sum _{{k=0}}^{{{\mathrm  {N}}-1}}{\mathcal  {F}}(k)\cdot e^{{2i\pi n{\frac  {k}{{\mathrm  {N}}}}}}
 
-Filtrage d'image élémentaire
-----------------------------
-**Attention :**
+Elementary Image Filtering
+--------------------------
+**Be careful**
     .. math::
       \int_{-\infty}^\infty g(s,t)dsdt = 1
 
 
-**Moyenneurs / passe-bas**
+**Smoothing / Low-pass filters**
 
     .. math::
        M_{3\times 3} = \frac{1}{9} \begin{bmatrix} 1 & 1 & 1\\1 &1 & 1\\1 & 1 & 1\\ \end{bmatrix}
@@ -238,10 +242,10 @@ Filtrage d'image élémentaire
 
 
 
-Synthèse de masque
-------------------
+Mask Filtering Design
+---------------------
 
-**G** : approximation d'un noyau de convolution Gaussien
+**G** : Gaussian kernel approximation function
 
     .. math::
        g(x,y) = \frac{1}{\sqrt{2\pi}\sigma}\exp^{-  \frac{x^2+y^2}{2\sigma} }
@@ -250,9 +254,9 @@ Synthèse de masque
       :width: 50%
 
 
-`\Rightarrow`:math: *coefficients binomiaux, ....*
+`\Rightarrow`:math: *binomial coefficients, ....*
 
-Exemples
+Examples
 --------
 
 .. list-table::
@@ -289,17 +293,17 @@ Exemples
        :align: center
 
 
-Modèle de bruit
----------------
+Noise Models
+------------
 
-**Adéquation entre le filtre et le modèle de bruit**
+**Match between filtering and noise model**
 
-* Soit par hypothèse de travail
-* Soit par connaissance du capteur ou de la chaîne d'acquisition
+* Either as a theoretical hypothesis on the signal
+* Or from knowledge on the device or acquisition system
 
 .. list-table::
 
-  * - Bruit Gaussien
+  * - Gaussian noise
     - .. image:: _static/images/len_bruitGaussien.*
        :width: 60%
        :align: center
@@ -307,7 +311,7 @@ Modèle de bruit
        :width: 60%
        :align: center
 
-  * - Bruit spéculaire *poivre/sel*
+  * - Specular noise *salt/pepper*
     - .. image:: _static/images/len_bruit.*
        :width: 60%
        :align: center
@@ -315,7 +319,7 @@ Modèle de bruit
        :width: 60%
        :align: center
 
-  * - Éparpillement de contours
+  * - Contour spread
     - .. image:: _static/images/len_bruit2.*
        :width: 60%
        :align: center
@@ -324,10 +328,10 @@ Modèle de bruit
        :align: center
 
 
-Filtres passe-haut
-------------------
+High pass filter
+----------------
 
-**Opération complémentaire à un filtrage passe-bas**  `\,M_{haut} = Id - M_{bas}`:math:
+**Complementary filters to low-pass filters**
 
 
 
@@ -347,28 +351,31 @@ Filtres passe-haut
         :width: 60%
         :align: center
 
-Filtres non-linéaires
----------------------
+Non-linear filters
+------------------
 
-**Filtre médian**
+**Median filter**
 
-* Dans le support, on calcul la valeur médiane des intensités
+* In the support, we compute the median intensity
 
-*exemple*
+**example**
     .. math::
         \begin{bmatrix} 12 & 13 & 24\\1 &30 & 43\\3  & 15 & 20\\ \end{bmatrix}
 
 `\Rightarrow`:math: 15
 
-* idéal pour du bruit spéculaire
-* bonne préservation des contours
+* perfect for specular noise
+* good preservation of contours
 
-mais
+...but...
 
-* non-linéaire
-* effet dans le spectre de Fourier non formalisable
+* non-linear
+* non analytocal model in Fourier space
 
-Exemple
+
+*complexity for a size* `m`:math: *domain?*
+
+Example
 -------
 
 .. list-table::
@@ -382,21 +389,21 @@ Exemple
 
 
 
-Détecteurs de contour et opérateurs différentiels
-=================================================
+Contour Detection and Differential Estimators
+=============================================
 
-Objectifs
----------
+Objectives
+----------
 
-**Contexte de travail**
+**Context**
 
-* *Région* : ensemble de pixels homogènes d'un point de vue colorimétrique
-* Par analogie, un *contour* est le lieu de variations significatives de l'information colorimétrique
+* *Region* : set of pixels sharing the same colorimetric information
+* By analogy,  *contours* are the loci high colorimetric variations
 
 
-`\Rightarrow`:math: **lieu de fort gradient en norme de la fonction** `f(x,y)`:math:
+`\Rightarrow`:math: **loci if high gradient vector norm of the function** `f(x,y)`:math:
 
-`\Rightarrow`:math: **Passage par zero du laplacien** `\Delta f`:math:
+`\Rightarrow`:math: **Zero-crossing of the Laplacian** `\Delta f`:math:
 ...
 
 
@@ -410,20 +417,20 @@ Objectifs
         :align: center
 
 
-Nous reviendrons plus tard sur le problème général de segmentation
+We will focus later to segmentation process.
 
 
-Gradient d'une image
---------------------
+Image Gradient
+--------------
 
-**Définition**
+**Definition**
 
     .. math::
         \nabla f(x,y) = \left (\frac{\partial f}{\partial x}(x,y),
         \frac{\partial f}{\partial y}(x,y)\right)
 
 
-**Approximation "différence finie"**
+**Finite difference approximation**
 
     .. math::
        Prewitt_x = \frac{1}{3} \begin{bmatrix} -1 & 0 & 1\\-1 &0 & 1\\-1 & 0 & 1\\ \end{bmatrix}
@@ -432,15 +439,15 @@ Gradient d'une image
 
        Kirsch_x = \frac{1}{15} \begin{bmatrix} -3 & -3 & 5\\-3 &0 & 5\\-3 & -3 & 5\\ \end{bmatrix}
 
-(autres masques dans selon d'autres directions `\theta`:math:)
+(other masks exist along specific directions  `\theta`:math:)
 
 
 
 
-Gradient d'une image (bis)
---------------------------
+Image Gradient (bis)
+--------------------
 
-**Amplitude** = norme du gradient
+**Amplitude** = gradient vector norm
 
     .. math::
         \|\nabla f\|_2 = \sqrt{\left(\frac{\partial f}{\partial x}\right)^2 +   \left(\frac{\partial f}{\partial y}\right)^2}
@@ -458,10 +465,11 @@ Gradient d'une image (bis)
 
 
 
-`\Rightarrow`:math: le contour  peut être caractérisé par le lieu de forte amplitude du gradient
+`\Rightarrow`:math: a  contour can be characterized has pixels with
+high gradient vector norm
 
 
-Exemple
+Example
 -------
 
 .. list-table::
@@ -475,15 +483,17 @@ Exemple
 
 (Prewitt)
 
-Synthèse de masque
-------------------
+Mask Design
+-----------
 
-**Gradient d'une image filtrée et filtre gaussien**
+**Gradient of ta filterer image and Gaussian smoothing filters**
 
     .. math::
         \nabla (f*g) = \nabla f * g = f*\nabla g
 
-`\Rightarrow`:math: supposons un filtre gaussien  `g(x,y) = \frac{1}{\sqrt{2\pi}\sigma}\exp^{-  \frac{x^2+y^2}{2\sigma} }`:math:, nous avons explicitement
+`\Rightarrow`:math: let us consider Gaussian kernel filter `g(x,y) =
+\frac{1}{\sqrt{2\pi}\sigma}\exp^{- \frac{x^2+y^2}{2\sigma} }`:math:,
+we have
 
     .. math::
          \frac{\partial g(x,y)}{\partial x} = -\frac{x}{\sigma^2\sqrt{2\pi}\sigma}\exp^{-  \frac{x^2+y^2}{2\sigma} }
@@ -503,42 +513,51 @@ Synthèse de masque
      - g'
      - g''
 
-Filtres séparables
-------------------
+Separable Filters
+-----------------
 
-Soit `g(x,y)`:math: la filtre de convolution (`\equiv`:math: réponse impulsionnelle du filtre). Le filtre est *séparable* si:
+Let `g(x,y)`:math: be a convolution filter (`\equiv`:math: Impulse
+response of a filter). The filter is  *separable* if
 
    .. math::
      g(x,y) = g_x(x,y)g_y(x,y)
 
-Ainsi :
+Thus:
 
     .. math::
         f*g = g_x * (g_y*f)
 
-et pour les dérivées partielles :
+and for partial derivatives:
 
     .. math::
        \frac{\partial (f*g)(x,y)}{\partial x} = f(x,y)* \left( g_x(x)\frac{dg_y}{dy}(y)\right)
 
-`\Rightarrow`:math: conséquences directes lorsque l'on implémente de tels filtres (convolution 1D uniquement)
+`\Rightarrow`:math: direct consequences when implementing filters
+(only 1D convolutions)
 
-* Si `g=[1\, 1 \,1]`:math: et `d = \nabla h = [-1\, 0 \,1]`:math: alors  `Prewitt_x = g(x).d(y)`:math: (i.e. Prewitt correspond au filtre associé à l'approximation en différence finie sur le resultat de la convolution de `f`:math par un filtre constant.
+* If `g=[1\, 1 \,1]`:math: and `d = \nabla h = [-1\, 0 \,1]`:math:
+  then  `Prewitt_x = g(x).d(y)`:math:
 
-* Le filtrage gaussien est séparable (et isotrope!)
-
-
-Validation d'un détecteur de contour
-------------------------------------
-
-**Critères de Canny (1983)**
+i.e. Prewitt's filter corresponds to finite difference approximation
+of the result of a constant smoothing filtering of  `f`:math:
 
 
-* Détection : minimiser les fausses réponses
-* Localisation : le contour  doit être localisé avec précision (minimiser la distance avec vrai contour)
-* Réponse unique : une seule réponse par contour
+* Gaussisan filters are separable (and isotropic)
 
-*modèle de signal + modélisation des critères + conditions initiales* `\Rightarrow`:math: *filtre optimal solution d'une EDP*
+
+Theoretical Design of a Contour Detector
+----------------------------------------
+
+**Canny's criteria (1983)**
+
+
+* Detection: minimize false answers
+* Localization: the contour must be located with high precision
+  (minimize the distance to *real contour*)
+* Unique answer: a single answer by contour (no *ghosts*)
+
+*Noise model + signal model + Criteria modeling + initial conditions*
+`\Rightarrow`:math: *Optimal filter as solution of a PDE*
 
    .. math::
      2g(x) - 2\lambda_1g'(x) + 2\lambda_2g''(x) + \lambda_3 = 0
@@ -555,31 +574,32 @@ Validation d'un détecteur de contour
     - Deriche : `c(\alpha|x|+1)\exp^{-\alpha|x|}`:math:
 
 
-**Le filtre gaussien est une approximation d'un tel filtre optimal**
+**The Gaussian filter is a good approximation of such optimal filters**
 
 
-De l'amplitude au contour
--------------------------
+Contour Extraction
+------------------
 
-**La localistion du contour nécessite un seuillage des l'amplitude du gradient**
+**Contour extraction requires gradient vector norm (or zero-crossing laplacian) thresholding**
 
 
-* Approche naïve :  `(x,y)`:math: appartient au contour ssi
+* Naive approach:  `(x,y)`:math: belongs to a contour iff
 
 
          `\|\nabla f(x,y)\| > \sigma`:math:
 
-* Par hysteresis : `(x,y)`:math: appartient au contour ssi
+* From hysteresis : `(x,y)`:math: belongs to a contour iff
 
         `\|\nabla f(x,y)\| > \sigma_1`:math:
 
-ou
+or
 
-         `\|\nabla f(x,y)\| > \sigma_2`:math: et `\exists (x',y')`:math: voisin de `\exists (x,y)`:math: tq `\|\nabla f(x',y')\| > \sigma_1`:math:
+         `\|\nabla f(x,y)\| > \sigma_2`:math: and `\exists
+         (x',y')`:math: neighbor of `\exists (x,y)`:math: such that `\|\nabla f(x',y')\| > \sigma_1`:math:
 
 
-* Orientation du gradient (suivi de contour dans la direction
-  orthogonale au gradient)
+* Using gradient orientation (we follow the contour in a direction
+  perpendicular to the gradient)
 
 
 Mathematical Morphology
