@@ -40,7 +40,7 @@ Exemple: `S=[0,185]\times[0,85],\, Q=[0,255]`:math:
 Histogram based image processing
 --------------------------------
 
-Histgrams sum up colorimetric information of the image without
+Histograms sum up colorimetric information of the image without
 considering spatial relationships.
 
 
@@ -55,7 +55,7 @@ considering spatial relationships.
   * Foreground/background analysis from histogram shape analysis
   * Noise modeling
 
-* **Histogram optimization, equalisaion, ...**
+* **Histogram optimization, equalization, ...**
 
   * Perform transformations on the histogram and propagate the changes
     to image values
