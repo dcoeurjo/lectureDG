@@ -370,7 +370,7 @@ Non-linear filters
 ...but...
 
 * non-linear
-* non analytocal model in Fourier space
+* non analytical model in Fourier space
 
 
 *complexity for a size* `m`:math: *domain?*
