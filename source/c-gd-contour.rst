@@ -5,7 +5,7 @@ Digital Geometry: Contour Analysis
 
 
 
- 
+
 Contour representation
 ======================
 
@@ -25,26 +25,26 @@ Freeman Chain Code
 ------------------
 
 
-**Idea** 
+**Idea**
 
 Starting point + differential code according to adjacency displacement and an orientation
 
 
   .. image:: _static/images/freeman.*
       :width: 100%
-      
+
 
   .. image:: _static/images/codage_freeman.*
       :width: 100%
-      
+
 Example
 -------
 
- 
+
 
   .. image:: _static/images/codage_freeman_bis.*
       :width: 100%
-      
+
 
 
   .. math::
@@ -54,7 +54,7 @@ Example
 Properties
 ----------
 
-**Reversible** and **unique** encoding 
+**Reversible** and **unique** encoding
 
 **Code driven geometrical transformations**
 
@@ -64,15 +64,15 @@ Properties
 **Basic length estimator**
 
 - `L += 1`:math: for even codes
-- `L +=\sqrt{2}`:math: for odd codes 
+- `L +=\sqrt{2}`:math: for odd codes
 
 Properties (Ctd.)
 -----------------
 
 Given a (1)-adjacency, let `n_i`:math: be the number of ith-code
 
-**Path is closed iff** 
-    .. math:: 
+**Path is closed iff**
+    .. math::
          n_i = n_{i+2\,mod(4)}
 
 (but may be self-intersecting)
@@ -80,12 +80,12 @@ Given a (1)-adjacency, let `n_i`:math: be the number of ith-code
 
 **Representation as a word on an alphabet**
 
-`W=\{a,b,\bar{a},\bar{b}\}`:math: 
+`W=\{a,b,\bar{a},\bar{b}\}`:math:
 
 * Closed path: words such that number of a equals number of `\bar{a}`:math: ...
-* Let suppose that `\bar{(u\cdot v)} = \bar{v}\cdot \bar{u}`:math: 
+* Let suppose that `\bar{(u\cdot v)} = \bar{v}\cdot \bar{u}`:math:
 
-   
+
 .. rst-class:: roundedquote
 
      A Polyomino `P`:math: tiles the plane if and only if its contours has the following structure (up to cyclic rotations)      `X\cdot Y\cdot Z\cdot \bar{X}\cdot \bar{Y}\cdot \bar{Z}`:math: [Beauquier-Nivat]
@@ -110,8 +110,8 @@ Digitization based definition
 Given a digitization model:
 
 
-.. rst-class:: roundedquote
-     
+.. admonition:: Def.
+
      A digital straight line (resp. segment) is the result of a digitization and an Euclidean line (resp. segment)
 
 
@@ -121,7 +121,7 @@ First Historical Construction
 
 **Digital Segment tracing by Bresenham's algorithm**
 
-GIQ based definition: For each abscissa we consider the closest grid point 
+GIQ based definition: For each abscissa we consider the closest grid point
 
    .. image:: _static/images/bresenham.*
        :width: 100%
@@ -131,7 +131,7 @@ GIQ based definition: For each abscissa we consider the closest grid point
 **Incremental construction**
 
 * Process the abscissa one by one
-* Propagate errors  
+* Propagate errors
 
 **Properties**
 
@@ -147,7 +147,7 @@ Segment between `(x_1,y_1)`:math: and `(x_2,y_2)`:math: in `\mathbb{Z}^2`:math: 
 **Naive approach**
 
 .. code-block:: c
-   
+
     y = y_s
     for(i = x_1; i <= x_2; ++i)
        display(i,y);
@@ -155,7 +155,7 @@ Segment between `(x_1,y_1)`:math: and `(x_2,y_2)`:math: in `\mathbb{Z}^2`:math: 
        e = y_real - y;
        if ( dy > 0.5)
          y++;
-       
+
 
 * Mix between integers (i,x_s,x_e,y_prev) and real (y,dy) numbers
 * 6 operations on real numbers + comparison
@@ -170,7 +170,7 @@ Integer only implementation
     e = x_2 - x_1
     dx = 2*e
     dy = 2*(y_2 - y_1)
-    while (x_1 < x_2) 
+    while (x_1 < x_2)
       display(x_1,y_1);
       x_1 ++;
       e  -= dy;
@@ -192,8 +192,8 @@ First arithmetical results
 Let us consider GIQ digitization scheme (similar to Bresenham's) and a straight line `y=ax +b`:math: with `0\leq a \leq 1`:math:. Let `S`:math: be the digitization of the straight line and `C` its Freeman code
 
 
-Then,
- 
+.. admonition:: Thm
+
        .. math::
             \exists p,q\in\mathbb{Z}, a=\frac{p}{q} \Leftrightarrow\text{ C is periodic with minimal period  }  \frac{q}{gcd(p,q)}
 
@@ -215,7 +215,7 @@ Example
      :width: 70%
      :align: center
 
- 
+
 Periodic structure `\rightarrow`:math: canonical pattern
 
 * Fast drawing algorithms (run-based, pattern-based, ...)
@@ -229,19 +229,19 @@ Euclid's  Axioms
 **Any two points  define a unique straight line**
 
 .. list-table::
- 
+
  * - .. image:: _static/images/euclide1.*
           :width: 60%
    - .. image:: _static/images/euclide2.*
           :width: 60%
-   
+
 
 
 
 **Two non-parallel straight lines intersects at a single point**
 
 .. list-table::
- 
+
  * - .. image:: _static/images/ex_inter_1_pt.*
           :width: 20%
    - Single point
@@ -265,7 +265,7 @@ Euclid's  Axioms (bis)
 
 
 `\Rightarrow`:math: we need to redefine parallelism, intersections, ...
- 
+
 
 Switching to another digitization scheme, we may avoid some situations.
 
@@ -276,6 +276,8 @@ DSS Characterizations
 ---------------------
 
 **Chordal Property** [Rosenfeld]
+
+.. admonition:: Def.
 
   .. math::
      \forall p \forall q\text{ and }\forall m\in[pq]\text{, there exists M(i,j) such that }\max(|i-x|,|j-y|)<1
@@ -288,12 +290,13 @@ DSS Characterizations
 
 **Evenness Property** [Veelaer]
 
+.. admonition:: Def.
 
   .. math::
      \forall a,b,c,d\in[pq] \text{ such that }\vec{ba}_x=\vec{dc}_x,\, |\vec{ba}_y-\vec{dc}_y|=1
 
 
-   
+
 
   .. image:: _static/images/evenness_prop.*
       :width: 50%
@@ -303,15 +306,17 @@ DSS Characterizations
 Diophantine Equations
 ---------------------
 
-**Definition** 
-   
+**Definition**
+
+.. admonition:: Def.
+
     Diophantine equation = Equation with integer parameters and solutions in `\mathbb{Z}`:math:
 
 
 **Example**
 
   .. math::
-       ax + by = \mu
+       ax + by = c
 
 (with `a,b,\mu\in\mathbb{Z}`:math: )
 
@@ -321,7 +326,7 @@ Diophantine Equations
 Solving Linear Diophantine Equation
 -----------------------------------
 
-`ax + by = \mu`:math:, and let `S`:math: denote the solutions
+`ax + by = c`:math:, and let `S`:math: denote the solutions
 
 
 **Existence**
@@ -330,16 +335,16 @@ Solving Linear Diophantine Equation
        S\neq\emptyset \Leftrightarrow gcd(a,b) | c
 
 **Homogeneous case**
-  
+
     .. math::
         ax+by=0 \Rightarrow S=\{(-bk,ak), k\in\mathbb{Z}\}
-   
+
 
 **General case**
 
 `a' = \frac{a}{gcd(a,b)},\, b'=\frac{b}{gcd(a,b)},\, c'=\frac{c}{gcd(a,b)}`:math:
 
-    .. math:: 
+    .. math::
       a'x + b'y = c'
 
 Since `gcd(a',b')=1`:math:, `\exists u,v\in\mathbb{Z}`:math: such that `a'u +b'v = 1`:math: [Bezout]
@@ -356,22 +361,20 @@ Analytical DSS
 --------------
 **Idea** Design a analytical definition instead of combinatorial ones
 
-.. rst-class:: roundedquote
+.. admonition:: Def.
 
-    `S\subset\mathbb{Z}^2`:math: is a *analytical DSS* with parameters `(a,b,\mu,\omega)\in\mathbb{Z}`:math: with `gcd(a,b)=1`:math:,  if for all `(x,y)\in S`:math:, we have 
+    `S\subset\mathbb{Z}^2`:math: is a *analytical DSS* with parameters `(a,b,\mu,\omega)\in\mathbb{Z}`:math: with `gcd(a,b)=1`:math:,  if for all `(x,y)\in S`:math:, we have
 
+    .. math::
+         0 \leq ax -by + \mu < \omega
 
-
-.. math:: 
-    0 \leq ax -by + \mu < \omega
-    
 
 * `\omega`:math: acts as a thickness (arithmetical thickness, >1)
 * `\frac{a}{b}`:math: is the DSS slope
 * `\mu`:math: is the arithmetical intercept
 
 * S is the union of solutions of `\omega-1`:math: diophantine equations:
-    
+
    .. math::
       S = \bigcup_{k=1..\omega-1} \{(x,y)\in\mathbb{Z}^2\,|\, ax -by = k - \mu\}
 
@@ -391,25 +394,27 @@ Illustration
 
   .. image:: ./_static/images/droite_cont_2.*
      :width: 80%
-    
+
   .. image:: ./_static/images/droite_cont_3.*
      :width: 80%
 
   .. image:: ./_static/images/droite_cont_4.*
      :width: 84%
-    
+
 
 
 Connectivity
 ------------
 
-`D(a,b,\mu,\omega)`:math:
+.. admonition:: Thm.
 
-* If `\omega < \max(|a|,|b|)`:math:, D is not a (k)-path
-* If `\omega = \max(|a|,|b|)`:math:, D is a (0)-arc
-* If `\omega = |a|+|b|`:math:, D is a (1)-arc
-* If `\max(|a|,|b|) < \omega <  \omega = |a|+|b|`:math:, D is  (*)-connected
-* If `omega >  \omega = |a|+|b|`:math:, D is  *thick*
+     `D(a,b,\mu,\omega)`:math:
+
+     * If `\omega < \max(|a|,|b|)`:math:, D is not a (k)-path
+     * If `\omega = \max(|a|,|b|)`:math:, D is a (0)-arc
+     * If `\omega = |a|+|b|`:math:, D is a (1)-arc
+     * If `\max(|a|,|b|) < \omega <  \omega = |a|+|b|`:math:, D is  (*)-connected
+     * If `omega >  \omega = |a|+|b|`:math:, D is  *thick*
 
 .. list-table::
 
@@ -429,11 +434,11 @@ Connectivity
           :width: 100%
 
   * - D(3,7,0,5)
-    
+
     - D(3,7,0,7)
 
     - D(3,7,0,8)
-  
+
     - D(3,7,0,10)
 
     - D(3,7,0,16)
@@ -448,18 +453,18 @@ Without loss of generality, we suppose `b=|b|=\max(|a|,|b|)`:math:
 * `D(a,b,\mu,b)`:math: corresponds to a kind of **OBQ** of d
 
 
-   .. math:: 
+   .. math::
      \{(x,y)\,|\, y= \left \lfloor \frac{-ax-\mu}{b}  \right  \rfloor     \}
 
 * `D(a,b,\mu+b-1,b)`:math: corresponds to a kind of **BBQ** of d
 
 
-   .. math:: 
+   .. math::
      \{(x,y)\,|\, y=\left \lceil \frac{-ax-\mu}{b}    \right\rceil     \}
 
 * `D(a,b,\mu+[\frac{b}{2}],b)`:math: corresponds to the **GIQ** quantization of d
 
-   .. math:: 
+   .. math::
      \{(x,y)\,|\, y=\left [ \frac{-ax-\mu}{b} \right ]   \}
 
 
@@ -471,9 +476,9 @@ Periodicity
 -----------
 
 
-.. rst-class:: roundedquote
+.. admonition:: Thm.
 
-Given  `D(a,b,\mu,\omega)`:math:, D is invariant by translation with vector `k.(b,a)^T`:math: (`k\in\mathbb{Z}`:math:) 
+     Given  `D(a,b,\mu,\omega)`:math:, D is invariant by translation with vector `k.(b,a)^T`:math: (`k\in\mathbb{Z}`:math:)
 
 
 *<proof>*
@@ -482,7 +487,8 @@ Given  `D(a,b,\mu,\omega)`:math:, D is invariant by translation with vector `k.(
 **Corollary**
 
 
-.. rst-class:: roundedquote
+
+.. admonition:: Coro.
 
  Any sequence of `b`:math: pixels defines a DSS *pattern*, the pattern is minimal iff `gcd(a,b)=1`:math:
 
@@ -497,12 +503,13 @@ Toward stronger arithmetical results on DSS
 Farey Series
 ------------
 
-**Definition**
+.. admonition:: Def.
 
-The Farey Series `\mathcal{F}_m`:math: of order m is the ordered sequence of irreducible fractions with denominator less or equal to m
+   The Farey Series `\mathcal{F}_m`:math: of order m is the ordered sequence of irreducible fractions with denominator less or equal to m
+
 
 e.g.:
-  .. math:: 
+  .. math::
     \mathcal{F}_5=\left       \{\frac{0}{1},\frac{1}{5},\frac{1}{4},\frac{1}{3},\frac{2}{5},\frac{1}{2},\frac{3}{5},\frac{2}{3},\frac{3}{4},\frac{4}{5},\frac{1}{1}\right \}
 
 
@@ -511,7 +518,7 @@ e.g.:
 * if `\frac{h}{k}`:math: et `\frac{h'}{k'}`:math: are two successive fractions in `\mathcal{F}_m`:math: (with `\frac{h}{k}<\frac{h'}{k'}`:math:), then  `kh'-hk'=1`:math:
 * if `\frac{h}{k}`:math:, `\frac{h''}{k''}`:math: and `\frac{h'}{k'}`:math: are three successive fractions in `\mathcal{F}_m`:math: (with `\frac{h}{k}<\frac{h''}{k''}<\frac{h'}{k'}`:math:), then `\frac{h''}{k''}=\frac{h+h'}{k+k'}`:math: (*median fraction*)
 
-* `\mathcal{F}_{m+1}`:math:  is given from  `\mathcal{F}_m`:math:  inserting median of successive fractions with denominator  `\leq m+1`:math: 
+* `\mathcal{F}_{m+1}`:math:  is given from  `\mathcal{F}_m`:math:  inserting median of successive fractions with denominator  `\leq m+1`:math:
 
  .. math::
    \mathcal{F}_6=\left    \{\frac{0}{1},{\bf         \frac{1}{6}},\frac{1}{5},\frac{1}{4},\frac{1}{3},\frac{2}{5},\frac{1}{2},\frac{3}{5},\frac{2}{3},\frac{3}{4},\frac{4}{5},{\bf \frac{5}{6}},\frac{1}{1}\right \}
@@ -601,7 +608,7 @@ Recognition Algorithm
 ---------------------
 
 
-**Idea** 
+**Idea**
 
 Given a digital set `S`:math:, and a geometrical primitive (DSS,
 Digital circle, digital plane, ...), decide if `S`:math: is a subset
@@ -631,12 +638,12 @@ Revert the digitization process and solve a *dual* problem
 **DSS: Linear dual space**
 
 .. list-table::
- 
+
 
   * -  .. image:: _static/images/esp_param1-res.*
            :width: 120%
            :align: center
- 
+
     -  .. image:: _static/images/esp_param2-res.*
            :width: 55%
            :align: center
@@ -644,7 +651,7 @@ Revert the digitization process and solve a *dual* problem
     -  .. image:: _static/images/esp_param3-res.*
            :width: 60%
            :align: center
- 
+
 
 Geometrical Recognition (2)
 ---------------------------
@@ -656,7 +663,7 @@ Let us consider the following OBQ digitization scheme of `l: ax - by + \mu=0`:ma
        :width: 50%
 
 
-Each pixel `(x_0,y_0)`:math:  contributes to two linear constraints: 
+Each pixel `(x_0,y_0)`:math:  contributes to two linear constraints:
 
    .. math::
      0  \leq \alpha x_0 - y_0 + \beta < 1
@@ -791,7 +798,7 @@ Computational cost
 **If** `S`:math: **is a (0)-path**
 
 
-.. rst-class:: roundedquote
+.. admonition:: Thm.
 
     `\bar{S}`:math: has at most 4 vertices in the dual space
 
@@ -823,7 +830,7 @@ The Farey Fan of order `n`:math: is a decomposition of the space into cells wher
 
  *   -  .. image:: _static/images/farey_fan_2.*
           :width: 100%
-   
+
      -  .. image:: _static/images/farey_fan_3.*
           :width: 100%
 
@@ -832,9 +839,9 @@ The Farey Fan of order `n`:math: is a decomposition of the space into cells wher
 
 
  * - Order 2
-  
+
    - Order 3
-  
+
    - Order 6
 
 DSS and Farey Fan Cell
@@ -849,7 +856,7 @@ Arithmetical Recognition
 ------------------------
 
 
-**Idea** 
+**Idea**
 
 Use the analytical representation of DSS:
 
@@ -859,19 +866,21 @@ Use the analytical representation of DSS:
    .. math:: r = ax- by
 
 * the k-th *net* is defined by the solutions of
-  
-   .. math:: ax -by =k  
 
-* the DSS is the union of nets with `k\in\{\mu,\ldots,\mu + b - 1\}`:math:        
+   .. math:: ax -by =k
+
+* the DSS is the union of nets with `k\in\{\mu,\ldots,\mu + b - 1\}`:math:
 
 
 
 **Definitions (again)**
 
-*  `(x,y)`:math: is  *exterior* to D if its reminder is lesser than `\mu-1`:math: or greater than `\mu+b`:math:
-*  `(x,y)`:math: is *weakly exterior* to D if its reminder is equal to `\mu-1`:math: or  `\mu+b`:math:
-*  The net with order `\mu`:math: is the *upper leaning* net
-*  The net with order `\mu+b-1`:math: is the *lower leaning* net
+.. admonition:: Defs.
+
+    *  `(x,y)`:math: is  *exterior* to D if its reminder is lesser than `\mu-1`:math: or greater than `\mu+b`:math:
+    *  `(x,y)`:math: is *weakly exterior* to D if its reminder is equal to `\mu-1`:math: or  `\mu+b`:math:
+    *  The net with order `\mu`:math: is the *upper leaning* net
+    *  The net with order `\mu+b-1`:math: is the *lower leaning* net
 
 
 Illustration
@@ -885,7 +894,7 @@ Illustration
 Main Recognition Theorem
 ------------------------
 
-Let U (resp. U') be the upper leaning point with minimal abscissa (maximal abscissa) and L (resp. L') be the lower leaning point with minimal abscissa (maximal abscissa) 
+Let U (resp. U') be the upper leaning point with minimal abscissa (maximal abscissa) and L (resp. L') be the lower leaning point with minimal abscissa (maximal abscissa)
 
 Given a DSS digital set S w and a point M (with reminder r), we have to decide if `S\cup\{M\}`:math: is still a DSS
 
@@ -963,7 +972,7 @@ Digital Plane
 
 
   * - P(6,13,27,0,15)
-    
+
     - P(6,13,27,0,27)
 
     - P(6,13,27,0,46)
@@ -1011,13 +1020,13 @@ Contour Decomposition into maximal DSS
 Starting from a  contour point (and given a direction), decompose the contour into maximal DSS adding pixels one by one
 
 .. list-table::
- 
+
  * - .. image:: _static/images/cercle_segm.*
           :width: 100%
 
    - .. image:: _static/images/carre_segm.*
           :width: 100%
-   
+
    - .. image:: _static/images/sinc_segm.*
           :width: 100%
 
@@ -1025,7 +1034,7 @@ Starting from a  contour point (and given a direction), decompose the contour in
 `\Rightarrow`:math: **O(n) algorithm**
 
 
-`\Rightarrow`:math: **Changing the starting point, decompositions differs by one (N, N+1)** 
+`\Rightarrow`:math: **Changing the starting point, decompositions differs by one (N, N+1)**
 
 
 
@@ -1045,11 +1054,11 @@ In 3D..
 
 
 
-.. list-table:: 
+.. list-table::
 
  * - .. image:: _static/images/al.*
          :width: 70%
- 
+
    - .. image:: _static/images/dodgePlans.*
          :width: 100%
 
@@ -1073,7 +1082,7 @@ Indeed, DSS segments are "reversible" ... but not the vertices..
 
    - .. image:: _static/images/revproblem.*
           :width: 65%
- 
+
 
 
 `\Rightarrow`:math:  We need to constraint the preimages to ensure that successive DSSs have euclidean representative segment with "reversible" intersection vertex
@@ -1093,13 +1102,13 @@ Example of a solution in 2D
 
   .. image:: ./_static/images/pixels_courbe-res.*
      :width: 70%
-    
+
   .. image:: ./_static/images/pixels_courbe3-res.*
      :width: 70%
 
   .. image:: ./_static/images/pixels_courbe4-res.*
      :width: 70%
-    
+
 
 Reversible reconstruction in dimension 3
 ----------------------------------------
@@ -1111,7 +1120,7 @@ More difficult because of topological issues.
 
  .. image:: _static/images/resultats.png
      :width: 70%
-     
+
 
 
 (Marching Cubes)
