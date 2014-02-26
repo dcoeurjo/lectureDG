@@ -4,7 +4,7 @@
 #include <DGtal/base/Common.h>
 #include <DGtal/io/boards/Board2D.h>
 #include <DGtal/helpers/StdDefs.h>
-#include <DGtal/io/readers/PNMReader.h>
+#include <DGtal/io/readers/PGMReader.h>
 #include "DGtal/images/imagesSetsUtils/SetFromImage.h"
 #include "DGtal/images/ImageContainerBySTLVector.h"
 ///////////////////////////////////////////////////////////////////////////////
@@ -17,24 +17,24 @@ using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 
 int main()
 {
-  
+
   std::string filename = "hop.pgm";
-  
+
   //Image type (image of unsigned int)
   typedef ImageContainerBySTLVector< Domain, unsigned int > Image;
-  
+
   //We read the PGM file
-  Image image = PNMReader<Image>::importPGM(filename); 
+  Image image = PGMReader<Image>::importPGM(filename);
 
   trace.info() << "Image read :"<< image <<std::endl;
 
   //We convert pixels in ]0,255] into a digital set
   DigitalSet set2d( image.domain() );
   SetFromImage<DigitalSet>::append<Image>(set2d, image, 0, 255);
-  
+
   //We display the set
   Board2D board;
-  board << image.domain() << set2d; 
+  board << image.domain() << set2d;
   board.saveEPS( "input-set.eps");
 
   //We add a topology on the point set using Object8_4 class
@@ -44,7 +44,7 @@ int main()
   //connectivity
   std::cout << object << std::endl;
   std::cout << object.pointSet() << std::endl;
- 
+
   //Now you can add/remove some points opf the object via its pointSet
   //e.g.
   //
@@ -59,7 +59,7 @@ int main()
   std::cout << S << std::endl;
   S.erase( Point(2,2) );
   std::cout << S << std::endl;
- 
+
   //Now, you have access to point simplicity test
   //for the (8,4)-jordan pair ( (0,1)-with notations in lecture)
   bool res = object.isSimple( Point(2,2) );
@@ -67,7 +67,7 @@ int main()
     std::cout << "Point(2,2) is simple"<<std::endl;
   else
     std::cout << "Point(2,2) is not simple"<<std::endl;
- 
+
   //Object can also be displayed with its adjacency relationship
   board.clear();
   board << SetMode( object.className(), "DrawAdjacencies" )
@@ -88,11 +88,11 @@ int main()
 	board  << CustomStyle( Point().className(), new CustomColors( black, red ) );
       else
 	board  << CustomStyle( Point().className(), new CustomColors( black, gray ) );
-      
+
       board << *it;
     }
   board.saveEPS("object-simplepoints.eps");
-  
+
 
   return 0;
 }
