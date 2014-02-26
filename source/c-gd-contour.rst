@@ -898,14 +898,14 @@ Let U (resp. U') be the upper leaning point with minimal abscissa (maximal absci
 
 Given a DSS digital set S w and a point M (with reminder r), we have to decide if `S\cup\{M\}`:math: is still a DSS
 
-**Theorem**
+.. admonition:: Thm.
 
-* if `\mu \leq r < \mu+b`:math: then `S\cup\{M\}`:math: is a DSS with parameter `D(a,b,\mu)`:math:
-* if M is *exterior*,  `S\cup\{M\}`:math:  cannot be a DSS
-* if M is *weakly exterior* with `r=\mu+1`:math:, `S\cup\{M\}`:math: is a DSS where the slope is given by `\vec{UM}`:math:
-* if M is *weakly exterior* with `r=\mu+b`:math:, `S\cup\{M\}`:math: is a DSS where the slope is given by `\vec{LM}`:math:
+  * if `\mu \leq r < \mu+b`:math: then `S\cup\{M\}`:math: is a DSS with parameter `D(a,b,\mu)`:math:
+  * if M is *exterior*,  `S\cup\{M\}`:math:  cannot be a DSS
+  * if M is *weakly exterior* with `r=\mu+1`:math:, `S\cup\{M\}`:math: is a DSS where the slope is given by `\vec{UM}`:math:
+  * if M is *weakly exterior* with `r=\mu+b`:math:, `S\cup\{M\}`:math: is a DSS where the slope is given by `\vec{LM}`:math:
 
-At each step, we maintain/update U,U',L,L' and DSS parameters a,b, `\mu`:math:
+  At each step, we maintain/update U,U',L,L' and DSS parameters a,b, `\mu`:math:
 
 Theorem cases
 -------------
