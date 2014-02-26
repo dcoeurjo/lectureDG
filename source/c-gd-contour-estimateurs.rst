@@ -10,7 +10,7 @@ Principles
 Introduction
 ------------
 
-**Objectives** 
+**Objectives**
 
 * Define estimators to compute digital version of quantities defined in Continuous space
 * Demonstrate the stability of the proposed estimators
@@ -62,9 +62,9 @@ Global Quantities
 Definition
 ----------
 
-**Idea** 
+**Idea**
 
-* Single scalar quantity attached to a digital object `Dig(X,h)`:math: 
+* Single scalar quantity attached to a digital object `Dig(X,h)`:math:
 *  E.g.:
 
    * Area in 2D (resp. 3D)
@@ -75,12 +75,13 @@ Definition
 
 **Multigrid convergence definition**
 
+.. admonition:: Def.
 
-A discrete geometric estimator `\tilde{E}`:math:  of some geometric quantity `E`:math: is *multigrid convergent* for a family of shapes `\mathbb{X}`:math:    and a digitization process `Dig`:math: iff for all shape `X \in \mathbb{X}`:math:,   there exists a grid step `h_X>0`:math: such that the estimate  `\tilde{E}(Dig(X,h),h)`:math: is defined for all `0<h < h_X`:math: and  
-   .. math:: 
-      | \tilde{E}(Dig(X,h),h) - E(X) | \le \tau_X(h)
+     A discrete geometric estimator `\tilde{E}`:math:  of some geometric quantity `E`:math: is *multigrid convergent* for a family of shapes `\mathbb{X}`:math:    and a digitization process `Dig`:math: iff for all shape `X \in \mathbb{X}`:math:,   there exists a grid step `h_X>0`:math: such that the estimate  `\tilde{E}(Dig(X,h),h)`:math: is defined for all `0<h < h_X`:math: and
+       .. math::
+          | \tilde{E}(Dig(X,h),h) - E(X) | \le \tau_X(h)
 
-where `\tau_X : \mathbb{R}^+ \rightarrow \mathbb{R}^{+}`:math: with null limit at `0`:math:. This    function is the *speed of convergence* of the estimator.
+     where `\tau_X : \mathbb{R}^+ \rightarrow \mathbb{R}^{+}`:math: with null limit at `0`:math:. This    function is the *speed of convergence* of the estimator.
 
 Area/Volume
 -----------
@@ -89,13 +90,13 @@ Area/Volume
 
 * If `\tilde{E}(Dig(X,h)) = h^2|Dig(X,h)|`:math:, this estimator converges for convex shapes `\mathbb{X}`:math: with speed `O(h)`:math:  [Gauss, Dirichlet]
 * If `\tilde{E}(Dig(X,h)) = h^2|Dig(X,h)|`:math:, this estimator converges for `C^3`:math: convex shapes `\mathbb{X}`:math: with speed `O(h^{\frac{15}{11}+\epsilon})`:math:  [Huxley]
- 
+
 ========================== ==== ========= =======  ======= ===
 Quantity                    1    0.1      0.01     0.001   ...
-========================== ==== ========= =======  ======= === 
+========================== ==== ========= =======  ======= ===
 h                           1    0.1      0.01     0.001   ...
 `h^{\frac{15}{11}}`:math:   1    0.04328  0.00187  0.00008 ...
-========================== ==== ========= =======  ======= === 
+========================== ==== ========= =======  ======= ===
 
 
   .. image:: _static/images/gaussConv.*
@@ -106,11 +107,11 @@ h                           1    0.1      0.01     0.001   ...
 Step-based Length Estimation
 ----------------------------
 
-**Idea** 
+**Idea**
 
 We specify:
 
-* A set of elementary displacement or pattern (e.g. `\rightarrow`:math: and `\nearrow`:math:) 
+* A set of elementary displacement or pattern (e.g. `\rightarrow`:math: and `\nearrow`:math:)
 * A weight per displacement vector
 * *Length Estimation* sum of weighed occurrences of each pattern
 
@@ -136,11 +137,14 @@ Step-based Perimeter Estimation (bis)
         \partial Dig(Dig(X,h)) = w_1w_2\ldots w_n\lambda
 * For each pattern `w_i`:math:, we consider a weight `p(\cdot)`:math:
 * The estimator is thus
-    .. math:: 
+    .. math::
         \tilde{E}(Dig(X,h))= h \sum_{i=1}^n p(w_i)
 
 
 **Main Result**
+
+
+.. admonition:: Thm.
 
     `\forall\,n`:math: and `\forall \, p(\cdot)`:math: the set of slopes `\alpha`:math: such that  the estimator is convergent is countable `\Rightarrow`:math: most of the time, the estimator does not converge
 
@@ -155,15 +159,17 @@ DSS Based Perimeter Estimation
 **Basic Idea**
 
 * Compute the decompostion of the contour `\partial Dig(X,h)`:math: into maximal DSS `\{D_i\}_N`:math: (with thus `\bigcup_N D_i = \partial Dig(X,h)`:math:)
-* Estimate the length by:  
+* Estimate the length by:
      .. math::
              \tilde{E}_{DSS}(Dig(X,h))= h\cdot \sum_{i=1}^n d(first_{D_i}, first_{D_{(i+1)\, mod\, N}} )
 
-    
+
 **Main result**
 
-   `\tilde{E}_{DSS}(Dig(X,h))`:math: converges for convex shapes with speed `4.5h`:math:
-   
+.. admonition:: Thm.
+
+    `\tilde{E}_{DSS}(Dig(X,h))`:math: is multigrid convergent for convex shapes with speed `4.5h`:math:
+
 
 
 Experimental evaluation
@@ -192,19 +198,19 @@ Experimental evaluation
         :width: 100%
 
      - .. image:: _static/images/Estim/flower01-eps-converted-to.*
-        :width: 100% 
+        :width: 100%
 
      - .. image:: _static/images/Estim/ellipse1-eps-converted-to.*
         :width: 100%
 
      - .. image:: _static/images/Estim/ellipse01-eps-converted-to.*
-        :width: 100% 
+        :width: 100%
 
      - .. image:: _static/images/Estim/accflower1.*
         :width: 100%
 
      - .. image:: _static/images/Estim/accflower01.*
-        :width: 100% 
+        :width: 100%
 
 
 
@@ -230,7 +236,7 @@ Useful tool: Maximal Segment Covering
   * `\forall i,j \in  \partial Dig(X,h),\, P(S_{i,j})\leq P(S_{next(i),j})`:math:
   * `\forall i,j \in  \partial Dig(X,h),\, P(S_{i,j})\leq P(S_{i,prev(j)})`:math:
 
-* `S`:math: is *maximal* if `\forall S',\, S\subset S'\, \neg P(S')`:math:  
+* `S`:math: is *maximal* if `\forall S',\, S\subset S'\, \neg P(S')`:math:
 
 
 **Maximal covering =** set of all maximal segment of `\partial Dig(X,h)`:math:
@@ -242,7 +248,7 @@ Useful tool: Maximal Segment Covering
 * If the property is dynamic (insertion/dilation at each extremity) with `O(p)`:math: per operations `\Rightarrow\, O(p\cdot n)`:math:
 * DSS is dynamic `O(1)`:math:
 * DSS with thickness parameter is dynamic `O(\log n)`:math:
- 
+
 
 Illustration
 ------------
@@ -281,13 +287,13 @@ Illustration
 From normal vector local estimator to length/surface area estimator
 -------------------------------------------------------------------
 
-**Idea** digital version of 
+**Idea** digital version of
 
     .. math::
          l(\gamma) =\int_\gamma n(s)\cdot ds
 
 
-Hence: 
+Hence:
 
    .. math::
        \tilde{E}_{norm}(Dig(X,h)) = h\cdot \sum_{s\in \partial Dig(X,h)} \tilde{n}(s)\cdot\vec{n}_{elem}(s)
@@ -308,19 +314,21 @@ Definition of multigrid convergence
 
 
 **Multigrid convergence for local geometric quantities**
-  
-The estimator `\tilde{Q}`:math: is *multigrid-convergent* for the family  `\mathbb{X}`:math: if and only if, for any `X \in \mathbb{X}`:math:, there exists a grid step `h_X>0`:math: such that the estimate    `\tilde{Q}(Dig(X,h),y,h)`:math: is defined for all  `y \in \partial{Dig(X,h)}`:math: with `0<h < h_X`:math:, and for any `x  \in \partial{X}`:math:,
 
-  .. math::
-      \forall y \in \partial{Dig(X,h)} 
+.. admonition:: Def.
 
-with
- 
+    The estimator `\tilde{Q}`:math: is *multigrid-convergent* for the family  `\mathbb{X}`:math: if and only if, for any `X \in \mathbb{X}`:math:, there exists a grid step `h_X>0`:math: such that the estimate    `\tilde{Q}(Dig(X,h),y,h)`:math: is defined for all  `y \in \partial{Dig(X,h)}`:math: with `0<h < h_X`:math:, and for any `x  \in \partial{X}`:math:,
 
-  .. math:: 
-       \| y - x \|_\infty \le h, \quad \left | \tilde{Q}(Dig(X,h),y,h) - Q(X,x) \right | \le \tau_{X,x}(h),
+      .. math::
+         \forall y \in \partial{Dig(X,h)}
 
-where `\tau_{X,x}: \mathbb{R}^{+*} \rightarrow \mathbb{R}^+`:math: has null limit at 0. This function defines the speed of convergence of `\tilde{Q}`:math:  toward `Q`:math: at point x of `\partial{X}`:math:. The convergence is *uniform* for  `X`:math: when every `\tau_{X,x}`:math: is bounded from above by a function  `\tau_X`:math: independent of `x \in \partial{X}`:math: with null limit at 0
+    with
+
+
+      .. math::
+         \| y - x \|_\infty \le h, \quad \left | \tilde{Q}(Dig(X,h),y,h) - Q(X,x) \right | \le \tau_{X,x}(h),
+
+    where `\tau_{X,x}: \mathbb{R}^{+*} \rightarrow \mathbb{R}^+`:math: has null limit at 0. This function defines the speed of convergence of `\tilde{Q}`:math:  toward `Q`:math: at point x of `\partial{X}`:math:. The convergence is *uniform* for  `X`:math: when every `\tau_{X,x}`:math: is bounded from above by a function  `\tau_X`:math: independent of `x \in \partial{X}`:math: with null limit at 0
 
 
 `\Rightarrow`:math: **we need a mapping** `\partial X\rightarrow\partial Dig(X,h)`:math:
@@ -336,11 +344,11 @@ Normal/Tangent estimation
 * Fix a neighborhood `m`:math: around a point `p\in \partial Dig(X,h)`:math:
 * Fit the `2m+1`:math:  digital points `\{p_i(x_i,y_i)\}`:math:  by a function `f(x_i,\vec{\beta})`:math: with parameter vector `\vec{\beta}`:math:
 * *Least-square fitting* : Minimize quadratic error:
-  
-  .. math::
-       S = \sum_i^{2m+1} (y_i  - f(x_i,\vec\beta)^2      
 
-E.g., `f(x_i,\vec\beta) = \beta_0 + \beta_1 x`:math: for linear fitting. 
+  .. math::
+       S = \sum_i^{2m+1} (y_i  - f(x_i,\vec\beta)^2
+
+E.g., `f(x_i,\vec\beta) = \beta_0 + \beta_1 x`:math: for linear fitting.
 
 
 **Example: tangent vector estimator**
@@ -349,7 +357,7 @@ E.g., `f(x_i,\vec\beta) = \beta_0 + \beta_1 x`:math: for linear fitting.
 
 
 
-`\Rightarrow`:math: **No convergence results for fixed** `m`:math: 
+`\Rightarrow`:math: **No convergence results for fixed** `m`:math:
 
 DSS based Normal vector
 -----------------------
@@ -363,8 +371,8 @@ DSS based Normal vector
 
 **Algorithmic**
 
-* Since DSS recognition is O(1)-dynamic, all tangents can be obtained in O(n) 
- 
+* Since DSS recognition is O(1)-dynamic, all tangents can be obtained in O(n)
+
 
 Maximal Segment Analysis
 ------------------------
@@ -372,7 +380,7 @@ Maximal Segment Analysis
 **More flexible approach** Maximal segment from mxaimal covering
 
 * Given a maximal DSS with slopde `\alpha_h\in[0,1]`:math:  containing  point `P\in\partial Dig(X,h)`:math:
-* We consider a local parametrization of `\partial X = \gamma(s) = (x,f(x))`:math: 
+* We consider a local parametrization of `\partial X = \gamma(s) = (x,f(x))`:math:
 * Suppose P=(0,0), we have, `\forall x\in[0,l]`:math:
 
    .. math::
@@ -387,13 +395,13 @@ Maximal Segment Analysis
 Maximal Segment Analysis (bis)
 ------------------------------
 
-**If the curve is locally linear**,  `f(l) = f'(0)l`:math:, and 
+**If the curve is locally linear**,  `f(l) = f'(0)l`:math:, and
 
    .. math::
        \alpha_h=f'(0) + \frac{O(h)}{l}
 
 **If the curve has curvature greater than** `k_{min}>0`:math:,  Taylor decomposition gives us:
- 
+
     .. math::
         \alpha_h = f'(0) + O(l) + \frac{O(h)}{l}
 
@@ -402,12 +410,12 @@ Maximal Segment Analysis (bis)
 **Convergence Result**
 
 
-    
+
     .. math::
        lim_{h\rightarrow 0} \alpha_h  = f'(0)\,\Leftrightarrow\, \Omega(h^a)\leq l \leq O(h^b)
-    
+
 with `0 < b \leq a < 1`:math:
-  
+
 `\Rightarrow`:math: *Length of maximal DSS is crucial !*
 
 
@@ -434,7 +442,7 @@ Curvature Estimation
 
 
 
-*Nice but* `l`:math: is not in `\Theta(h^{-1/2})`:math: 
+*Nice but* `l`:math: is not in `\Theta(h^{-1/2})`:math:
 
 
 Maximal Segment Again
@@ -449,8 +457,8 @@ Maximal Segment Again
 
 Then:
 
-* sup of `l_{MS}`:math: 
-* inf of `l_{MS}`:math: 
+* sup of `l_{MS}`:math:
+* inf of `l_{MS}`:math:
 * mean `l_{MS}`:math:  value
 
 
@@ -497,18 +505,18 @@ Step 2: Number of maximal segments
 
 If `\partial X`:math: is convex and  `C^3`:math:
 
-   .. math:: 
+   .. math::
         \frac{n_e}{\Theta(log(h^{-1}))} \leq n_{MS} \leq 3 n_e
 
 
 *Hence*
-   .. math:: 
+   .. math::
       \Theta\left (\frac{h^{-\frac{2}{3}}}{log(h^{-1})}\right ) \leq n_{MS} \leq \Theta(h^{-\frac{2}{3}})
 
 
 
 .. list-table::
- 
+
    * - .. image:: _static/images/Estim/farey-ms-conv.*
          :width: 60%
          :align: center
@@ -516,7 +524,7 @@ If `\partial X`:math: is convex and  `C^3`:math:
      - .. image:: _static/images/Estim/square-ms-conv.*
          :width: 60%
          :align: center
-         
+
 
    * - `n_e=16\,, n_{MS}=24`:math:
 
@@ -534,13 +542,13 @@ Step 3: Length of convex hull edges/MS
 
   .. math::
         \sum_e t_e = |\partial Dig(X,h)| = \Theta(h^{-1})
-      
+
 
 *From  [Lachaud, de Vieilleville, Feschet]*
 
   .. math::
-        |\partial Dig(X,h)| <      \sum_e t_{MS} \leq 19|\partial Dig(X,h)| 
-      
+        |\partial Dig(X,h)| <      \sum_e t_{MS} \leq 19|\partial Dig(X,h)|
+
 *Hence*
 
   .. math::
@@ -558,13 +566,13 @@ If `\partial X`:math: is convex and  `C^3`:math:
   :header-rows: 1
 
   * - Quantity
-    - Smallest MS length 
+    - Smallest MS length
     - Average MS length
     - Largest MS length
 
-  * - `t_{MS}`:math: 
-    - `\Omega(h^{-\frac{1}{3}})`:math:  
-    - `\Theta(h^{-\frac{1}{3}}) \leq \cdot \leq \Theta(h^{-\frac{1}{3}}log(h^{-1})`:math:    
+  * - `t_{MS}`:math:
+    - `\Omega(h^{-\frac{1}{3}})`:math:
+    - `\Theta(h^{-\frac{1}{3}}) \leq \cdot \leq \Theta(h^{-\frac{1}{3}}log(h^{-1})`:math:
     - `O(h^{-\frac{1}{2}})`:math:
 
   * - `ht_{MS}`:math:
@@ -607,11 +615,11 @@ Tangent Estimation in Dimension 3
 * Return cross-product `\rightarrow`:math: *normal vectors*
 
 .. list-table::
-    
+
   * - .. image:: _static/images/Estim/parc.*
          :width: 100%
          :align: center
- 
+
     - .. image:: _static/images/Estim/3cercles.*
          :width: 100%
          :align: center
@@ -623,14 +631,14 @@ Tangent Estimation in Dimension 3
 
 **Convolution based approaches**
 
-Convolution of elementary normal vectors in a given neighborhood 
+Convolution of elementary normal vectors in a given neighborhood
 
 .. list-table::
-    
+
   * - .. image:: _static/images/Estim/normale_elem.*
          :width: 60%
          :align: center
- 
+
     - .. image:: _static/images/Estim/normale_papier.*
          :width: 60%
          :align: center
@@ -682,12 +690,12 @@ Integral based Approaches
 
 * *Idea* compute area of the intersection between a ball `B_r(x)`:math: and `X`:math: at `x\in\partial X`:math:
 
-   .. math:: 
+   .. math::
        A_r(x) = \int_{B_r(x)} \chi(p)dp
 
 Then, from Taylor expansion and for `r\rightarrow 0`:math:
 
-  .. math:: 
+  .. math::
        A_r(x) = \frac{\pi}{2} r^2 - \frac{\kappa(X,x)}{3}r^3 + O(r^4)
   .. math::
        V_r(x) = \frac{2\pi}{3} r^3 - \frac{\pi H(X,x)}{4}r^4 + O(r^5)
@@ -714,13 +722,16 @@ Toward Digital Version of Integral Invariants
 * plus error term induced by the Taylor expansion
 * plus error term induced by difference between `x`:math: and `\hat{x}`:math: (back-projection used here)
 
-...
+**Main Result**
 
-**Main Result** For a family of shape with onvex `C^3`:math:-boundary and bounded curvature, `\exists h_0 \in  \mathbb{R}^+`:math:, for any `h \le h_0`:math:, setting `r=k h^{\frac{1}{3}}`:math:, we have
-  
-   .. math::
-     \forall x \in \partial X, \forall \hat{x} \in \partial Dig(X,h),     \| \hat{x} -x\|_\infty \le h \Rightarrow 
-   .. math::
+
+.. admonition:: Thm.
+
+    For a family of shape with onvex `C^3`:math:-boundary and bounded curvature, `\exists h_0 \in  \mathbb{R}^+`:math:, for any `h \le h_0`:math:, setting `r=k h^{\frac{1}{3}}`:math:, we have
+
+    .. math::
+     \forall x \in \partial X, \forall \hat{x} \in \partial Dig(X,h),     \| \hat{x} -x\|_\infty \le h \Rightarrow
+    .. math::
       |    \tilde{Q}(Dig(X,h),\hat{x}) - k(X,x) | \le K     h^{\frac{1}{3}}.
 
 
@@ -736,7 +747,7 @@ What about Gaussian curvature
    .. math::
         M_r(x)= \int_{B_r(x)}  pp^T\chi(p)dp - V_r(x)\mu_r(x)\mu_r^T(x)\,,
 
-* Eigenvalues of `M_r(x)`:math: are such that:      
+* Eigenvalues of `M_r(x)`:math: are such that:
 
  .. math::
      M_1 = \frac{\pi}{48}(3\kappa_1(x) + \kappa_2(x))r^6 + O(r^7)
@@ -748,8 +759,8 @@ What about Gaussian curvature
 
 **Result**
 
-Similar convergence results exist with speed `O(h^\frac{1}{3})`:math: 
- 
+Similar convergence results exist with speed `O(h^\frac{1}{3})`:math:
+
 Experimental analysis confirms the `h^\frac{1}{3}`:math: neighborhood size
 
 
@@ -757,7 +768,7 @@ Illustrations
 -------------
 
 .. list-table::
-  
+
 
   * - .. image:: _static/images/Estim/snapshot-K-zero.png
           :width: 100%
@@ -771,7 +782,7 @@ Illustrations
 
     - .. image:: _static/images/Estim/LeopoldSurfaceMean_clean.png
           :width: 60%
-          :align: center  
+          :align: center
 
     - .. image:: _static/images/Estim/al_curvature.*
           :width: 140%
@@ -805,7 +816,7 @@ convex shape `X\subset\mathbb{R}^d`:math: such that `S = X\cap\mathbb{Z}^d`:math
 
 
 .. list-table::
-  
+
 
   * - .. image:: _static/images/Estim/conv1.*
           :width: 100%
@@ -830,13 +841,14 @@ Let `S\subset \mathbb{Z}^2`:math: be a (1)-curve
 
 **Main result** [Debled-Rennesson, Doerksen-Reiter]
 
+.. admonition:: Thm.
 
-   S is digitally convex `\Leftrightarrow`:math: slopes of maximal segment in the covering are *monotonic*
+     S is digitally convex `\Leftrightarrow`:math: slopes of maximal segment in the covering are *monotonic*
 
 
 
 .. list-table::
-  
+
 
   * - .. image:: _static/images/Estim/conv_maxseg1.*
           :width: 70%

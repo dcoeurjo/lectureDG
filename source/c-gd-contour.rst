@@ -382,21 +382,29 @@ Analytical DSS
 Illustration
 ------------
 
-
-.. container:: build animation
-
-
   .. image:: ./_static/images/droite_cont.*
      :width: 81%
+
+Illustration
+------------
 
   .. image:: ./_static/images/droite_cont_1.*
      :width: 80%
 
+Illustration
+------------
+
   .. image:: ./_static/images/droite_cont_2.*
      :width: 80%
 
+Illustration
+------------
+
   .. image:: ./_static/images/droite_cont_3.*
      :width: 80%
+
+Illustration
+------------
 
   .. image:: ./_static/images/droite_cont_4.*
      :width: 84%
@@ -561,39 +569,72 @@ All patterns: applications to DSS pattern intersection
 ------------------------------------------------------
 
 
-.. container:: build animation
-
 
    .. image:: _static/images/stern/stern-brocot_motifs-res.*
       :width: 82%
+
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
 
    .. image:: _static/images/stern/stern-brocot_chemin1-res.*
       :width: 80%
 
 
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
+
+
    .. image:: _static/images/stern/stern-brocot_chemin2-res.*
       :width: 80%
+
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
+
 
 
    .. image:: _static/images/stern/stern-brocot_chemin3-res.*
       :width: 80%
 
 
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
+
+
    .. image:: _static/images/stern/stern-brocot_chemin4-res.*
       :width: 80%
+
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
+
 
    .. image:: _static/images/stern/stern-brocot_chemin5-res.*
       :width: 80%
 
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
+
+
    .. image:: _static/images/stern/stern-brocot_chemin6-res.*
       :width: 80%
+
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
+
 
    .. image:: _static/images/stern/stern-brocot_chemin_dte2-res.*
       :width: 86%
 
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
+
+
 
    .. image:: _static/images/stern/stern-brocot_2dtes_bis-res.*
       :width: 86%
+
+
+All patterns: applications to DSS pattern intersection
+------------------------------------------------------
 
 
    .. image:: _static/images/pattern2.*
@@ -1092,19 +1133,30 @@ Example of a solution in 2D
 ---------------------------
 
 
-.. container:: build animation
-
   .. image:: ./_static/images/pixels_courbe0-res.*
      :width: 70%
+
+Example of a solution in 2D
+---------------------------
 
   .. image:: ./_static/images/pixels_courbe0bis-res.*
      :width: 70%
 
+Example of a solution in 2D
+---------------------------
+
   .. image:: ./_static/images/pixels_courbe-res.*
      :width: 70%
 
+Example of a solution in 2D
+---------------------------
+
   .. image:: ./_static/images/pixels_courbe3-res.*
      :width: 70%
+
+
+Example of a solution in 2D
+---------------------------
 
   .. image:: ./_static/images/pixels_courbe4-res.*
      :width: 70%
