@@ -16,7 +16,6 @@ using namespace DGtal::Z2i; //We'll only consider Z² digital space on
 
 int main()
 {
-
   Board2D board;
   Domain domain(Point(-1,-1),Point(8,4));
 
