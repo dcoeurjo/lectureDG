@@ -410,11 +410,12 @@ Maximal Segment Analysis (bis)
 **Convergence Result**
 
 
+.. admonition:: Prop.
 
     .. math::
        lim_{h\rightarrow 0} \alpha_h  = f'(0)\,\Leftrightarrow\, \Omega(h^a)\leq l \leq O(h^b)
 
-with `0 < b \leq a < 1`:math:
+    with `0 < b \leq a < 1`:math:
 
 `\Rightarrow`:math: *Length of maximal DSS is crucial !*
 
@@ -455,7 +456,7 @@ Maximal Segment Again
 * `l_e`:math:  length of convex hull edge `e`:math:  (`l_1`:math: metric for (1)-contours)
 * `l_{MS}`:math: length of a maximal segment (`l_1`:math: metric for (1)-contours)
 
-Then:
+Then, we want to compute:
 
 * sup of `l_{MS}`:math:
 * inf of `l_{MS}`:math:
@@ -473,6 +474,8 @@ Step 1: Digital Convex Hull
 
 
 **Main result in Lattice polytope in 2D** [Barany, Zunic, Balog, Acketa,...]
+
+.. admonition:: Thm.
 
    .. math::
        c_1(X) h^{-\frac{2}{3}} \leq n_e \leq c_2(X)h^{-\frac{2}{3}}
@@ -577,7 +580,7 @@ If `\partial X`:math: is convex and  `C^3`:math:
 
   * - `ht_{MS}`:math:
     - `\Omega(h^{\frac{2}{3}})`:math:
-    -  `\Theta(h^{\frac{2}{3}}) \leq \cdot \leq \Theta(h^{\frac{2}{3}}log(h^{-1})`:math:
+    -  `\Theta(h^{\frac{2}{3}}) \leq \cdot \leq \Theta(h^{\frac{2}{3}}log(h^{-1}))`:math:
     -  `O(h^{\frac{1}{2}})`:math:
 
 (*Hints* for `\bar{t}_{MS}`:math:, the lower bound = lower bound on `\sum t_{MS}`:math: / upper bound `n_{MS}`:math:, results for smallest/largest MS require couple of more steps)
@@ -714,7 +717,7 @@ Toward Digital Version of Integral Invariants
 
 
  .. image:: _static/images/Estim/integral.*
-     :width: 100%
+     :width: 60%
      :align: center
 
 
@@ -798,6 +801,72 @@ Illustrations
 
     - .. image:: _static/images/Estim/directioncourbure2.*
           :width: 70%
+          :align: center
+
+
+Parameter-free Curvature Estimator
+----------------------------------
+
+**First, let's have a look to the theorem statement**
+
+
+.. admonition:: Thm.
+
+    For a family of shape with onvex `C^3`:math:-boundary and bounded
+    curvature, `\exists h_0 \in  \mathbb{R}^+`:math:, for any `h \le
+    h_0`:math:, setting `r=k h^{\frac{1}{3}}`:math:, we have
+    ............
+
+To have the convergence, we need the radius to be in
+`O(h^{\frac{1}{3}})`:math:
+
+**We know that**
+
+  .. math::
+     \Theta(h^{\frac{1}{3}}) \leq h\bar{t}^2_{MS} \leq \Theta(h^{\frac{1}{3}}log(h^{-1}))
+
+
+`\Rightarrow`:math: *Let's use (square of) average MS length to define r*
+
+
+
+
+`\Rightarrow`:math: *Parameter-free convergence in*
+`\Theta(h^{\frac{1}{3}}log(h^{-1}))`:math: *!*
+
+
+
+`\Rightarrow`:math: *Automatic selection of the scale parameter*
+
+
+Illustrations
+-------------
+
+.. list-table::
+
+
+  *  - .. image:: _static/images/Estim/ScaleSpace_Flower_Global.png
+          :width: 100%
+          :align: center
+  *  - .. image:: _static/images/Estim/ScaleSpace_Flower_Local.png
+          :width: 100%
+          :align: center
+
+.. list-table::
+
+  *  - .. image:: _static/images/Estim/Bunny_64_mean.png
+          :width: 100%
+          :align: center
+
+     - .. image:: _static/images/Estim/Bunny_128_mean.png
+          :width: 100%
+          :align: center
+     - .. image:: _static/images/Estim/Bunny_256_mean.png
+          :width: 100%
+          :align: center
+
+     - .. image:: _static/images/Estim/Bunny_64_k1.png
+          :width: 100%
           :align: center
 
 
