@@ -8,7 +8,7 @@
 \oddsidemargin 0.0cm
 \evensidemargin 0.0cm
 
-\usepackage{epsfig}  
+\usepackage{epsfig}
 \usepackage{setspace}
 \usepackage{fancyheadings}
 \usepackage{amsmath}
@@ -56,20 +56,19 @@
 % ----------------------------------------------------------------------
 \section*{Exercise 2 \rm Segmentation into maximal DSS}
 
-\par In \texttt{DGtal}, we use the DSS recognition algorithm implemented in the \texttt{ArithmeticalDSS} class. In the DGtalSkel folder (checkout the last version), you would find and example of \texttt{ArithmeticalDSS} usage. Note that the technical documentation of this class is available at \url{http://libdgtal.org/doc/stable/classDGtal_1_1ArithmeticalDSS.html}.
+\par In \texttt{DGtal}, we use the DSS recognition algorithm implemented in the \texttt{ArithmeticalDSS} class. In the DGtalSkel folder (checkout the last version), you would find and example of \texttt{ArithmeticalDSS} usage. Note that the technical documentation of this class is available at \url{http://libdgtal.org/doc/stable/classDGtal_1_1ArithmeticalDSSComputer.html}.
 
 {\bf Questions:}
 \begin{itemize}
-	\item Have a look to the \texttt{DSSExample.cpp} file. Use \texttt{getFirst()} and \texttt{getLast()} methods and return the Euclidean length of the DSS.
+	\item Have a look to the \texttt{DSSExample.cpp} file. Use \texttt{front()} and \texttt{back()} methods and return the Euclidean length of the DSS.
 	\item  Customize \texttt{DSSExample.cpp} to add more points (such that the complete sequence is not a DSS anymore) and construct a decomposition of such contour into maximal DSS (cf Figure 2 for an example for the 4-connected case).
 	\begin{figure}[h]
 	\centering
 	\includegraphics[width=4cm]{exampleDSS-3.png}
 	\caption{Example of a 4-DSS decomposition of a small point sequence.}
 	\end{figure}
-	
+
 	\item From the first exercise, compute the sequence defined as the border of a digital disc and compute its decomposition into maximal DSS. Display the contour and each segment to a board output and estimate the length of the contour in the meantime (sum of DSS Euclidean length).  Compare the estimated lengths to $2\pi R$ when you increase the ball radius.
 \end{itemize}
 
 \end{document}
-
