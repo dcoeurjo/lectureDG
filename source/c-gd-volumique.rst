@@ -308,7 +308,7 @@ Mask Construction
 
 **We construct the mask to approximate the Euclidean Metric**
 
-* We first fix a set of vectors (usually, Bezout vectors in `\mathcal{G}`:math:)
+* We first fix a set of vectors (usually, Farey fraction vectors in `\mathcal{G}`:math:)
 * We find optimal weights to minimize the error (uniformly, average error, ...) with respect to `d_2`:math: on specific configuration
 
   * We minimize the error on the column `x=N`:math:
@@ -548,10 +548,14 @@ Generalization to other metrics
 
 * Separable decomposition works for any metric satisfying the *monotonicity* property:
 
-  * We consider `p(x,y)`:math:, `q(x',y')`:math:  with `x<x'`:math:
-  *  `r( x'',O)`:math: be a point on the x-axis such that `d(p,r) = d(q,r)`:math:
-  *  Let  `s(u,0)`:math: be another point on the x-axis
-  * A metric `d`:math: is *monotonic* if
+.. admonition:: Def.
+
+   We consider `p(x,y)`:math:, `q(x',y')`:math:  with `x<x'`:math:
+
+   `r( x'',O)`:math: be a point on the x-axis such that `d(p,r) = d(q,r)`:math:
+
+   Let  `s(u,0)`:math: be another point on the x-axis
+   A metric `d`:math: is *monotonic* if
 
     .. math::
        u < x'' \implies d(p,s) \leq d(q,s)
