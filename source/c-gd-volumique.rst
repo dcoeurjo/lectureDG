@@ -13,12 +13,14 @@ Problem setting
 
 **Distance transformation**
 
-At each point `p`:math: of a shape `X`:math:, we want the smallest distance to `q\in\bar{X}`:math:
+.. admonition:: Def.
+
+  At each point `p`:math: of a shape `X`:math:, we want the smallest distance to `q\in\bar{X}`:math:
 
 
 
 .. list-table::
- 
+
   - * .. image:: _static/images/DT/homme.*
            :width: 100%
 
@@ -63,10 +65,10 @@ Why the DT ?
 
     * .. image:: _static/images/DT/contour.*
           :width: 60%
-  
+
     * .. image:: _static/images/DT/contour_circ.*
           :width: 60%
-  
+
 Example: curvature from DT
 --------------------------
 
@@ -81,7 +83,7 @@ Shape `\rightarrow`:math: Boundary `\rightarrow`:math: Distance field `\rightarr
            k&=\frac{-t^THt}{\|\vec{g}\|}, \quad H=
            \left [ \begin{array}{cc}
              I_{xx} & I_{xy}\\
-             I_{yx} & I_{yy} 
+             I_{yx} & I_{yy}
            \end{array}\right ]
 
 
@@ -124,7 +126,7 @@ Application example 2: Metallic Foam Description
 * X-ray tomographic 3D images of metallic/polymer foam  (used for catalytic processes)
 * We need to extract geometrical information such as
 
-  * Structural Complexity  of the 1D structure 
+  * Structural Complexity  of the 1D structure
   * *Thickness, percolation path, thermodynamic diffusion paths, ...* (`\Rightarrow`:math: DT)
 
 
@@ -140,19 +142,27 @@ Application example 2: Metallic Foam Description
 Metric in Digital Space
 -----------------------
 
-**Definitions**
-Metric `(d,E,F)`:math: is a map `d: E\times E \rightarrow F`:math: such that
 
-* `\forall p,q\in E\,, d(p,q)\geq 0`:math: (separation axiom)
-* `\forall p,q\in E\,, d(p,q) =0 \Rightarrow p=q`:math: (coincidence axiom)
-* `\forall p,q\in E\,, d(p,q) = d(q,p)`:math: (symmetry)
-* `\forall p,q,r\in E\,, d(p,q) \leq d(p,r) + d(r,q)`:math: (triangular inequality)
+.. admonition:: Def.
 
-`(d,E,F)`:math: is a norm (metric induced by "normed" vector space) iff
+ Metric `(d,E,F)`:math: is a map `d: E\times E \rightarrow F`:math: such that
 
-* `\forall p,q,r\in E\,, d(p,q) = d(p+r,q+r)\geq 0`:math:  (translation invariant)
-* `\forall p,q,\lambda\in E\,, d(\lambda p, \lambda q) = |\lambda|d(p,q)\geq 0`:math: (homogeneity)
- 
+ * `\forall p,q\in E\,, d(p,q)\geq 0`:math: (separation axiom)
+ * `\forall p,q\in E\,, d(p,q) =0 \Rightarrow p=q`:math: (coincidence axiom)
+ * `\forall p,q\in E\,, d(p,q) = d(q,p)`:math: (symmetry)
+ * `\forall p,q,r\in E\,, d(p,q) \leq d(p,r) + d(r,q)`:math: (triangular inequality)
+
+
+.. admonition:: Def.
+
+ `(d,E,F)`:math: is a norm (metric induced by "normed" vector space) iff
+
+ * `\forall p,q,r\in E\,, d(p,q) = d(p+r,q+r)\geq 0`:math:  (translation invariant)
+ * `\forall p,q,\lambda\in E\,, d(\lambda p, \lambda q) = |\lambda|d(p,q)\geq 0`:math: (homogeneity)
+
+
+Examples
+--------
 
 
 
@@ -200,14 +210,14 @@ Chamfer Mask
 
 **Weigthed vector**
 
-   .. math:: 
-      M = (\vec{v},\omega) 
+   .. math::
+      M = (\vec{v},\omega)
 
 **Chamfer Mask**
 
 Set of weighted vector
 
-   .. math:: 
+   .. math::
       \mathcal{M} = \{ M_i\in \mathbb{Z}^n\times \mathbb{N}^*\}_{1\leq i \leq m}
 
 
@@ -215,14 +225,14 @@ Set of weighted vector
 * which contains at least a basis of `\mathbb{Z}^n`:math:
 
 
-Usually, chamfer masks are *G-symmetric*, i.e. restricted to  
+Usually, chamfer masks are *G-symmetric*, i.e. restricted to
 
-    .. math:: 
+    .. math::
       \mathcal{M} = \{ M_i\in \mathcal{G}\times \mathbb{N}^*\}_{1\leq i \leq m}
 
 with
 
-    .. math:: 
+    .. math::
       \mathcal{G} = \{ (x_1,\ldots,x_n)\in\mathbb{Z}^n\,|\, x_n\geq \ldots \geq x_1\geq 0 \}
 
 
@@ -232,7 +242,7 @@ Chamfer Distances
 **Chamfer path**
 
 `k`:math:-Path based on vectors from a chamfer mask
-  
+
   .. math::
        \mathcal{P} =\{ \alpha_1\vec{v}_{i_1}, \ldots, \alpha_k \vec{v}_{i_k} \}
 
@@ -241,7 +251,7 @@ Chamfer Distances
 
   .. math::
       d_\mathcal{M}(\mathcal{P}) = \sum_k \alpha_k\omega_{i_k}
- 
+
 
 **Chamfer distance**
 
@@ -259,13 +269,13 @@ Simple examples
           :width: 50%
 
 **Matrix representation** for masks
-  
-`\mathcal{M}_{ab}=\{ (a,(0,1)^T) , (b,(1,1)^T) \}`:math:,  `\mathcal{M}_{abc}=\{ (a,(0,1)^T) , (b,(1,1)^T), (c,(2,1)^T)\}`:math: 
+
+`\mathcal{M}_{ab}=\{ (a,(0,1)^T) , (b,(1,1)^T) \}`:math:,  `\mathcal{M}_{abc}=\{ (a,(0,1)^T) , (b,(1,1)^T), (c,(2,1)^T)\}`:math:
 
       .. image:: _static/images/DT/chamfer2.*
          :width: 40%
 
-For example: 
+For example:
 
     .. math::
       \mathcal{M}_{3,4} = \{ (3,(0,1)^T), (4,(1,1)^T) \}
@@ -285,10 +295,10 @@ Chamfer balls
 
 e.g.
 
-   .. math:: 
+   .. math::
       0 < a \leq b \leq 2a
 
-   .. math:: 
+   .. math::
       0 < 2a \leq c \leq a+b\quad\text{and}\quad 3b\leq 2c
 
 
@@ -298,7 +308,7 @@ Mask Construction
 
 **We construct the mask to approximate the Euclidean Metric**
 
-* We first fix a set of vectors (usually, Bezout vectors in `\mathcal{G}`:math:) 
+* We first fix a set of vectors (usually, Bezout vectors in `\mathcal{G}`:math:)
 * We find optimal weights to minimize the error (uniformly, average error, ...) with respect to `d_2`:math: on specific configuration
 
   * We minimize the error on the column `x=N`:math:
@@ -310,7 +320,7 @@ Mask Construction
 **Drawbacks**
 
 * Just an approximation of the Euclidean metric
-* Isotropic error distribution: error is maximized on specific orientations 
+* Isotropic error distribution: error is maximized on specific orientations
 * Increasing the mask size reduces the errors but increases the computational cost
 
 
@@ -331,7 +341,7 @@ Distance Transformation algorithm with Chamfer Masks
      * - .. image:: _static/images/DT/chamferGraphDom.*
              :width: 80%
              :align: center
-        
+
 
        - .. image:: _static/images/DT/chamferMask.*
              :width: 100%
@@ -355,12 +365,12 @@ Init
   .. math::
       DT(p) = 0 \quad \text{if} \quad p\not\in X\\
       DT(p) = +\infty \quad \text{if} \quad p\in X
- 
+
 Then
   .. math::
     DT(p) = min( DT(p), min_{(\omega_i,\vec{v}_i) \text{ in sub-mask}} ( DT(p+\vec{v}_i) + \omega_i ))
-     
-`\Rightarrow`:math: *Computational cost in*  `O(nm)`:math: 
+
+`\Rightarrow`:math: *Computational cost in*  `O(nm)`:math:
 
 Other path-based distances
 --------------------------
@@ -393,7 +403,7 @@ Euclidean metric
 **Idea**
 
 Still consider `(d,\mathbb{Z}^n, \mathbb{R})`:math: distances but with  integer based representations and algorithmic
- 
+
 **E.g.**
 
 * Represent `d_2(p,q)\in\mathbb{R}`:math: by `d_2^2(p,q)\in \mathbb{Z}`:math:
@@ -404,7 +414,7 @@ Still consider `(d,\mathbb{Z}^n, \mathbb{R})`:math: distances but with  integer 
 
 
 
-*Nice but are there fast algorithms for such exact metrics ?* 
+*Nice but are there fast algorithms for such exact metrics ?*
 
 
 Separable Approach For Squared Euclidean Distance Transform
@@ -421,16 +431,16 @@ Separable Approach For Squared Euclidean Distance Transform
 **Separable approach with intermediate map**
 
      .. math::
-          g( i,j) =  \min_{x} \{ (x-i)^2\} 
+          g( i,j) =  \min_{x} \{ (x-i)^2\}
 
      .. math::
-          SEDT( p(i,j) ) =  \min_{y} \{  (y-j)^2 + g(i,y)\} 
+          SEDT( p(i,j) ) =  \min_{y} \{  (y-j)^2 + g(i,y)\}
 
 in dimension 3, we would have
 
      .. math::
           g(i,j,k) = \min_x \{(x-i)^2 \},   h(i,j,k) = \min_y \{(y-j)^2 + g(i,y,k) \}\\
-          SEDT( p(i,j,k) ) =  \min_{z} \{  (z-k)^2 + h(i,j,z)\} 
+          SEDT( p(i,j,k) ) =  \min_{z} \{  (z-k)^2 + h(i,j,z)\}
 
 
 First Step
@@ -459,7 +469,7 @@ Second Step
  .. image:: _static/images/DT/edt_saito.*
        :width: 100%
 
-     
+
 **Key-point** Lower envelope computation of a set of parabolas
 
 Lower Envelope Computation
@@ -469,14 +479,14 @@ Consider the set of parabolas `\{  (x-k)^2 + g_k \}_{k=1\ldots N}`:math:
 
 
  .. image:: _static/images/DT/edt_para.*
-       :width: 60%      
+       :width: 60%
 
 
 * Any two parabolas have single point intersection
 * For lower envelope computation, the intersection point acts as a *pivot*
 
-  * If `P_k`:math: and `P_{k'}`:math: are two parabolas with intersection `q`:math: and `k<k'`:math:  
-  * `P_k`:math: cannot appear in the lower envelope for abscissa greater than `q`:math: 
+  * If `P_k`:math: and `P_{k'}`:math: are two parabolas with intersection `q`:math: and `k<k'`:math:
+  * `P_k`:math: cannot appear in the lower envelope for abscissa greater than `q`:math:
 
 `\Rightarrow`:math: **Lower envelope computation in** `O(N)`:math: **using stack based approach ;)**
 
@@ -503,7 +513,7 @@ Given a `N^d`:math: image
   - * .. image:: _static/images/DT/neigeDT_508_p.*
           :width: 60%
           :align: center
-    
+
     * .. image:: _static/images/DT/AlCaponeDistanceMap.*
           :width: 60%
           :align: center
@@ -521,7 +531,7 @@ Generalizations
 
   .. image:: _static/images/DT/edt_multithread.*
      :width: 80%
-        
+
 
 **Generalization to toric domains**
 
@@ -538,11 +548,11 @@ Generalization to other metrics
 
 * Separable decomposition works for any metric satisfying the *monotonicity* property:
 
-  * We consider `p(x,y)`:math:, `q(x',y')`:math:  with `x<x'`:math:  
+  * We consider `p(x,y)`:math:, `q(x',y')`:math:  with `x<x'`:math:
   *  `r( x'',O)`:math: be a point on the x-axis such that `d(p,r) = d(q,r)`:math:
   *  Let  `s(u,0)`:math: be another point on the x-axis
-  * A metric `d`:math: is *monotonic* if 
-    
+  * A metric `d`:math: is *monotonic* if
+
     .. math::
        u < x'' \implies d(p,s) \leq d(q,s)
 
@@ -554,7 +564,7 @@ Generalization to other metrics
 **Result**
 
 * All `l_p`:math: metrics are monotonic
-* All Chamfer masks inducing norms are monotonic
+* All Chamfer masks induced by norms are monotonic
 * All path based distances inducing norms with axis-symmetric unit ball are monotonic
 
 
@@ -566,7 +576,7 @@ Voronoi Diagram
 
 **Definition**
 
-Given a set of sites  `S=\{ s_i\in \mathbb{R}^d\}`:math:, the *Voronoi Diagram* is a decomposition of the space into closed cells `{c_i}`:math: such that 
+Given a set of sites  `S=\{ s_i\in \mathbb{R}^d\}`:math:, the *Voronoi Diagram* is a decomposition of the space into closed cells `{c_i}`:math: such that
     .. math::
         Voro_{S}(s_i) = \{ x\in\mathbb{R}^d,\, d(x,s_i) \leq d(x,s_j),\, \forall s_j\in S\}
 
@@ -575,7 +585,7 @@ Each cell can be further decomposed into sub-dimensional i-facets taking into ac
 
   .. image:: _static/images/DT/voronoi_diagramme.*
        :width: 30%
-               
+
 
 
 
@@ -597,7 +607,7 @@ Separable Voronoi Map
 Input set: `X\subset\mathbb{Z}^2`:math:, we construct `Voro_{\bar{X}}\cap\mathbb{Z}^2`:math:
 
  .. image:: _static/images/DT/Voromap-random-orig.*
-       :width: 70%     
+       :width: 70%
 
 
 
@@ -633,7 +643,7 @@ Generic Algorithm
 
 .. list-table::
      :widths: 70 , 11, 19
- 
+
      * - For any monotonic metric and an image `[1\ldots n]^d\rightarrow \{0,1\}`:math:, the Voronoi Map (and the distance transformation) can be obtained by the *separable algorithm* in `O( d\cdot n^d\cdot (C + H) )`:math:
 
        - .. image:: _static/images/DT/closest.*
@@ -642,7 +652,7 @@ Generic Algorithm
        - .. image:: _static/images/DT/hiddenBy.*
              :width: 100%
 
-* **C**: Closest(u,v, p), decide whether u or v is closest to p 
+* **C**: Closest(u,v, p), decide whether u or v is closest to p
 * **H**: HiddenBy(u,v,w, 1D-line), decide if Voronoi cells of u and w *hide* the Voronoi cell of v  on the 1D-line
 
 +-------------------+--------------------+------------------------+------------------------------------------+
@@ -668,15 +678,261 @@ Examples
 
 
    .. list-table::
-   
+
       * - .. image:: _static/images/DT/Voromap-huesimple.*
               :width: 80%
         - .. image:: _static/images/DT/Voromap-hue-l6-simple.*
               :width: 80%
 
       * - `l_2`:math:
-  
-        - `l_6`:math: 
+
+        - `l_6`:math:
+
+Path based Metrics
+------------------
+
+
+**Better expected bounds for path based norms**
+
++---------------------+--------------------+------------------------+------------------------------------------+
+|Metric               | C                  | H                      | Total                                    |
++=====================+====================+========================+==========================================+
+|Chamfer with adapter | `O(m)`:math:       |`O(m\cdot log(m))`:math:| `O(d\cdot m\cdot n^d\cdot\log(n))`:math: |
++---------------------+--------------------+------------------------+------------------------------------------+
+|**Chamfer Norms**    | `O(log(m))`:math:  |`O(log^2(m))`:math:     | `O(d\cdot n^d\cdot\log^2(m))`:math:      |
++---------------------+--------------------+------------------------+------------------------------------------+
+
+Similar expected results for neighborhood sequences
+
+
+
+
+Examples
+--------
+
+
+   .. list-table::
+
+      * - .. image:: _static/images/DT/Voromap-huesimple.*
+              :width: 80%
+        - .. image:: _static/images/DT/Voromap-hue-l6-simple.*
+              :width: 80%
+
+      * - `l_2`:math:
+
+        - `l_6`:math:
+
+
+
+Subquadratic Algorithm for path based distances
+===============================================
+
+
+Path Based Metric and Rational balls
+------------------------------------
+
+**Notations**
+
+* Chamfer masks: `\mathcal{M} = \{ (\vec{v}_i,\omega_i) \in \mathbb{Z}^n\times \mathbb{N}^*\}_{1\leq i \leq m}`:math: (we consider only chamfer masks inducing norms)
+
+* Rational ball: `\mathcal{B}_{\mathcal{M}} = Conv\left ( \{
+  \frac{\vec{v}_i}{\omega_i} \} \right )`:math: [Normand, Strand,...]
+
+* Rational ball faces have normal vector `\mathcal{F}_i`:math:
+
+   .. image:: _static/images/DT-chamf/ratball.*
+         :width: 50%
+
+
+`\mathcal{M}_{7,8,11,14}`:math:
+
+Distance Evaluation
+-------------------
+
+**[Normand et al.]**
+
+
+   .. math::
+        d(O,p) = \max_i \{ \mathcal{F}_i\cdot \vec{Op}\}
+
+`\Rightarrow`:math: `O(m)`:math:
+
+
+
+Can be generalized to other path based distances to get similar expression
+
+   .. math::
+        d(O,p) = \max_i \{ f_i(\mathcal{F}_i\cdot \vec{Op}) \}
+
+for some function `f_i`:math: (based Lambek-Moser inverse sequences)
+
+   .. image:: _static/images/DT-chamf/seqDT.*
+         :width: 80%
+
+
+Optimized Distance Evaluation
+-----------------------------
+
+
+**Computational Geometry setting**
+
+* The facet inducing the `\max`:math: is given by the facet pierced by the straight line `(Op)`:math:
+
+* `\Rightarrow`:math: *Ray shooting problem in convex polytopes*
+
+
+**Fast Distance computation**
+
+* Following [Matousek and Schwarzkpof]
+
+
+    `\Rightarrow`:math:  `O(m^{\lfloor d/2\rfloor})`:math: space/pre-processing and `O(\log m)`:math: per query
+
+
+
+Separable Predicates for Chamfer Masks
+--------------------------------------
+
+
+**Goal**
+
+* If we could have predicates in `O(h)`:math: then we have exact Voronoi Map/DT in `O(d\cdot h\cdot n^d)`:math:
+* Raster scan is in `O(m\cdot n^d)`:math:
+
+
+**Main Result**
+
+   .. math::
+        h = O(\log^2m)
+
+
+*==> First sub-quadratic DT algorithm for Chamfer metrics*
+
+
+Dimension 2
+-----------
+
+**Key point**
+
+* Given to points and a straight line, detect the position of the Voronoi edge on the line
+
+* we are looking for point `r\in l`:math: such that `d_\mathcal{M}(p,r) = d_\mathcal{M}(q,r)`:math:
+
+
+   .. image:: _static/images/DT-chamf/initialproblem.*
+       :width: 40%
+
+
+Warm up: Localizing a point
+----------------------------
+
+**Question** Find the *cone* at `p`:math: containing a point `r`:math:
+
+
+*==> Dichotomic/Binary search* (thanks to convexity of the metric)
+
+*==>* `O(\log m)`:math:
+
+
+   .. image:: _static/images/DT-chamf/searchPoint.*
+       :width: 60%
+
+
+
+Algorithm Overview
+------------------
+
+**Idea**
+
+If we have *localized* the Voronoi edge point, we are done (find the exact position given by linear system with one unknown)
+
+
+
+   .. image:: _static/images/DT-chamf/algoEnd.*
+       :width: 60%
+
+
+
+
+
+
+
+Step 1: Shrinking `\mathcal{M}_p`:math:
+---------------------------------------
+
+.. code-block:: c
+
+   ShrinkMp( Mp, Mq )
+
+      if |Mp| == 1
+        return the cone in Mp
+      else
+        Split cones Mp -> { Mp, cone, M-} with |M+|~|M-|
+        {v1,v2} = cone
+        dp1 = distance d_M(p, v1 intersection l)   //O(1)
+        dp2 = distance d_M(p, v1 intersection l)   //O(1)
+        dq1 = localize and get the distance of d_M(q, v1 intersection l) //O(log(m))
+        dq2 = localize and get the distance of d_M(q, v2 intersection l) //O(log(m))
+
+        c1  = closest point between p and q at v1
+        c2  = closest point between p and q at v2
+
+        if (c1 == c2 == GREEN)
+         return ShrinkMp(M+)
+
+        if (c1 == c2 == BLUE)
+         return ShrinkMp(M-)
+
+         return cone
+
+
+*Correctness*
+
+* Chamfer norm implies 2  connected sets (blue/green), maybe overlapping
+* When evaluating distance on the line, the function is convex (-> orientation)
+
+Step 2: Shrinking `\mathcal{M}_q`:math: and final computation
+-------------------------------------------------------------
+
+**Shrinking** `\mathcal{M}_q`:math:
+
+* Similar algorithm
+* Can be speed-up using `\mathcal{M}_p`:math: cone
+* `\Rightarrow O(\log^2 m)`:math:
+
+
+**Final step**
+
+* Small computation in each cone
+* `\Rightarrow O(1)`:math:
+
+
+Fast computations in higher dimensions
+--------------------------------------
+
+
+**Basic Idea** for `\mathcal{M}`:math: in `\mathbb{R}^d`:math:
+
+* Each  `{p,l}`:math: `{q,l}`:math: defines a plane (`P_{pl},\, P_{ql}`:math:)
+* `\mathcal{B}_\mathcal{M}\cap P_{pl}`:math: induces a 2-dimensional polytope
+
+
+* `\Rightarrow`:math: *2D problem* with `O(\log^2 m)`:math: computational cost
+
+
+
+**Conclusion**
+
+* Closest() and HiddenBy() predicates can be implemented in `O(\log^2m)`:math:
+
+* Exact Voronoi map/Distance transformation of Chamfer norms using separable approach in
+
+    .. math::
+          O(d\cdot \log^2 m\cdot n^d)
+
+
+   .. image:: _static/images/DT-chamf/nDto1D.*
+            :width: 50%
 
 
 Reverse Distance Transformation
@@ -686,8 +942,10 @@ Reverse Transformation
 ----------------------
 
 **Problem setting**
- 
-Given a *metric* `(d,E,G)`:math: and a set of balls `\mathcal{B}=\{ B_i=(p_i,r_i)\in E\times G\}_{i=1\ldots N}`:math:, reconstruct the binary shape `X`:math:
+
+.. admonition:: Def.
+
+ Given a *metric* `(d,E,G)`:math: and a set of balls `\mathcal{B}=\{ B_i=(p_i,r_i)\in E\times G\}_{i=1\ldots N}`:math:, reconstruct the binary shape `X`:math:
 
    .. math::
        X = \bigcup_{i=0\ldots N} B_i
@@ -713,7 +971,7 @@ For `n\times m`:math: image
 Separable Approach for `l_2`:math:
 ----------------------------------
 
-W.l.o.g. we consider `d=2`:math: 
+W.l.o.g. we consider `d=2`:math:
 
 Let us denote `p_k=(x_k,y_k)`:math: for `k=1\ldots N`:math:, then
 
@@ -732,10 +990,10 @@ Start from a map `f: \mathbb{Z}^2\rightarrow \mathbb{Z}`:math: with `f(x,y) = r_
 
 
      .. math::
-          g(i,j) =  \max_{x} \{ f(x,j) - (x-i)^2\} 
+          g(i,j) =  \max_{x} \{ f(x,j) - (x-i)^2\}
 
      .. math::
-          REDT(i,j) =  \max_{y} \{g(i,y) -  (y-j)^2 \} 
+          REDT(i,j) =  \max_{y} \{g(i,y) -  (y-j)^2 \}
 
 
 Illustration
@@ -747,7 +1005,7 @@ Illustration
 * Generalization of arbitrary dimension
 
 
- 
+
 .. image:: _static/images/DT/redt-example.*
    :width: 80%
    :align: center
@@ -767,11 +1025,13 @@ Associated Structure from Computational Geometry
 **Voronoi map --> Power map**
 
 * Kind of Voronoi diagram with additive power metric. For example the power of a point x w.r.t. ball `(s,r)\in\mathbb{R}^d\times\mathbb{R}`:math:
-   
+
      .. math::
         \pi(x,(s,r)) = d^2(x,s) - r^2
 
-* Given a set of *weighted* sites `S=\{ (s_i,w_i)\in \mathbb{R}^d\times\mathbb{R}\}`:math:, the *Power Diagram* is a decomposition of the space into closed cells `{c_i}`:math: such that 
+.. admonition:: Def.
+
+  Given a set of *weighted* sites `S=\{ (s_i,w_i)\in \mathbb{R}^d\times\mathbb{R}\}`:math:, the *Power Diagram* is a decomposition of the space into closed cells `{c_i}`:math: such that
     .. math::
         Power_{S}((s_i,w_i)) = \{ x\in\mathbb{R}^d,\, \pi(x,(s_i,w_i)) \leq \pi(x,(s_j,w_j)),\, \forall (s_j,w_j)\in S\}
 
@@ -853,10 +1113,12 @@ Contact Points based Geometrical Definition
 Maximal Ball based Definition
 -----------------------------
 
-**Definitions**
+.. admonition:: Def.
 
      A  *maximal ball* is a ball contained in the shape not entirely covered
      by another ball contained in the shape
+
+.. admonition:: Def.
 
      The *medial axis* of a shape is the set of maximal ball centers
      contained in the shape.
@@ -896,7 +1158,7 @@ Given `p\in X`:math: and `r\in\mathbb{R}`:math: such that Euclidean ball with `B
 
  * - .. image:: _static/images/DT/2spheres_edt_surf.*
          :width: 100%
-   
+
    - .. image:: _static/images/DT/carre_edt_surf.*
          :width: 100%
 
@@ -965,7 +1227,7 @@ Also true for `\mathcal{M}_{3,4}`:math: with the following rewriting rules of th
     .. math::
         Lut(\vec{v},r) =\min \{ r'\,|\, B(O,r)\subseteq B(O+\vec{v},r'\}
 
-* Then, 
+* Then,
     .. math::
         (p,DT(p)) \in MA \Leftrightarrow DT(p+\vec{v}) < Lut(\vec{v},DT(p)),\, \forall \vec{v}\in\mathcal{V}
 
@@ -981,11 +1243,13 @@ Global approach using Power Map
 
 Get the Medial Axis as a by-product of the Power map
 
-**Lemma**
-Let `S\subset \mathbb{R}^d\times\mathbb{R}`:math: and `X=\bigcup_{B_i\in S} B_i`:math:
+
+.. admonition:: Lemma
+
+  Let `S\subset \mathbb{R}^d\times\mathbb{R}`:math: and `X=\bigcup_{B_i\in S} B_i`:math:
 
    .. math::
-        B\subset B' \implies    Power_{S}(B) \cap X = \emptyset 
+        B\subset B' \implies    Power_{S}(B) \cap X = \emptyset
 
 
 *Non-empty power map cells are related to maximal balls*
@@ -993,7 +1257,7 @@ Let `S\subset \mathbb{R}^d\times\mathbb{R}`:math: and `X=\bigcup_{B_i\in S} B_i`
 
 [Skipping details...]
 
-`\implies`:math: *Separable algorithm to extract the medial axis* 
+`\implies`:math: *Separable algorithm to extract the medial axis*
 
 `\implies`:math: `O( d\cdot n^d\cdot (C + H) )`:math: **computational cost  for a large class of metrics**
 
@@ -1005,27 +1269,27 @@ One algorithm to rule them all
 
  * - .. image:: _static/images/DT/Al-orig.*
          :width: 100%
-         :align: center        
+         :align: center
 
    - .. image:: _static/images/DT/Al-DT.*
           :width: 100%
-          :align: center        
+          :align: center
 
    - .. image:: _static/images/DT/Al-RDMA.*
           :width: 100%
-          :align: center        
+          :align: center
 
  * - .. image:: _static/images/DT/neige_254.*
          :width: 100%
-         :align: center        
+         :align: center
 
    - .. image:: _static/images/DT/neige_254_DT.*
           :width: 100%
-          :align: center        
+          :align: center
 
    - .. image:: _static/images/DT/neige_254_RDMA.*
           :width: 100%
-          :align: center        
+          :align: center
 
 
 Toward Minimal Medial Axis
@@ -1078,12 +1342,13 @@ Introduction
 
 
 
-Definitions
------------
+Simple Point
+------------
 
-**Simple Point** 
+.. admonition:: Def.
 
-A point `p\in X`:math: is simple for `X`:math: if  `X`:math: and `X\setminus\{p\}`:math: are in the same *homotopy equivalence class*
+  A point `p\in X`:math: is simple for `X`:math: if  `X`:math: and `X\setminus\{p\}`:math: are in the same *homotopy equivalence class*
+
 
 * In dimension 2, same number of connected components of the object and of its complementary
 * In dimension 3, we must preserve holes/tunnels
@@ -1101,7 +1366,7 @@ Let `\phi`:math: by any sequence of insertions/removals of simple points, then `
 
 .. image:: _static/images/DT/mug-torus.*
     :align: center
-           
+
 
 *How to characterize simple points ?*
 
@@ -1123,7 +1388,7 @@ A point `p\in X`:math: is `(\kappa,\lambda)`:math:-simple for `X`:math: if
 
 .. image:: _static/images/DT/pointsimple.*
      :width: 60%
-     :align: center        
+     :align: center
 
 
 *(which are resp. (0,1)- and (1,0)-simple ?)*
@@ -1144,7 +1409,7 @@ Local characterization
 * `C_\kappa^p(X))`:math:: set of `\kappa`:math:-connected components in `X`:math: adjacent to `p`:math:
 * `T_\kappa(p,X) = | C_\kappa^p(N^*_8(p)\cap X|`:math:
 
-  
+
      |imp| `p\in X`:math: is `(\kappa,\lambda)`:math:-simple for `X`:math: `\Leftrightarrow`:math: `T_\kappa(p,X) =T_\lambda(p,\bar{X})=1`:math:
 
 
@@ -1157,21 +1422,21 @@ Illustration
 All configurations in 2D
 
 .. list-table::
-   
+
    * - .. image:: _static/images/DT/table8_4.*
            :width: 100%
-                   
+
      - .. image:: _static/images/DT/table4_8.*
            :width: 100%
    * - (0,1)
-      
+
      - (1,0)
 
 
 Homotopic thinning
 ------------------
 
-**Idea** 
+**Idea**
 
 Iterate until stability over sequential simple points removal |imp| *ultimate homotopic thinning*
 
@@ -1180,19 +1445,19 @@ Iterate until stability over sequential simple points removal |imp| *ultimate ho
 
    * - .. image:: _static/images/DT/chrom_simples.*
            :width: 80%
-           :align: center        
+           :align: center
 
      - .. image:: _static/images/DT/chrom_sk1.*
            :width: 80%
-           :align: center        
+           :align: center
 
    * - .. image:: _static/images/DT/chrom_sk2.*
            :width: 80%
-           :align: center        
+           :align: center
 
      - .. image:: _static/images/DT/chrom_sk3.*
            :width: 80%
-           :align: center        
+           :align: center
 
 
 In Dimension 3
@@ -1208,16 +1473,16 @@ Algorithm
 
 
 .. code-block:: c
-   
+
     P = { p in X | p is simple for X }
     while ( P != empty )
        Q = emptyset
        for all points p in P
-         if (p is simple for X) 
+         if (p is simple for X)
            X = X \ {p}
-           for all q in N(p) 
+           for all q in N(p)
               Q = Q + {q}
-       
+
        P = emptyset
        for all points p in Q
          if (p is simple for X)
@@ -1228,7 +1493,7 @@ Algorithm
 .. image:: _static/images/DT/chrom_ambi.*
      :width: 50%
      :align: center
-        
+
 Homotopic thinning with anchor points
 -------------------------------------
 
@@ -1240,18 +1505,18 @@ Based on an Oracle, we decide to block some simple points during the thinning
 **Generic algorithm**
 
 Breadth first thinning if P is implemented as a queue
- 
+
 .. code-block:: c
-   
+
     P = { p in X | p is simple for X }
     while ( P != empty )
        Q = emptyset
        for all points p in P
          if (p is simple for X) and (p is not anchor point)
            X = X \ {p}
-           for all q in N(p) 
+           for all q in N(p)
               Q = Q + {q}
-       
+
        P = emptyset
        for all points p in Q
          if (p is simple for X)
@@ -1307,10 +1572,10 @@ Instead of using a queue for P, we consider a *priority list  with distance tran
 
   * We add constraints on simple points to allow parallel removal
   * Orientation based process (N,S,W,E)
-    
+
 |imp| usually, parallel thinning algorithms are more efficient and provide centered skeletons
-  
-      
+
+
 **Active works**
 
 * Extensions to grayscale images

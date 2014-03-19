@@ -812,7 +812,7 @@ Parameter-free Curvature Estimator
 
 .. admonition:: Thm.
 
-    For a family of shape with onvex `C^3`:math:-boundary and bounded
+    For a family of shape with convex `C^3`:math:-boundary and bounded
     curvature, `\exists h_0 \in  \mathbb{R}^+`:math:, for any `h \le
     h_0`:math:, setting `r=k h^{\frac{1}{3}}`:math:, we have
     ............
@@ -823,7 +823,7 @@ To have the convergence, we need the radius to be in
 **We know that**
 
   .. math::
-     \Theta(h^{\frac{1}{3}}) \leq h\bar{t}^2_{MS} \leq \Theta(h^{\frac{1}{3}}log(h^{-1}))
+     \Theta(h^{\frac{1}{3}}) \leq h\bar{t}^2_{MS} \leq \Theta(h^{\frac{1}{3}}log^2(h^{-1}))
 
 
 `\Rightarrow`:math: *Let's use (square of) average MS length to define r*
