@@ -1311,7 +1311,11 @@ Is the set of maximal balls a minimal representation of X as union of balls ?
 
 **Toward minimal MA**
 
-If we allow k-ary predicates `IsCoveredBy(B, S_k)`:math: with `|S_k|=k`:math: the minimal medial axis problem becomes  *NP-hard*
+.. admonition:: Thm.
+
+  If we allow k-ary predicates `IsCoveredBy(B, S_k)`:math: with
+  `|S_k|=k`:math: the minimal medial axis problem becomes
+  *NP-complete*
 
 Heuristics
 ----------
@@ -1381,11 +1385,14 @@ Let `\phi`:math: by any sequence of insertions/removals of simple points, then `
 
 **Definition**
 
-A point `p\in X`:math: is `(\kappa,\lambda)`:math:-simple for `X`:math: if
 
-*   `X`:math: and `X\setminus\{p\}`:math: have the same number of `\kappa`:math:-components
+.. admonition:: Def.
 
-*   `\overline{X}`:math: and `\overline{X\setminus\{p\}}`:math: have the same number of `\lambda`:math:-components
+ A point `p\in X`:math: is `(\kappa,\lambda)`:math:-simple for `X`:math: if
+
+ *   `X`:math: and `X\setminus\{p\}`:math: have the same number of `\kappa`:math:-components
+
+ *   `\overline{X}`:math: and `\overline{X\setminus\{p\}}`:math: have the same number of `\lambda`:math:-components
 
 
 **Example**
@@ -1403,7 +1410,10 @@ Local characterization
 
 **Main Results**
 
-    In dimension 2 and 3, `(\kappa,\lambda)`:math:-simplicity of  `p\in X`:math: *can be decided locally* at `p`:math:
+.. admonition:: Thm.
+
+  In dimension 2 and 3, `(\kappa,\lambda)`:math:-simplicity of `p\in
+  X`:math: *can be decided locally* at `p`:math:
 
 (`3\times 3`:math: neighborhood in 2D, `3\times 3\times 3`:math:)
 
