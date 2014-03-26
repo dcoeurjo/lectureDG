@@ -9,7 +9,7 @@
 \oddsidemargin 0.0cm
 \evensidemargin 0.0cm
 
-\usepackage{epsfig}  
+\usepackage{epsfig}
 \usepackage{setspace}
 \usepackage{fancyheadings}
 \usepackage{amsmath}
@@ -24,7 +24,7 @@
 \begin{document}
 
 \begin{center}
-	\LARGE \textbf{TD11: Convex Hulls and Digital Convex Hulls}
+	\LARGE \textbf{TD10: Convex Hulls and Digital Convex Hulls}
 \end{center}
 
 \bigskip
@@ -35,7 +35,7 @@
 
 {\bf Question:} Implement the $Orientation(p,q,r)$ predicate as discussed in the lecture.
 	\begin{itemize}
-	\item To avoid numerical issues, we encourage you to consider points in $\mathbb{Z}^2$ on a digital domain (instead of $\mathbb{R}^2$). Furthermore, it would help outputs since you will be able to reuse \textsc{DGtal} board mechanism. 
+	\item To avoid numerical issues, we encourage you to consider points in $\mathbb{Z}^2$ on a digital domain (instead of $\mathbb{R}^2$). Furthermore, it would help outputs since you will be able to reuse \textsc{DGtal} board mechanism.
 	\item To display a line in \texttt{DGtal} between \texttt{Points} $p$ and $q$, you can use the following method of the \texttt{Board} class: \texttt{board.drawLine( p[0], p[1], q[0], q[1]);}
 	\end{itemize}
 
@@ -74,10 +74,9 @@
 
 \noindent {\bf Questions:}
 \begin{itemize}
-	\item To implement the Melkman's algorithm, you will first have to construct a sequence of points but you should have such function from previous TP. Implement Melkman's technique (cf lecture) using the \texttt{std::deque} as data structure to store the convex hull vertices. 
+	\item To implement the Melkman's algorithm, you will first have to construct a sequence of points but you should have such function from previous TP. Implement Melkman's technique (cf lecture) using the \texttt{std::deque} as data structure to store the convex hull vertices.
 \end{itemize}
 
 \par The overall code is not more complex than Graham's one but you'll have to dig previous TP for finding the appropriate border extraction code from a digital set.
 
 \end{document}
-
