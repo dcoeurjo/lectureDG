@@ -8,7 +8,7 @@
 \oddsidemargin 0.0cm
 \evensidemargin 0.0cm
 
-\usepackage{epsfig}  
+\usepackage{epsfig}
 \usepackage{setspace}
 \usepackage{fancyheadings}
 \usepackage{amsmath}
@@ -41,10 +41,10 @@
   ...
   //Image type (with unsigned int values)
   typedef ImageContainerBySTLVector< Domain, int > Image;
-  
+
   //Create an image [0,n]x[0,n]
   Image myImage( Domain ( Point(0,0), Point(n,n)));
- 
+
   //Get and Set value
   myImage.setValue( Point(2,3), 42);
   int val = myImage( Point(2,3) );  //val == 42
@@ -53,21 +53,22 @@
   bool res = myImage.domain().isInside( Point(17,17) ); //res==true if n>=17
 
   //Iterate on image values
-  for(Image::Domain::ConstIterator it = myImage.domain().begin(), 
+  for(Image::Domain::ConstIterator it = myImage.domain().begin(),
       itend = myImage.domain().end(); it!=itend ; +=it) {
      int val2 = myImage( *it );
-     std::cout << val2 <<" "; 
+     std::cout << val2 <<" ";
   }
 \end{verbatim}
 
 
 \par The \emph{JFA of step $k$} (denoted $JFA(k)$) is defined as follow. For each point $p=(x,y)$ in the image:
 	\begin{itemize}
-	\item Collect the four sites stored in the image at pixels $S$ with vertical/horizontal distance $k$. More precisely, $S=\{ (x \pm k, y), (x, y\pm k)\}$.
-	\item Compute the distance (using $l_2$ metric) between $p$ and all sites (four sites in $S$ and the site stored at $p$)
+	\item Collect the four sites stored in the image at pixels $S$
+          with  $l_\infty$  distance $k$. More precisely, $S=\{ (x \pm k,y\pm k)\}$.
+	\item Compute the distance (using $l_2$ metric) between $p$ and all sites (eight sites in $S$ and the site stored at $p$)
 	\item Store the site with closest distance at $p$ in the image.
 	\end{itemize}
-	
+
 \noindent When probing the site at coordinate $(x,y)$, if you get a $-1$ value or if you jump outside the image, consider that the distance is $+\infty$.
 
 \bigskip
@@ -80,7 +81,7 @@
   for(typename Image::Domain::ConstIterator it =voro.domain().begin(),
            itend = voro.domain().end(); it != itend; ++it) {
     if (voro( *it ) != -1) {
-      //random color from site index voro( *it ) 
+      //random color from site index voro( *it )
       unsigned char color = (unsigned char) (voro( *it )*13727 % 256);
       board << CustomStyle( (*it).className(), new CustomColors(Color(c,c,c),Color(c,c,c)))
             << (*it);;
@@ -89,7 +90,7 @@
   board.save....
 \end{verbatim}
 	\item What is the computational cost of one JFA step ?
-	\item The overall JFA algorithm consist in JFA(k) steps with $k=\{\frac{n}{2}, \frac{n}{4}, \ldots, 1\}$ (see Fig. 1). Sometimes, we consider a $JFA+1$ in which the last step ($k=1$) is performed twice. What is the overall complexity of such algorithm ? 
+	\item The overall JFA algorithm consist in JFA(k) steps with $k=\{\frac{n}{2}, \frac{n}{4}, \ldots, 1\}$ (see Fig. 1). Sometimes, we consider a $JFA+1$ in which the last step ($k=1$) is performed twice. What is the overall complexity of such algorithm ?
 	\item Implement the JFA algorithm.
 	\item Implement the exact "brute force" Voronoi map algorithm (for each point, scan all sites and store the closest). Compare the result and return the average distance error.
 	\item From the JFA Voronoi map, output the distance transformation.
@@ -109,9 +110,9 @@ parallel core runs on texture map pixels (roughly). Note that optimal algorithm 
 % ----------------------------------------------------------------------
 \section*{Exercise 2 \rm Lloyd's Relaxation}
 
-\par In this exercise, we implement Lloyd's relaxation (also called $k-$means algorithm).  In many computer graphics applications, Lloyd's relaxation is widely used in order to ``uniformize'' point distributions. 
+\par In this exercise, we implement Lloyd's relaxation (also called $k-$means algorithm).  In many computer graphics applications, Lloyd's relaxation is widely used in order to ``uniformize'' point distributions.
 
-The brute-force process is quite simple: 
+The brute-force process is quite simple:
 \begin{enumerate}
 	\item Throw $N$ random points in the domain
 	\item Compute the Voronoi map (here using JFA)
@@ -136,4 +137,3 @@ The brute-force process is quite simple:
 
 
 \end{document}
-
