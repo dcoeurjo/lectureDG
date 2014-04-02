@@ -75,7 +75,7 @@ Segment processing
 
 **Cross product**
 
-* `\vec{u}\times\vec{v}`:math: Signed area of the parallelogram `\vec{u}, \vec{v}`:math:. Obviously, `\vec{u}\times\vec{v}=-\vec{v}\times\vec{u}`:math:
+* `\vec{u}\times\vec{v}`:math: 'norm' is the signed area of the parallelogram `\vec{u}, \vec{v}`:math:. Obviously, `\vec{u}\times\vec{v}=-\vec{v}\times\vec{u}`:math:
 
 
     .. image:: _static/images/CG/crossprod.*
