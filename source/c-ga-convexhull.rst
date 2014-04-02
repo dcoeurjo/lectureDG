@@ -18,7 +18,7 @@ Context
 * Point sets with combinatorial structures
 
   * Triangular mesh (combinatorial manifold)
-  * Tetrahedral mesh 
+  * Tetrahedral mesh
   * Simplicial characterization
 
 * Family of shapes (segments, circles, ...)
@@ -43,12 +43,12 @@ Geometrical Predicate Approach
 
 **Idea**
 
-* Rewrite geometrical algorithms in terms of series of 
+* Rewrite geometrical algorithms in terms of series of
 
   * Elementary geometrical *operations* (e.g. point/line creation, ...)
-  * Elementary geometrical *predicates*  (e.g. does two lines intersect?) 
+  * Elementary geometrical *predicates*  (e.g. does two lines intersect?)
 
-* Robustness and correctness rely on robust and correct implementation of such elementary predicate 
+* Robustness and correctness rely on robust and correct implementation of such elementary predicate
 
 
 **Example**
@@ -63,17 +63,17 @@ Geometrical Predicate Approach
          :width: 60%
          :align: center
 
- 
+
  * - `Orientation(p,q,r)`:math:
 
    - `InCircle(p,q,r,s)`:math:
- 
- 
+
+
 Segment processing
 ------------------
 
 
-**Cross product** 
+**Cross product**
 
 * `\vec{u}\times\vec{v}`:math: Signed area of the parallelogram `\vec{u}, \vec{v}`:math:. Obviously, `\vec{u}\times\vec{v}=-\vec{v}\times\vec{u}`:math:
 
@@ -105,7 +105,7 @@ Use-case 1: Detect segment intersection
 ---------------------------------------
 
 
-**Problem** 
+**Problem**
 
 Given `\{p_1,p_2,p_3,p_4\}`:math:, decide if `[p_1p_2]`:math: intersects `[p_3p_4]`:math:
 
@@ -163,7 +163,7 @@ Given a set of point `\{p_0,\ldots,p_n\}`:math: in `\mathbb{R}^2`:math:,
 
   .. image:: _static/images/CG/graham1.*
         :width: 50%
-        :align: center     
+        :align: center
 
 
 
@@ -171,8 +171,8 @@ Given a set of point `\{p_0,\ldots,p_n\}`:math: in `\mathbb{R}^2`:math:,
 **Implementation**
 
 
-* `Orientation(p_0,p_i,p_j)`:math: induces an polar order on points 
-    .. math:: 
+* `Orientation(p_0,p_i,p_j)`:math: induces an polar order on points
+    .. math::
         p_i \prec p_j
 
 
@@ -184,7 +184,7 @@ Given a set of point `\{p_0,\ldots,p_n\}`:math: in `\mathbb{R}^2`:math:,
 Convex Hull 1: Graham's Scan 2
 ------------------------------
 
-**Step 2** 
+**Step 2**
 
 * `p_0`:math: is necessarily a point in the convex hull (we assume `p_i`:math:
   are sorted)
@@ -193,10 +193,10 @@ Convex Hull 1: Graham's Scan 2
 
 **Algo**
 
- 
+
 
 .. code-block:: c
-   
+
    Push(p0) to S
    Push(p1) to S
    Push(p2) to  S
@@ -211,7 +211,7 @@ Convex Hull 1: Graham's Scan 2
 
 Illustration
 ------------
-   
+
    .. image:: _static/images/CG/graham2.*
        :width: 30%
        :align: center
@@ -225,13 +225,13 @@ Illustration
        :width: 110%
        :align: center
 
-     
+
 Illustration
 ------------
 
   .. image:: _static/images/CG/grahamend.*
         :width:  80%
-        :align: center         
+        :align: center
 
 
 Graham's scan
@@ -240,9 +240,9 @@ Graham's scan
 
 * `O(N\log N)`:math: algorithm
 * Stack + Orientation predicate
-* Can be transformed to be incremental 
+* Can be transformed to be incremental
 
-  * Point insertion in a sorted list 
+  * Point insertion in a sorted list
   * Local update of the convex hull (but could be in O(N) )
 
 
@@ -253,13 +253,13 @@ Convex Hull 2: QuickHull
 
   .. image:: _static/images/CG/quickhull.*
         :width: 50%
-        
 
-        
+
+
 
 
 .. code-block:: c
-   
+
    function  QuickHull(Set S, Point pLeft, Point pRight)
    {
      if S == {pLeft, pRight} return edge [pLeft,pRight]
@@ -324,6 +324,10 @@ Specific convex hulls: Simple polygonal chain
 * The *deque*  `D_i=<d_b,d_{b-1},\ldots,d_{t-1},d_t>`:math: stores the sequence of points in `Q_i`:math:  (with `d_b=d_t`:math:)
 
 
+.. image:: _static/images/melkman.png
+      :width: 60%
+      :align: center
+
 Melkman's algorithm
 -------------------
 
@@ -349,7 +353,7 @@ Melkman's algorithm
     until Orientation(vi,d_b,d_{b+1});
     insert(vi);
   }
-  //Done 
+  //Done
 
 
 
@@ -363,7 +367,7 @@ Given a set S pf N points in space
 
 **Dimension 2** CH(S) has  O(N) vertices/edges
 
-**Dimension 3** 
+**Dimension 3**
 
 * any convex polytope with n vertices has
 
@@ -391,7 +395,7 @@ Convex hull algorithms in 3-Space
 
 Extract *visibility horizon* and update the convex hull
 
- 
+
 
 .. list-table::
 
@@ -405,7 +409,7 @@ Extract *visibility horizon* and update the convex hull
 Output sensitive algorithms
 ---------------------------
 
-**Idea** 
+**Idea**
 
 Computational cost proportional to the output size.
 
@@ -447,7 +451,7 @@ Introduction
 
 **Idea**
 
-For some  algorithms, *randomized* algorithm can be defined with *expected* computational cost 
+For some  algorithms, *randomized* algorithm can be defined with *expected* computational cost
 
 E.g. "the expected computational cost of algorithm A is O(N)"
 
@@ -479,7 +483,7 @@ Given a set of segments `\{s_i\}`:math:, we construct a binary tree partitioning
 Simple Tree construction
 ------------------------
 
-`S=\{s_1,\ldots,s_n\}`:math: 
+`S=\{s_1,\ldots,s_n\}`:math:
 
 .. code-block:: c
 
@@ -495,7 +499,7 @@ Simple Tree construction
         T+ = 2DBSP(S+)
         T- = 2DBSP(S-)
         Create a tree T with root node v (S(v)={s in S, s subset l(s1)})
-        and sub-trees T+ and T- 
+        and sub-trees T+ and T-
       }
       return T;
    }
@@ -522,7 +526,9 @@ Randomization
 
 **Main result**
 
-The *expected* number of fragments generated by Random2DBSP is `O(n\log n)`:math:
+.. admonition:: Thm.
+
+   The *expected* number of fragments generated by Random2DBSP is `O(n\log n)`:math:
 
 
 (instead of `O(n^2)`:math: with naive approach)
@@ -541,7 +547,7 @@ Proof
 -----
 
 * We want to compute how many fragments is induced by `s_i`:math:
-* We define `dist_{s_i}(s_j)`:math: the *number of segments intersecting* `l(s_i)`:math: *in between* `s_i`:math: and `s_j`:math: 
+* We define `dist_{s_i}(s_j)`:math: the *number of segments intersecting* `l(s_i)`:math: *in between* `s_i`:math: and `s_j`:math:
 
 
 (`dist_{s_i}(s_j)=+\infty`:math: if `l(s_i)`:math: does not intersect `s_j`:math:)
@@ -571,5 +577,3 @@ Some segments `s_m`:math: may exist such `l(s_m)`:math:  *shield* `s_j`:math: fr
 
 
 `\Rightarrow`:math: **By linearity of expectation, the expected number of segments is** `n + 2n \ln(n)`:math:
-
-
