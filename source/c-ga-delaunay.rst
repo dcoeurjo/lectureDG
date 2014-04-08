@@ -89,13 +89,13 @@ Implementation: Pointerless Trees (again)
 
 **Ctd.**
 
-* At construction, when we increase the depths, we just add 2 bits (2D) or 3 bits (3D) suffixes 
+* At construction, when we increase the depths, we just add 2 bits (2D) or 3 bits (3D) suffixes
 * One datum =  one binary code
 * Localizing a point = *bit code interleaving*  on binary representation of point coordinates
 
 
 * Final encoding: hash map on binary morton codes
-   .. math:: 
+   .. math::
         \begin{align*}
           x &= x_1x_2\ldots x_m\\
           y &= y_1y_2\ldots x_m\\
@@ -144,16 +144,16 @@ Pseudo-code in 2D:
     if depth is even
        Let l be the vertical line with median x-coordinate
        Split S w.r.t. l -> S1 and S2
-       
+
     if depth is odd
        Let l be the horizontal line with median y-coordinate
        Split S w.r.t. l -> S1 and S2
-       
+
     SubTree1 = BuildKdTree(S1,depth + 1)
     SubTree2 = BuildKdTree(S2,depth + 1)
 
     return Tree( l , SubTree1, SubTree2)
- 
+
 
 
 
@@ -161,9 +161,9 @@ Computational cost
 ------------------
 
 
-* *Median computation of a vector of scalars* `O(n)`:math: 
+* *Median computation of a vector of scalars* `O(n)`:math:
 
-* *Recursive cost* `T(n) = O(n) + 2T(n/2)`:math: 
+* *Recursive cost* `T(n) = O(n) + 2T(n/2)`:math:
 
 
 |imp| **KdTree construction in** `O(n log n)`:math:, O(n) storage
@@ -181,17 +181,17 @@ FYI: Median of a scalar vector
 
 .. code-block:: c
 
-  QuickSelect(A, k) 
+  QuickSelect(A, k)
     Pick a pivot element p randomly from A
     Split A into LESS and GREATER sets
     L =  number of elements in the LESS array
-    if (L == k-1) 
+    if (L == k-1)
        return p;
 
-    if (L > k-1)  
+    if (L > k-1)
        return QuickSelect(LESS, k)
 
-    if (L < k-1) 
+    if (L < k-1)
        return QuickSelect(GREATER, k - L - 1)
 
 |imp| *randomized O(n) expected time to get the k-rank element*
@@ -204,21 +204,21 @@ FYI: Median of a scalar vector
 
 .. code-block:: c
 
-  QuickSelect(A, k) 
+  QuickSelect(A, k)
     Group the array into n/5 groups of size 5
     Find the median of each group  //Let M be the set of medians
 
     p = QuickSelect(M,k)  // median of the medians
- 
+
     Split A into LESS and GREATER sets
     L =  number of elements in the LESS array
-    if (L == k-1) 
+    if (L == k-1)
        return p;
 
-    if (L > k-1)  
+    if (L > k-1)
        return QuickSelect(LESS, k)
 
-    if (L < k-1) 
+    if (L < k-1)
        return QuickSelect(GREATER, k - L - 1)
 
 |imp| *Deterministic O(n) time to get the k-rank element* (details skipped but I encourage you to have a look!)
@@ -231,12 +231,11 @@ KdTree: Advantages/Drawbacks
 
 * Balanced structure (no dependency on the point distribution)
 
-* Binary tree: during a decent, we just have to compare one coordinate to select the subtree
+* Binary tree: during the descent, we just have to compare one coordinate to select the subtree
 
 
-... but...
 
-* Rectangular range query in `O(\sqrt{n} + k)`:math:
+* **Rectangular range query** in `O(\sqrt{n} + k)`:math:
 
 
 
@@ -252,7 +251,7 @@ Range query in kd-Tree
     //Stop
     if node is a leaf
        return the p point in node if p in Range
-       
+
     //left child
     if region(leftChild(node)) is fully contained in Range
        return all points in the subtree leftChild(node) //(A)
@@ -285,17 +284,18 @@ Proof Ctd.
 
 **Obs2** If `l`:math: is vertical and the constraint of the root is horizontal, `l`:math: crosses both root children regions
 
-|imp| *two step recurrence (subtress of depth 2 have n/4 points)*
+|imp| *two step recurrence (sub-trees of depth 2 have n/4 points)*
 
    .. math::
-       Q(n) = 2 + 2Q(n/4) 
-   
+       Q(n) = 2 + 2Q(n/4)
+
 
 |imp| `Q(n) = O(\sqrt{n})\quad \Box`:math:
- 
 
 
-**Range tree structure in dimension d** with `O(nlog^{d-1}n)`:math: storage  constructed in `O(n\log^{d-1}n)`:math: can answer to hyperrectangular range queries in `O(\log^dn + k)`:math:)      
+.. admonition:: Thm.
+
+   **Range tree structure in dimension d** with `O(nlog^{d-1}n)`:math: storage  constructed in `O(n\log^{d-1}n)`:math: can answer to hyperrectangular range queries in `O(\log^dn + k)`:math:)
 
 
 Voronoi Diagram / Delaunay Triangulation
@@ -310,26 +310,41 @@ Simple Construction
 
 **Setting** Given a set of sites `\{S_i\}`:math:, answer to closest site queries
 
-
-
-.. container:: build animation
-
-
  .. image:: _static/images/CG/delaunay-init.*
-        :width: 100%  
+        :width: 100%
+
+Simple Construction
+-------------------
+
+**Setting** Given a set of sites `\{S_i\}`:math:, answer to closest site queries
 
  .. image:: _static/images/CG/delaunay-1.*
-        :width: 100%  
+        :width: 100%
+
+Simple Construction
+-------------------
+
+**Setting** Given a set of sites `\{S_i\}`:math:, answer to closest site queries
 
  .. image:: _static/images/CG/delaunay-2.*
-        :width: 100%  
+        :width: 100%
 
+
+Simple Construction
+-------------------
+
+**Setting** Given a set of sites `\{S_i\}`:math:, answer to closest site queries
 
  .. image:: _static/images/CG/voronoi1.*
-        :width: 100%  
+        :width: 100%
+
+Simple Construction
+-------------------
+
+**Setting** Given a set of sites `\{S_i\}`:math:, answer to closest site queries
 
  .. image:: _static/images/CG/voronoi-delaunay.*
-        :width: 110%  
+        :width: 110%
 
 
 Closest site query
@@ -344,15 +359,15 @@ Closest site query
 
 
  .. image:: _static/images/CG/delaunay-empty.*
-        :width: 80%  
+        :width: 80%
 
 
 Remember the  `InCircle(p,q,r,s)`:math: predicate ?
- 
+
 
 InCircle predicate
 ------------------
- 
+
  .. image:: _static/images/CG/orientation_circle.*
          :width: 40%
          :align: center
@@ -378,16 +393,16 @@ Properties of the Delaunay Triangulation
 
 
     .. image:: _static/images/CG/smallest1.*
-        :width: 60%  
+        :width: 60%
 
     .. image:: _static/images/CG/smallest2.*
-         :width: 60%  
+         :width: 60%
 
 
 Properties Ctd.
 ---------------
 
-**Many deeper properties** 
+**Many deeper properties**
 
 * Regularity of the triangulation
 * Kind of optimal spectral properties
@@ -399,7 +414,7 @@ Widely used for surface reconstruction and finite element computations for examp
 
     .. image:: _static/images/CG/meshing.*
          :width: 50%
-           
+
 
 Delaunay Construction
 ---------------------
@@ -408,9 +423,12 @@ Delaunay Construction
 
 Given a triangle T(a,b,c) and adjacent triangles T(a,b,p), T2(a,c,q) and T3(b,c,r), T is locally delaunay if `InCircle`:math:  predicates (a,b,c,p) (a,b,c,q) and (a,b,c,r) fails
 
+
 **Main result**
 
-   Everywhere locally Delaunay `\Leftrightarrow`:math: Globally Delaunay
+.. admonition:: Thm.
+
+      Everywhere locally Delaunay `\Leftrightarrow`:math: Globally Delaunay
 
 
 
@@ -434,7 +452,7 @@ Incremental Delaunay Construction
 **Idea**
 
 * Add points one by one
-* While inserting a point, we construct a valid triangulation 
+* While inserting a point, we construct a valid triangulation
 * At each step, we update the triangulation to keep the Delaunay property
 
 
@@ -449,50 +467,57 @@ Incremental Delaunay Construction
 
     locally triangulate the *one-ring* of T  + p
 
-* *Update of invalid triangles* 
+* *Update of invalid triangles*
 
 
 
     maintain Delaunay property
- 
+
 
 Detecting Conflicts
 -------------------
 
-
-
-.. container:: build animation
-
-
  .. image:: _static/images/CG/delinc1.*
-        :width: 80%  
-        
+        :width: 80%
+
+Detecting Conflicts
+-------------------
+
  .. image:: _static/images/CG/delinc2.*
-        :width: 80%  
+        :width: 80%
+
+Detecting Conflicts
+-------------------
 
  .. image:: _static/images/CG/delinc3.*
-        :width: 80%  
+        :width: 80%
+
+Detecting Conflicts
+-------------------
 
  .. image:: _static/images/CG/delinc4.*
-        :width: 80%   
-                
+        :width: 80%
+
 
 
 Overall Incremental Construction
 --------------------------------
 
 
-.. container:: build animation
-
-
  .. image:: _static/images/CG/delinc1.*
-        :width: 80%  
-      
+        :width: 80%
+
+Overall Incremental Construction
+--------------------------------
+
  .. image:: _static/images/CG/delinc-hole.*
-        :width: 80%  
-        
+        :width: 80%
+
+Overall Incremental Construction
+--------------------------------
+
  .. image:: _static/images/CG/delinc-add.*
-        :width: 80%  
+        :width: 80%
 
 
 Computational Cost
@@ -512,18 +537,18 @@ Computational Cost
         :align: center
 
 
-        
+
 Optimizing the Localization
 ---------------------------
-        
-**Main Idea** 
+
+**Main Idea**
 
 * Localize the point using sequence of displacement in the triangulation
 
-* We are looking for  better *expected* computational cost 
+* We are looking for  better *expected* computational cost
 
 
-   .. image:: _static/images/CG/delwalk.* 
+   .. image:: _static/images/CG/delwalk.*
         :width: 60%
 
 
@@ -539,7 +564,7 @@ Straight-line walk
 * `O(\sqrt{n})`:math: for uniform point distributions
 
 .. list-table::
- 
+
 
    * - .. image:: _static/images/CG/delwalk1.*
             :width: 100%
@@ -566,7 +591,7 @@ Optimized walks
 
 
 .. list-table::
- 
+
 
    * - .. image:: _static/images/CG/delvis1.*
             :width: 80%
@@ -576,7 +601,7 @@ Optimized walks
             :width: 80%
             :align: center
 
-  
+
 **Jump & Walk**
 
 **Hierarchical structure**
@@ -585,7 +610,7 @@ Optimized walks
 **...**
 
 
-**Delaunay Triangulation can be obtained in** `O(nlogn)`:math: (O(n) storage) 
+**Delaunay Triangulation can be obtained in** `O(nlogn)`:math: (O(n) storage)
 
 
 
@@ -602,7 +627,7 @@ Alternative algorithms: Sweep lines
 
 
 .. list-table::
- 
+
 
    * - .. image:: _static/images/CG/sweep1.*
             :width: 80%
@@ -638,7 +663,7 @@ Alternative algorithms: Divide and Conquer
 
 
 .. list-table::
- 
+
 
    * - .. image:: _static/images/CG/deldivide.*
             :width: 60%
@@ -667,4 +692,4 @@ Alternative algorithms: as Convex Hull in 3-space
 
 
    .. image:: _static/images/CG/del3space.*
-         :width: 70%      
+         :width: 70%
