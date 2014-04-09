@@ -19,6 +19,7 @@ Contents:
    c-gd-volumique
    c-ga-convexhull
    c-ga-delaunay
+   c-ga-reco
 
    bibliographie
 
