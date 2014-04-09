@@ -48,6 +48,26 @@ Digtial Contour (bis)
 ---------------------
 
 
+
+
+.. list-table::
+
+
+   * - .. image:: _static/images/CG/DelDiscret/delaunay-5.png
+            :width: 100%
+            :align: center
+
+     - .. image:: _static/images/CG/DelDiscret/delaunay-10.png
+            :width: 100%
+            :align: center
+
+     - .. image:: _static/images/CG/DelDiscret/delaunay-100.png
+            :width: 100%
+            :align: center
+
+
+
+
 Digital Points
 --------------
 
