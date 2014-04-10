@@ -358,3 +358,11 @@ Example
 .. image:: _static/images/CG/DelApp/normalalliez.png
              :width: 100%
              :align: center
+
+
+
+Robust Voronoi-based curvature and feature estimation [Mérigot..]
+-----------------------------------------------------------------
+
+
+**Idea**
