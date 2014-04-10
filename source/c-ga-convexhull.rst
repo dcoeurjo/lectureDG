@@ -84,12 +84,13 @@ Segment processing
 **Orientation predicate = sign of the determinant**
 
   ..  image:: _static/images/CG/signdet.png
-         :width: 50%
+         :width: 40%
 
 
   .. math::
        Orientation(p,q,r) = sign( det\left ( \vec{pq},\vec{pr} \right ))
 
+`\Rightarrow`:math: *{+, 0, - } output*
 
 Notations
 ---------
@@ -118,12 +119,16 @@ Given `\{p_1,p_2,p_3,p_4\}`:math:, decide if `[p_1p_2]`:math: intersects `[p_3p_
 
 * Segments intersects if each segment intersects the straight line defined by the other one
 
-  *  `[p_1p_2]`:math: intersects `(p_3p_4)`:math: iff `Orientation(p_3,p_4,p_1) \neq Orientation(p_3,p_4,p_2)`:math:
+  *  `[p_1p_2]`:math: intersects `(p_3p_4)`:math: iff
+
+     * `Orientation(p_3,p_4,p_1) \neq Orientation(p_3,p_4,p_2)`:math:
+
+     * or specific cases when `Orientation(p_3,p_4,p_1) =     Orientation(p_3,p_4,p_2) =0`:math: (aligned segments)
 
   * We need *exact orientation predicates to handle all cases*
 
    ..  image:: _static/images/CG/segmsegm.png
-         :width: 60%
+         :width: 50%
 
 
 
