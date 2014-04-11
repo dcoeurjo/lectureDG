@@ -1,6 +1,6 @@
-=========================================================================
-Computational Geometry: Digital Delaunay Triangulation and Reconstruction
-=========================================================================
+=======================================================================
+Computational Geometry: Digital Delaunay Triangulation and Applications
+=======================================================================
 
 :author: David Coeurjolly
 
@@ -366,3 +366,33 @@ Robust Voronoi-based curvature and feature estimation [Mérigot..]
 
 
 **Idea**
+
+Covariance matrix is still a key tool but it is evaluated on
+*r-offest* of the input set
+
+
+.. image:: _static/images/CG/DelApp/merigot.png
+       :width: 40%
+       :align: center
+
+
+.. admonition:: Thm.
+
+    Eigenvalues/Eigenvectors of the covariance matrix at a point are
+    related to principal curvature/principal curvature direction
+
+    Convergence results exist with Haussdorff hypothesis on the point
+    set
+
+
+
+Robust Voronoi-based curvature and feature estimation [Mérigot..]
+-----------------------------------------------------------------
+
+
+**Robust tool for feature extraction**
+
+
+.. image:: _static/images/CG/DelApp/merigotex.png
+       :width: 100%
+       :align: center
