@@ -828,7 +828,7 @@ Dimension 2
 
 
 Warm up: Localizing a point
-----------------------------
+---------------------------
 
 **Question** Find the *cone* at `p`:math: containing a point `r`:math:
 
@@ -838,7 +838,7 @@ Warm up: Localizing a point
 *==>* `O(\log m)`:math:
 
 
-   .. image:: _static/images/DT-chamf/searchPoint.*
+   .. image:: _static/images/DT-chamf/searchPoint.png
        :width: 60%
 
 
@@ -852,7 +852,7 @@ If we have *localized* the Voronoi edge point, we are done (find the exact posit
 
 
 
-   .. image:: _static/images/DT-chamf/algoEnd.*
+   .. image:: _static/images/DT-chamf/algoEnd.png
        :width: 60%
 
 

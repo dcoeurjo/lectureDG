@@ -419,7 +419,7 @@ Mesh parametrization example
 
 
    * .. image:: _static/images/CG/Mesh/conformal.png
-         :width: 30%
+         :width: 20%
          :align: center
 
 
@@ -439,7 +439,6 @@ Mesh parametrization example
 
         .. math::
            \tilde{\lambda}_{ij} = \lambda_{ij} + u_i + u_j
-
 
 |imp| *linear formulation*
 
@@ -488,3 +487,14 @@ that can be compressed
 
 
 **Example: Triangular strip**
+
+
+.. image:: _static/images/CG/Mesh/strip.png
+    :width: 80%
+    :align: center
+
+*<see balckboard>*
+
+* *Separate geometric + combinatorial encoders/decoders*
+* Joint encoders from *signal represnetation* of the meshes (wavelets,...)
+* ...
