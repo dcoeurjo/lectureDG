@@ -15,14 +15,12 @@
  **/
 
 /**
- * @file shape2obj
+ * @file image2mesh
  * @author David Coeurjolly (\c david.coeurjolly@liris.cnrs.fr )
  * Laboratoire d'InfoRmatique en Image et Systèmes d'information - LIRIS (CNRS, UMR 5205), CNRS, France
  *
- * @date 2010/11/28
+ * @date 2014/04/22
  *
- *
- * This file is part of the DGtal library.
  */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -61,7 +59,11 @@ int main(int argc, char **argv)
   try
     {
       typedef ImageContainerBySTLVector< Z2i::Domain, unsigned char> Image;
-      Image image = GenericReader<Image>::import("small.pgm");
+      Image image = GenericReader<Image>::import("church.pgm");
+
+      //You can access to image domain and values
+      trace.info() << image.domain()<<std::endl;
+      trace.info() << "Value at (5,5)="<< (int)image( Z2i::Point(5,5) )<<std::endl;
 
       //Creating the viewer
       // press 'h' for help
@@ -69,8 +71,6 @@ int main(int argc, char **argv)
       Viewer3D<> viewer;
       viewer.setWindowTitle("simpleViewer");
       viewer.show();
-
-
 
       //Display 2 voxels
       viewer << Z3i::Point(2,3,5) ;
