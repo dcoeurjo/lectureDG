@@ -16,6 +16,14 @@ SET(SRCs
   helloworld
   PGMObject)
 
+IF ((WITH_QGLVIEWER) OR (WITH_VISU3D_QGLVIEWER))
+  SET(SRCs
+    image2mesh  ${SRCs})
+  MESSAGE(STATUS "Viewer3D enabled")
+ELSE()
+  MESSAGE(STATUS "WITH_QGLVIEWER missing when building DGtal. I cannot construct image2mesh")
+ENDIF()
+
 
 FOREACH(FILE ${SRCs})
   add_executable(${FILE} ${FILE})
