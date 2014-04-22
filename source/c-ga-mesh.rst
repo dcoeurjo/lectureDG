@@ -493,7 +493,7 @@ that can be compressed
     :width: 80%
     :align: center
 
-*<see balckboard>*
+*<see blackboard>*
 
 * *Separate geometric + combinatorial encoders/decoders*
 * Joint encoders from *signal represnetation* of the meshes (wavelets,...)
