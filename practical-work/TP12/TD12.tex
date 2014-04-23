@@ -51,12 +51,11 @@ window with three triangles and two cubes.
 
 For this TP, you just need to know how to display triangles:
 \begin{verbatim}
-    Z3i::RealPoint shift(3.0,0.0,0.0);
-      viewer<< CustomColors3D(Color(0, 250,0),Color(0, 250,0));
-      viewer.addTriangle(p1+shift,
-                         p2+shift,
-                         p3+shift);
-
+      Z3i::RealPoint p1(1.0,0.0,0.0),
+        p2(0.0,1.0,0.0),
+        p3(0.0,0.0,1.0);
+      viewer.addTriangle(p1,p2,p3);
+      viewer  << Viewer3D<>::updateDisplay;
 \end{verbatim}
 
 
