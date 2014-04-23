@@ -50,7 +50,7 @@ Digtial Contour
    log^* n)`:math:
 
 
-(`log^* n=inf\{k;log(k)n≤1\}`:math: hence for `16<n≤65532`:math:, `log^*
+(`log^* n=inf\{k;log(k)n\leq 1\}`:math: hence for `16<n\leq 65532`:math:, `log^*
 n=4`:math:,  `log^* n= 5`:math:  for `n<2^{65532}`:math:)
 
 .. image:: _static/images/CG/DelDiscret/Minimum_spanning_tree.*
@@ -419,10 +419,9 @@ from
 
 .. list-table::
 
-  - *   .. math::
-           \frac{1}{N} \sum_{i=1}^N f(\overline{\mathbf{x}}_i)
+  - *   `\frac{1}{N} \sum_{i=1}^N f(\overline{\mathbf{x}}_i)`:math:
 
-    *  .. image:: _static/images/CG/DelApp/Pi_30k.gif
+    *  .. image:: _static/images/CG/DelApp/Pi_30K.*
             :width: 50%
             :align: center
 
@@ -490,7 +489,7 @@ Deterministic Approaches
 
 **Low discrepancy sequences** Quasi-Monte-Carlo approaches
 
-.. image:: _static/images/CG/DelApp/Subrandom_2D.gif
+.. image:: _static/images/CG/DelApp/Subrandom_2D.png
           :width: 60%
           :align: center
 
