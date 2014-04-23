@@ -1,0 +1,73 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{hyperref}
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 23cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+\usepackage{epsfig}
+\usepackage{setspace}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+	\LARGE \textbf{TD12: Height maps and Mesh visualization}
+\end{center}
+
+\bigskip
+\par In this TP, the objective is to practice a bit with triangular
+mesh data-structures and 3D visualization using \texttt{DGtal}
+viewer. The final objective is to render height maps as 3D meshes with
+colorimetric information.
+
+\section{Preliminaries}
+
+Visualization will be performed by \texttt{DGtal}. If you use the
+compiled library (``dcoeurjo'' account), the viewer is enabled by
+default. If you use you own \texttt{DGtal} install, make sure that you
+have compiled the library with \texttt{WITH\_QGLVIEWER} flag enables
+(e.g. \texttt{cmake .. -DWITH\_QGLVIEWER=true}). You would need to
+have Qt and QGLViewer installed in your system.
+
+Please also checkout the last release of the \texttt{DGtalSkel} folder. The
+file \texttt{image2mesh.cpp} gives examples of the \texttt{Viewer3D}
+usage.
+
+First, compile this example and when executing it, you'd see a OpenGL
+window with three triangles and two cubes.
+
+For this TP, you just need to know how to display triangles:
+\begin{verbatim}
+    Z3i::RealPoint shift(3.0,0.0,0.0);
+      viewer<< CustomColors3D(Color(0, 250,0),Color(0, 250,0));
+      viewer.addTriangle(p1+shift,
+                         p2+shift,
+                         p3+shift);
+
+\end{verbatim}
+
+
+\section{Mesh data-structure and visualization}
+
+
+
+\section{Normal map rendering and curvature estimation}
+
+
+
+
+
+\end{document}

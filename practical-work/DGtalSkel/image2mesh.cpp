@@ -106,7 +106,7 @@ int main(int argc, char **argv)
 
 
       //Important: we need to update the display
-      viewer  << Display3D<>::updateDisplay;
+      viewer  << Viewer3D<>::updateDisplay;
 
       //infinite loop (ESC to close the viewer)
       bool res = application.exec();
