@@ -18,12 +18,12 @@ slides, you would need:
 
 Once installed, the build is rather simple:
 
-    ./make html
-    ./make pdflatex
+    make html
+    make latexpdf
 
 or
 
-    ./make slides
+    make slides
 
 
 Then, the output is given in the *build* folder.
