@@ -189,7 +189,7 @@ Tomography (bis)
 ----------------
 
 
-**Basic Idea**  Randon's Theorem
+**Basic Idea**  Radon's Theorem
 
     `[Rf](t,\theta) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x,y)\delta(t-x \cos(\theta) - y \sin(\theta)) dxdy`:math:
 
