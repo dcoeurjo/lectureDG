@@ -51,5 +51,4 @@ Illustrations come from many sources (previous lectures, personnal tech reports,
 Some of them have been provided by colleagues and I'd like to thank them: Jacques-Olivier Lachaud, Tristan Roussillon, Isabelle Sivignon, Olivier Devillers, Nicolas Normand and Guillaume Iooss.
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dcoeurjo/lecturedg/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
