@@ -1,0 +1,3 @@
+[submodule "web/filtering"]
+	path = web/filtering
+	url = git@github.com:dcoeurjo/filtering.git
