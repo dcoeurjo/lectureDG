@@ -202,25 +202,118 @@ Principles
 
 
 
-(Fourier Transform)
----------------------
+Fourier Space
+-------------
 
 
 .. list-table::
 
   * - .. image:: _static/images/len_std.*
-       :width: 100%
+       :width: 80%
        :align: center
     - .. image:: _static/images/len_spectrum.*
-       :width: 100%
+       :width: 80%
        :align: center
 
 
 .. math::
-      {\mathcal  {F}}(k)=\sum _{{n=0}}^{{{\mathrm  {N}}-1}}f(n)\cdot e^{{-2i\pi k{\frac  {n}{{\mathrm  {N}}}}}}\qquad {\text{for}}\qquad 0\leqslant k<{\mathrm  {N}}
+      \mathcal{F}(u)=\int_{-\infty}^\infty f(x)\cdot e^{-2i\pi k u}dx
+      \qquad {f}(x)=\int_{-\infty}^\infty \mathcal{F}(u)\cdot e^{-2i\pi k x}du
 
 .. math::
+      {\mathcal  {F}}(k)=\sum _{{n=0}}^{{{\mathrm  {N}}-1}}f(n)\cdot e^{{-2i\pi k{\frac  {n}{{\mathrm  {N}}}}}}\qquad
       f(n)={\frac  {1}{{\mathrm  {N}}}}\sum _{{k=0}}^{{{\mathrm  {N}}-1}}{\mathcal  {F}}(k)\cdot e^{{2i\pi n{\frac  {k}{{\mathrm  {N}}}}}}
+
+(for `0\leqslant k<{\mathrm  {N}}`:math:)
+
+
+Few Fourier Space Properties
+----------------------------
+
+* *Linearity* `\quad h(x)= af(x)+bg(x) \Leftrightarrow \mathcal{H}(u)=a\mathcal{F}(u)+b\mathcal{G}(u)`:math:
+
+* *Scaling*
+
+  .. math::
+      h(x) = f(a\cdot x) \Leftrightarrowç \mathcal{H}(u)=\frac{1}{|a|}\mathcal{F}\left(\frac{u}{a}\right)
+
+
+* *Transaltion*
+
+  .. math::
+      h(x) = f(x_0 + x) \Leftrightarrow \mathcal{H}(u)=e^{i2\pi x_0}
+      \mathcal{F}(u)
+
+* *Modulation* for real `u_0`:math:
+
+  .. math::
+     \mathcal{H}(u)=\mathcal{F}(u+u_0) \Leftrightarrow h(x) = e^{i2\pi xu_0}f(x)
+
+* *Convolution* 
+
+  .. math::
+     h(x) = (f*g)(x) = \int_{-\infty}^\infty f(t)g(x-t)dx\Leftrightarrow \mathcal{H}(u)=\mathcal{F}(u)\cdot\mathcal{G}(u)
+
+
+* *DCT component*
+
+  .. math::
+      \mathcal{F}(0) = \int_{-\infty}^\infty f(x)dx
+
+(magnitude of Fourier transform leads to **translation and rotational invariant** descriptors)
+
+
+Illustrations
+-------------
+(http://www.cs.unm.edu/~brayer/vision/fourier.html)
+
+
+.. list-table::
+
+  * - .. image:: _static/images/Fourier/cosines.*
+
+    - .. image:: _static/images/Fourier/phase.*
+     
+    - .. image:: _static/images/Fourier/brks_blks.*
+
+
+  * - Pure cosine signals
+    - Magnitude vs. Phase
+    - Real image example
+
+
+      
+Illustrations
+-------------
+(http://www.cs.unm.edu/~brayer/vision/fourier.html)
+
+.. list-table::
+
+  * - .. image:: _static/images/Fourier/slant.*
+    - .. image:: _static/images/Fourier/window.*
+
+  * - Continuous vs. discrete FT
+    - Edge effect reduction through convolution
+
+
+*Periodic structure:*
+
+.. image:: _static/images/Fourier/slant_group.*
+     :width: 20%
+
+
+Illustrations
+-------------
+(http://www.cs.unm.edu/~brayer/vision/fourier.html)
+
+.. list-table::
+
+  * - .. image:: _static/images/Fourier/lowpass.*
+    - .. image:: _static/images/Fourier/highpass.*
+
+  * - Lowpass filter
+    - Highpass filter
+
 
 Elementary Image Filtering
 --------------------------
