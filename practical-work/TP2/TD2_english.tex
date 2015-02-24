@@ -33,7 +33,7 @@
 
 \begin{enumerate}
 	\item Go back to the code from TP1 to load a PGM image.
-	\item Build a small program that load an image and that build its normalized histogram. You will export this histogram into a text file containing a table whose first column is the intensity, and whose second column is [number of pixels which have this intensity] / [Total number of pixels].
+	\item Build a small program that loads an image and that builds its normalized histogram. You will export this histogram into a text file containing a table whose first column is the intensity, and whose second column is [number of pixels which have this intensity] / [Total number of pixels].
 	\item Use \texttt{gnuplot} to generate the drawing of this histogram (cf Appendix). What do you observe in the histograms of the considered PGM pictures?
 \end{enumerate}
 
@@ -100,9 +100,9 @@ And,
 
 \subsection*{\bf Exercise 2. \rm Variance minimization}
 
-\par We will interest ourselves to different techniques to automatize the search of a \emph{good} threshold.
+\par We will focus on different techniques to automatize the search of a \emph{good} threshold.
 
-\par Fisher's method aims at minimizing the intra-class variance of the two classes (objects / background). More formally, let us consider a normalized histogram $H$ whose intensities is in $[0,M]$. Let us consider a threshold $t$ defining 2 classes (\emph{B=background, O=object}) of values in the histogram. We want to minimize the functional:
+\par Fisher's method aims at minimizing the intra-class variance of the two classes (objects / background). More formally, let us consider a normalized histogram $H$ whose intensities are in $[0,M]$. Let us consider a threshold $t$ defining 2 classes (\emph{B=background, O=object}) of values in the histogram. We want to minimize the functional:
 \begin{equation}
   \sigma^2_{intra}(t) = n_B(t)\sigma^2_B(t) + n_O(t)\sigma^2_O(t)
 \end{equation}
@@ -125,7 +125,7 @@ where
    \sigma^2_{entre}(t) = n_B(t)n_O(t)\left(\mu_B(t) - \mu_O(t) \right ) ^2
 \end{equation}
 
-{\bf Question 2} Similarly, write down a program that maximize $\sigma^2_{entre}(t)$. You should not find another optimal threshold value, but you should compute it more effectively. To be effective, do not forget to update incrementally  $n_i$ et $\mu_i$, for example by using the following identities:
+{\bf Question 2} Similarly, write down a program that maximizes $\sigma^2_{entre}(t)$. You should not find another optimal threshold value, but you should compute it more effectively. To be effective, do not forget to update incrementally  $n_i$ et $\mu_i$, for example by using the following identities:
 \begin{align}
   n_B(t+1) & = n_B(t) + H(t+1)\\
   \mu_B(t+1)& = ....
