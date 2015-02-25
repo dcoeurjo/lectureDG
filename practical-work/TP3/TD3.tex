@@ -41,7 +41,7 @@ In this TP, we focus on image filtering by local convolution masks. We illustrat
 
 \section*{Exercise 1 \rm Smoothing}
 \begin{enumerate}
-	\item Write a small C program to filter an input \texttt{PGM} image with the following binomial filer:
+	\item Write a small C program to filter an input \texttt{PGM} image with the following binomial filter:
 	\[
 		b_{2,2} = \frac{1}{16}~~
 		\begin{bmatrix}
@@ -55,7 +55,7 @@ In this TP, we focus on image filtering by local convolution masks. We illustrat
 		\item Fold the image boundaries: e.g. if $N$ is the last column, "$N+1$" would be the column $N-1$.
 		\item Make the image periodic: coordinates are given modulo $N+1$
 	\end{itemize}
-	\item Consider now a 1D version of such binomial filter: $b_x=\frac{1}{4}[1,2,1]^T$ and $b_y=b_x^T$. First, verify that that $b_{2,2}=b_x\cdot b_y$ (separability principle).
+	\item Consider now a 1D version of such a binomial filter: $b_x=\frac{1}{4}[1,2,1]^T$ and $b_y=b_x^T$. First, verify that $b_{2,2}=b_x\cdot b_y$ (separability principle).
 	\item Implement the filtering of a \texttt{PGM} image using this separable filter.
 	\item[\textbf{Bonus}] Implement a function that constructs a 1D separable Gaussian filter of size $k$ based on binomial coefficients.
 \end{enumerate}
