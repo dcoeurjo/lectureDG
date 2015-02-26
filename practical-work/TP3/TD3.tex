@@ -82,13 +82,18 @@ In this TP, we focus on image filtering by local convolution masks. We illustrat
 The idea behind Harris detector is to detect form partial derivative information local edges or corners. The idea is to define an energy function whose maxima should correspond to corners.
 
 \begin{enumerate}
- 	\item First, let us consider a basic detector so called Moravec detector. Let  $W=\left(\begin{array}{ccc} 1 & 1 & 1\\1 & 1 & 1\\1 & 1 & 1\end{array}\right)$ be a smoothing convolution mask and $V(x,y)$ be neighbourhood around pixel $(x,y)$ (only in the 4 direct neighbours). We define 
+ 	\item First, let us consider a basic detector called the Moravec detector. Let  $V(x,y)$ be the neighbourhood around pixel $(x,y)$ (the 8 pixels around it). We define 
 	\begin{equation}
 	\label{eq1}
-	E_{x,y}=\sum_{(u,v)\in V(x,y)} W_{u,v}\left|I_{u+x,y+v}-I_{u,v}\right|^2
+	E_{\mathrm{d}x,\mathrm{d}y}(x,y)=\sum_{(u,v)\in V(x,y)} \left|I_{u+\mathrm{d}x,v+\mathrm{d}y}-I_{u,v}\right|^2
 	\end{equation}
-	where $I_{u,v}$ is the image value at $(u,v)$.
- 
+	where $I_{u,v}$ is the image value at $(u,v)$. This quantity represents the mean of the variation of intensity during a deplacement of the neighbourhood of the pixel $(x,y)$ along the vector $(\mathrm{d}x,\mathrm{d}y)$.
+	
+ 	The idea is that this variation will be significant in all directions when we are at a corner. We define the total variation as:
+ 	\begin{equation}
+	\label{eq1b}
+	E(x,y)=\mathrm{min}(E_{-1,-1}(x,y),E_{1,-1}(x,y),E_{-1,1}(x,y),E_{1,1}(x,y))
+	\end{equation}
 	{\bf Implement such Moravec detector and threshold the map $E$ to spot some corners. For example, you can outpout a PPM image with grayscale map  for input image pixels and red crosses for corners detected by thresholding the map $E/E_{max}$.}
 
 	\item A better approach (less sensitive to noise) consist in doing a Taylor expansion of the differential term in the energy:
