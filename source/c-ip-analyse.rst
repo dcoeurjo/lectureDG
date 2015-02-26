@@ -528,7 +528,7 @@ Image Gradient
     .. math::
        Prewitt_x = \frac{1}{3} \begin{bmatrix} -1 & 0 & 1\\-1 &0 & 1\\-1 & 0 & 1\\ \end{bmatrix}
 
-       Sobel_x = \frac{1}{4} \begin{bmatrix} -1 & 0 & 1\\-2 &0 & 1\\-1 & 0 & 2\\ \end{bmatrix}
+       Sobel_x = \frac{1}{4} \begin{bmatrix} -1 & 0 & 1\\-2 &0 & 2\\-1 & 0 & 1\\ \end{bmatrix}
 
        Kirsch_x = \frac{1}{15} \begin{bmatrix} -3 & -3 & 5\\-3 &0 & 5\\-3 & -3 & 5\\ \end{bmatrix}
 
