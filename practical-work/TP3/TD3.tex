@@ -92,7 +92,7 @@ The idea behind Harris detector is to detect form partial derivative information
  	The idea is that this variation will be significant in all directions when we are at a corner. We define the total variation as:
  	\begin{equation}
 	\label{eq1b}
-	E(x,y)=\mathrm{min}(E_{-1,-1}(x,y),E_{1,-1}(x,y),E_{-1,1}(x,y),E_{1,1}(x,y))
+	E(x,y)=\min\limits_{\underset{u\neq v}{0\leq u,v\leq 1}}(E_{u,v}(x,y))
 	\end{equation}
 	{\bf Implement such Moravec detector and threshold the map $E$ to spot some corners. For example, you can outpout a PPM image with grayscale map  for input image pixels and red crosses for corners detected by thresholding the map $E/E_{max}$.}
 
