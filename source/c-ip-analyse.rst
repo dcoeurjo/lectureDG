@@ -705,16 +705,16 @@ Principles
 
 **Idea**
 
-* Object defined as sets
+* Objects defined as sets
 * Elementary operators based on boolean operations (union, difference)
 * Notion of structuring elements
-* Study of operator properies
+* Study of operator properies, e.g.:
 
   * Idempotence `f\circ f=f`:math:
   * Non-linear
   * Not reversible
 
-* Generalizations exists to gray-level images and to any ordered
+* Generalizations exist to gray-level images and to any ordered
   lattice
 
 
