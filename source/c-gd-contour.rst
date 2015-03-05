@@ -421,8 +421,8 @@ Connectivity
      * If `\omega < \max(|a|,|b|)`:math:, D is not a (k)-path
      * If `\omega = \max(|a|,|b|)`:math:, D is a (0)-arc
      * If `\omega = |a|+|b|`:math:, D is a (1)-arc
-     * If `\max(|a|,|b|) < \omega <  \omega = |a|+|b|`:math:, D is  (*)-connected
-     * If `omega >  \omega = |a|+|b|`:math:, D is  *thick*
+     * If `\max(|a|,|b|) < \omega < |a|+|b|`:math:, D is  (*)-connected
+     * If `\omega > |a|+|b|`:math:, D is  *thick*
 
 .. list-table::
 
