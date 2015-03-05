@@ -318,7 +318,7 @@ Diophantine Equations
   .. math::
        ax + by = c
 
-(with `a,b,\mu\in\mathbb{Z}`:math: )
+(with `a,b,c\in\mathbb{Z}`:math: )
 
 *What is the general form of solutions of such linear diophantine equation ?*
 
