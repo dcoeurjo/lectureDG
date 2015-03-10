@@ -822,7 +822,7 @@ Example
           :width: 100%
           :align: center
 
-`p(\frac{1}{3},2)`:math: in the dual space leads to `l: \frac{1}{3}x -y +2 = 0`:math:
+`p=\left(\frac{1}{3},2\right)`:math: in the dual space leads to `l: \frac{1}{3}x -y +2 = 0`:math:
 
 
 Computational cost
@@ -832,7 +832,7 @@ Computational cost
 
 * We only have linear constraintes
 * `\bar{S}`:math: is convex
-* on-line recognition algorithm in `O(n\log(n))`:math: to maintain `\bar{S}`:math: (`O(log(n))`:math: per constraint)
+* on-line recognition algorithm in `O(n\log(n))`:math: to maintain `\bar{S}`:math: (`O(\log(n))`:math: per constraint)
 * Detection in `O(n)`:math:
 
 
@@ -966,7 +966,7 @@ Analysis
 
 **Computational cost**
 
-* `O(n)`:math: algorithm with O(1) per pixel
+* `O(n)`:math: algorithm with `O(1)`:math: per pixel
 * possible to design dynamic bidirectionnal algorithm (we can add/remove points on both sides) with same complexity
 
 
@@ -974,7 +974,7 @@ Analysis
 
 Given two vectors `\vec{u},\vec{v}\in\mathbb{Z}^2`:math:, `\vec{u}`:math: and `\vec{v}`:math: are unimodular iff `det(u,v) \pm 1`:math:
 
-E.g. `\vec{UU'}`:math: and `\vec{UM}`:math: are unimodular if M is *weakly superior*
+E.g. `\vec{UU'}`:math: and `\vec{UM}`:math: are unimodular if `M`:math: is *weakly superior*
 
 (if vectors define fractions, fractions are neighbors in a given Farey series)
 
@@ -1025,12 +1025,12 @@ General Approach for Recognition Algorithm Design
 
 **Digitization -> Constraints**
 
-Given the primitive (plan, circle, ..), digitization usually implies inequality system we have to solve
+Given the primitive (plan, circle, ...), digitization usually implies inequality system we have to solve
 
 Usually:
 
 * Coefficients in the inequalities are usually integers
-* Easier if we can *linearized* the system (even in higher dimensions, e.g. 3 for circles)
+* Easier if we can *linearize* the system (even in higher dimensions, e.g. 3 for circles)
 
 
 **Regularity/arithmetic in analytical representation**
@@ -1079,8 +1079,8 @@ Starting from a  contour point (and given a direction), decompose the contour in
 
 
 
-In 3D..
--------
+In 3D...
+--------
 
 **Similar approach but**
 
