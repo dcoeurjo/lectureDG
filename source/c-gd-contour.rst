@@ -152,7 +152,7 @@ Segment between `(x_1,y_1)`:math: and `(x_2,y_2)`:math: in `\mathbb{Z}^2`:math: 
     for(i = x_1; i <= x_2; ++i)
        display(i,y);
        y_real = (y_2-y_1)/(x_2-x_1) * (i+1) + y_1;
-       e = y_real - y;
+       dy = y_real - y;
        if ( dy > 0.5)
          y++;
 
