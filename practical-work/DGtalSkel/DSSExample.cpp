@@ -57,7 +57,8 @@ int main()
     }
 
   //We process all points in the sequence
-  while ( a8DSS.extendFront() ) ;
+  while ( ( a8DSS.end() != sequence.end() ) &&
+          ( a8DSS.extendFront())) ;
 
   //we display the DSS
   std::cout << "Final parameters DSS="<<a8DSS<<std::endl;
