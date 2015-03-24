@@ -22,7 +22,7 @@ Introduction
 * Length, surface area, ...
 * Tangents / normal vectors
 * Curvature, ...
-* Area/Volume, geometrical moments
+* Area / Volume, geometrical moments
 * ...
 
 **Algorithmic point of view**
@@ -36,7 +36,7 @@ Mathematical Context
 **Multigrid analysis** Gauss digitization scheme parametrized by a grid-step
 
   .. math::
-         Dig(X,h) = \left (\frac{1}{h}\cdot \mathcal{X}\right )\cap \mathbb{Z}^n
+         Dig(\mathcal{X},h) = \left (\frac{1}{h}\cdot \mathcal{X}\right )\cap \mathbb{Z}^n
 
 
 .. list-table::
