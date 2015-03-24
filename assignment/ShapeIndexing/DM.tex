@@ -1,0 +1,141 @@
+\documentclass[a4paper, 11pt]{article}
+
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 23cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}   % authors: last version of algorithm display
+
+\usepackage{epsfig}
+\usepackage{setspace}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\newtheorem{Lemma}{Lemma}
+
+\title{}
+\author{}
+\date{}
+
+\newtheorem{qu}{Question}
+
+\begin{document}
+
+\begin{center}
+	\LARGE \textbf{Assignment: ``Images et g\'eom\'etrie discr\`ete''\\2015}
+\end{center}
+
+\section*{Introduction}
+
+The objective of this project is to design a binary shape
+indexing/retrieval system.
+
+We expect from you:
+\begin{itemize}
+\item A short report with a complete description of the your
+  implementations choices (see below)
+\item A C++ project (\texttt{CMakeLists.txt}  or \texttt{Makefile} plus couple of
+  \textbf{commented} cpp program files or scripts).
+\end{itemize}
+
+
+\section*{Description}
+
+Let us consider that we have solved the segmentation problem and that
+we have a database of binary shapes. The challenge is to design shape
+indexing and shape retrieval processes for such database. More
+precisely, we consider a database of 70 classes with approx. 20 shapes
+in each class. For instance, there are 20 different hammers in the
+\texttt{hammer} class.
+
+
+ The problem consists in the following process:
+\begin{itemize}
+\item Shape indexing: for each shape, we create a signature vector
+  $\vec{v}\in\mathbb{R}^d$ of $d$ scalar quantities describing the
+  shape. The signature should characterize the shape geometry and
+  could distinguish classes: signatures of shapes in the same class
+  should be \emph{close} and signatures of two shapes in
+  different classes should be \emph{different}. 
+  
+  \item Shape retrieval: given a input shape, we compute its feature
+    vector $\vec{w}$ and we output for instance the $k$ \emph{nearest}
+    shapes for a given similarity metric, or \emph{distance}, on
+    signature vectors. We could also output the class to which the
+    input shape should belong to (classification problem). We could
+    also return a probability measure for a shape to belong in a given
+    class.
+\end{itemize} 
+
+As you may have seen, requirements and specifications are
+imprecise. This reflects the fact that many solutions exist and we
+would like you to explore your own. Hence, the shape descriptor could
+be based either on contour information (length, curvature,...), or on
+volumetric information (geometrical moments,...). Similarly, the
+\emph{distance} between shape signature could be a simple $l_2$ norm
+of the vectors or even better statistical similarity.
+
+Whatever the choices you consider to design your indexing/retrieval
+system, we would like you to have a complete theoretical and
+experimental evaluation of your descriptor/system. For example, you
+must clearly discuss about the following points:
+\begin{itemize}
+\item Can I demonstrate that my descriptor is  invariant  under translation, scaling,
+  rotation, shear, partial occlusion... ?
+\item Can I demonstrate (or experimentally check) the robustness of
+  the descriptor in presence of noise ?
+\item How can I evaluate the retrieval system (accuracy of the
+  classification, precision, recall...)~?
+  \item \ldots
+\end{itemize}
+
+\section*{Evaluation}
+
+As you may have noticed, many solutions exist. To evaluate your work,
+the following points will be considered:
+\begin{itemize}
+\item The relevance of the discussion on the proposed descriptor;
+\item The quality of the experimental evaluation;
+\item The quality of the  pros/cons discussion.
+\end{itemize}
+Technically, we will also evaluate:
+\begin{itemize}
+\item The quality of the code;
+\item The fact that we can reproduce the results (e.g. with shell scripts);
+\item Finally, the quality of the indexing/retrieval system.
+\end{itemize}
+
+
+
+\section*{Details}
+
+The image database is available in the course github project (Part of the
+MPEG-7 CE-Shape-1 Dataset, \texttt{assignment/ShapeIndexing/database}).
+
+
+In \texttt{DGtalSkel}, you will find an example
+(\texttt{PGMReader.cpp}) to load a PGM file with DGtal tools and to
+convert pixels with intensity greater than 0 into a digital set.
+\texttt{imgAddNoise} tool can be used to generate a noisy version of a
+binary image using a Kanungo noise model (pixel value swapping
+procedure from a power law on the distance to the boundary, see DGtal documentation).
+\vspace{1cm}
+
+\noindent The final projects archive file (named after the \emph{binome}
+authors) must contain
+\begin{itemize}
+\item A report (PDF, 5-10 pages)
+\item Source files with either a \texttt{makefile} or a
+  \texttt{CMakeLists.txt}
+\item Scripts/executable to evaluate the system (for example, taking
+  an input image file and returning its class or the closest images).
+\end{itemize}
+
+
+\end{document}
