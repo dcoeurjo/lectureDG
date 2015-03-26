@@ -384,7 +384,7 @@ Maximal Segment Analysis
 * Suppose P=(0,0), we have, `\forall x\in[0,l]`:math:
 
    .. math::
-      \alpha_h - 2h \leq f(x) \leq \alpha_h + 2h\, \Leftrightarrow\, \alpha_h=\frac{f(x) + O(h)}{x}
+      \alpha_hx- h \leq f(x) \leq \alpha_hx + h\, \Leftrightarrow\, \alpha_h=\frac{f(x) + O(h)}{x}
 
 
   .. image:: _static/images/Estim/estimationTangente.*
@@ -867,6 +867,33 @@ Illustrations
 
      - .. image:: _static/images/Estim/Bunny_64_k1.png
           :width: 100%
+          :align: center
+
+
+
+Feature Selection
+-----------------
+
+**Idea** Use scale-space behavior of II estimators to classify surfels
+into *flat,smooth,edge* regions
+
+.. list-table::
+
+  *  - .. image:: _static/images/Feature/Bunny_512_II_scale.png
+          :width: 70%
+          :align: center
+
+
+     - .. image:: _static/images/Feature/Snow_I08_II_scale.png
+          :width: 70%
+          :align: center
+
+  *  - .. image:: _static/images/Feature/OctaFlower_512_noise_II_scale.png
+          :width: 70%
+          :align: center
+
+     - .. image:: _static/images/Feature/OctaFlower_512_II_scale.png
+          :width: 70%
           :align: center
 
 
