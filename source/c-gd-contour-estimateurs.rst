@@ -384,7 +384,7 @@ Maximal Segment Analysis
 * Suppose P=(0,0), we have, `\forall x\in[0,l]`:math:
 
    .. math::
-      \alpha_hx- h \leq f(x) \leq \alpha_hx + h\, \Leftrightarrow\, \alpha_h=\frac{f(x) + O(h)}{x}
+      \alpha_hx- 2h \leq f(x) \leq \alpha_hx + 2h\, \Leftrightarrow\, \alpha_h=\frac{f(x) \pm O(h)}{x}
 
 
   .. image:: _static/images/Estim/estimationTangente.*
