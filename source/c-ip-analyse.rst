@@ -235,7 +235,7 @@ Few Fourier Space Properties
 * *Scaling*
 
   .. math::
-      h(x) = f(a\cdot x) \Leftrightarrowç \mathcal{H}(u)=\frac{1}{|a|}\mathcal{F}\left(\frac{u}{a}\right)
+      h(x) = f(a\cdot x) \Leftrightarrow \mathcal{H}(u)=\frac{1}{|a|}\mathcal{F}\left(\frac{u}{a}\right)
 
 
 * *Transaltion*
