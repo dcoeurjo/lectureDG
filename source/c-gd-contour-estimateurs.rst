@@ -437,7 +437,7 @@ Curvature Estimation
 
 **Circumscribing circle from two half-tangent**
 
-* Idea: locally, estimate left/right half-tangents (resp. OP and PQ) and estimate `\tilde{r}=h(\frac{|OP||PQ|QO|}{4\mathcal{A}_{OPQ}})`:math:
+* Idea: locally, estimate left/right half-tangents (resp. OP and PQ) and estimate `\tilde{r}=h\left(\frac{|OP| |PQ| |QO|}{4\mathcal{A}_{OPQ}}\right)`:math:
 * The neighborhood is locally adapted but convergence if `l = \Theta(h^{-1/2})`:math: (see below)
 * Noise sensitive
 
@@ -481,7 +481,7 @@ Step 1: Digital Convex Hull
        c_1(X) h^{-\frac{2}{3}} \leq n_e \leq c_2(X)h^{-\frac{2}{3}}
 
    .. math::
-       \Rightarrow n_e = \Theta(h^{-\frac{2}{3}})
+       \Rightarrow n_e = \Theta\left(h^{-\frac{2}{3}}\right)
 
 
 
@@ -509,12 +509,12 @@ Step 2: Number of maximal segments
 If `\partial X`:math: is convex and  `C^3`:math:
 
    .. math::
-        \frac{n_e}{\Theta(log(h^{-1}))} \leq n_{MS} \leq 3 n_e
+        \frac{n_e}{\Theta(\log(h^{-1}))} \leq n_{MS} \leq 3 n_e
 
 
 *Hence*
    .. math::
-      \Theta\left (\frac{h^{-\frac{2}{3}}}{log(h^{-1})}\right ) \leq n_{MS} \leq \Theta(h^{-\frac{2}{3}})
+      \Theta\left (\frac{h^{-\frac{2}{3}}}{\log(h^{-1})}\right ) \leq n_{MS} \leq \Theta(h^{-\frac{2}{3}})
 
 
 
