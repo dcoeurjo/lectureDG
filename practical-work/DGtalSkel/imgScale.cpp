@@ -14,7 +14,7 @@
  *
  **/
 /**
- * @file imgAddNoise
+ * @file imgScale
  * @ingroup converters
  * @author David Coeurjolly (\c david.coeurjolly@liris.cnrs.fr)
  *
@@ -30,11 +30,13 @@
 #include "DGtal/io/writers/GenericWriter.h"
 #include "DGtal/images/ImageContainerBySTLVector.h"
 #include "DGtal/images/ImageSelector.h"
-#include <DGtal/geometry/volumes/KanungoNoise.h>
 #include <DGtal/images/IntervalForegroundPredicate.h>
 #include <boost/program_options/options_description.hpp>
 #include <boost/program_options/parsers.hpp>
 #include <boost/program_options/variables_map.hpp>
+
+#include <DGtal/images/ConstImageAdapter.h>
+#include <DGtal/kernel/BasicPointFunctors.h>
 
 #include <vector>
 #include <string>
@@ -69,7 +71,7 @@ int main( int argc, char** argv )
     ("help,h", "display this message")
     ("input,i", po::value<std::string>(), "input image file name (any 2D image format accepted by DGtal::GenericReader)")
     ("output,o", po::value<std::string>(), "output image file name (any 2D image format accepted by DGtal::GenericWriter)")
-    ("noise,n", po::value<double>()->default_value(0.5), "Kanungo noise level in ]0,1[ (default 0.5)")  ;
+    ("scale,s", po::value<double>()->default_value(1.0), "Scale factor (default 1.0)")  ;
   
   bool parseOK=true;
   po::variables_map vm;
@@ -82,8 +84,8 @@ int main( int argc, char** argv )
   po::notify(vm);    
   if(vm.count("help")||argc<=1|| !parseOK)
     {
-      trace.info()<< "Add Kanungo noise to a binary object with 0 values as background points and values >0 for the foreground ones." <<std::endl << "Basic usage: "<<std::endl
-      << "\t imgAddNoi0se [options] --input <imageName> --output <outputImage> -noise 0.3"<<std::endl
+      trace.info()<< "Scale an image by a given scale factor." <<std::endl << "Basic usage: "<<std::endl
+      << "\t imgScale [options] --input <imageName> --output <outputImage> -noise 0.3"<<std::endl
       << general_opt << "\n";
       return 0;
     }
@@ -93,26 +95,24 @@ int main( int argc, char** argv )
   const std::string input = vm["input"].as<std::string>();
   if ( ! ( vm.count ( "output" ) ) ) missingParam ( "--output" );
   const std::string  output = vm["output"].as<std::string>();
-  const double noise = vm["noise"].as<double>();
+  const double scale = vm["scale"].as<double>();
   
-  typedef functors::IntervalForegroundPredicate<MyImage> Binarizer;
   MyImage image = GenericReader<MyImage>::import( input );
   trace.info() <<"Input image: "<< image<<std::endl;
-  Binarizer predicate(image, 0,255);
-  
-  
-  KanungoNoise<Binarizer, Z2i::Domain> kanungo(predicate, image.domain(), noise);
-  
-  MyImage result(image.domain());
-  for(Z2i::Domain::ConstIterator it = image.domain().begin(), itend = image.domain().end(); it!= itend; ++it)
-  {
-    if (kanungo(*it))
-      result.setValue(*it, 255);
-    else
-      result  .setValue(*it, 0);
-  }
 
-  result >> output;
+  std::vector<double> scales(2,1.0/scale);
+  
+  typedef functors::BasicDomainSubSampler< MyImage::Domain ,Z2i::Integer, double > ReSampler;
+  ReSampler reSampler(image.domain(),
+                      scales,
+                      Z2i::Point(0,0));
+  
+  typedef DGtal::ConstImageAdapter<MyImage , MyImage::Domain, ReSampler,MyImage::Value,DGtal::functors::Identity >  SamplerImageAdapter;
+
+  SamplerImageAdapter sampledImage (image,reSampler.getSubSampledDomain(), reSampler, functors::Identity());
+  trace.info()<< "Transformed domain= "<<sampledImage.domain()<<std::endl;
+  
+  sampledImage >> output;
   
   return 0;
 }
