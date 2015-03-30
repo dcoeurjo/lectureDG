@@ -20,6 +20,8 @@ INCLUDE_DIRECTORIES(${DGTAL_INCLUDE_DIRS})
 LINK_DIRECTORIES(${DGTAL_LIBRARY_DIRS})
 
 SET(SRCs
+  imgRotate
+  imgScale
   imgAddNoise
   DSSCirculatorExample
   DSSExample
