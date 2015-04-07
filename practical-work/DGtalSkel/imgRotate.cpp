@@ -36,7 +36,7 @@
 #include <boost/program_options/variables_map.hpp>
 
 #include <DGtal/images/RigidTransformation2D.h>
-#include <DGTal/images/ConstImageAdapter.h>
+#include <DGtal/images/ConstImageAdapter.h>
 #include <vector>
 #include <string>
 #include <climits>
