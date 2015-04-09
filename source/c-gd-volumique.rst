@@ -952,7 +952,7 @@ Reverse Transformation
  Given a *metric* `(d,E,G)`:math: and a set of balls `\mathcal{B}=\{ B_i=(p_i,r_i)\in E\times G\}_{i=1\ldots N}`:math:, reconstruct the binary shape `X`:math:
 
    .. math::
-       X = \bigcup_{i=0\ldots N} B_i
+       X = \bigcup_{i=1\ldots N} B_i
 
 **Why?**
 
