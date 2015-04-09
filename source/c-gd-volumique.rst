@@ -985,7 +985,7 @@ Let us denote `p_k=(x_k,y_k)`:math: for `k=1\ldots N`:math:, then
 Which can be rewritten
 
   .. math::
-     X =\left \{ (i,j)\,|\, max_{k=1\ldots N}\{ r_k^2 -(i - x_k)^2 - (j-y_k)^2\} >0\right \}
+     X =\left \{ (i,j)\,|\, \max_{k=1\ldots N}\{ r_k^2 -(i - x_k)^2 - (j-y_k)^2\} >0\right \}
 
 `\Rightarrow`:math: **Separable decomposition**
 
@@ -1190,7 +1190,7 @@ Let us consider a *IsCoveredBy(B,B')* a predicate returning true if `B\subseteq 
 
 * If B and B' are *Euclidean balls* `\Rightarrow`:math: The predicate is in  `O(1)`:math:
 
-* If B and B' are *Digital balls* `\Rightarrow`:math: The predicate is in  `O(max(|B|,|B'|))`:math:
+* If B and B' are *Digital balls* `\Rightarrow`:math: The predicate is in  `O(\max(|B|,|B'|))`:math:
 
 
      `B\subset B'`:math: `\Rightarrow`:math: `(B\cap\mathbb{Z}^2)\subset (B'\cap\mathbb{Z}^2)`:math:
