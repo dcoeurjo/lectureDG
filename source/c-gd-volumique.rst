@@ -698,13 +698,13 @@ Path based Metrics
 
 **Better expected bounds for path based norms**
 
-+---------------------+--------------------+------------------------+------------------------------------------+
-|Metric               | C                  | H                      | Total                                    |
-+=====================+====================+========================+==========================================+
-|Chamfer with adapter | `O(m)`:math:       |`O(m\cdot log(m))`:math:| `O(d\cdot m\cdot n^d\cdot\log(n))`:math: |
-+---------------------+--------------------+------------------------+------------------------------------------+
-|**Chamfer Norms**    | `O(log(m))`:math:  |`O(log^2(m))`:math:     | `O(d\cdot n^d\cdot\log^2(m))`:math:      |
-+---------------------+--------------------+------------------------+------------------------------------------+
++---------------------+---------------------+-------------------------+------------------------------------------+
+|Metric               | C                   | H                       | Total                                    |
++=====================+=====================+=========================+==========================================+
+|Chamfer with adapter | `O(m)`:math:        |`O(m\cdot log(m))`:math: | `O(d\cdot m\cdot n^d\cdot\log(n))`:math: |
++---------------------+---------------------+-------------------------+------------------------------------------+
+|**Chamfer Norms**    | `O(\log(m))`:math:  |`O(\log^2(m))`:math:     | `O(d\cdot n^d\cdot\log^2(m))`:math:      |
++---------------------+---------------------+-------------------------+------------------------------------------+
 
 Similar expected results for neighborhood sequences
 
@@ -952,7 +952,7 @@ Reverse Transformation
  Given a *metric* `(d,E,G)`:math: and a set of balls `\mathcal{B}=\{ B_i=(p_i,r_i)\in E\times G\}_{i=1\ldots N}`:math:, reconstruct the binary shape `X`:math:
 
    .. math::
-       X = \bigcup_{i=0\ldots N} B_i
+       X = \bigcup_{i=1\ldots N} B_i
 
 **Why?**
 
@@ -985,7 +985,7 @@ Let us denote `p_k=(x_k,y_k)`:math: for `k=1\ldots N`:math:, then
 Which can be rewritten
 
   .. math::
-     X =\left \{ (i,j)\,|\, max_{k=1\ldots N}\{ r_k^2 -(i - x_k)^2 - (j-y_k)^2\} >0\right \}
+     X =\left \{ (i,j)\,|\, \max_{k=1\ldots N}\{ r_k^2 -(i - x_k)^2 - (j-y_k)^2\} >0\right \}
 
 `\Rightarrow`:math: **Separable decomposition**
 
@@ -1190,7 +1190,7 @@ Let us consider a *IsCoveredBy(B,B')* a predicate returning true if `B\subseteq 
 
 * If B and B' are *Euclidean balls* `\Rightarrow`:math: The predicate is in  `O(1)`:math:
 
-* If B and B' are *Digital balls* `\Rightarrow`:math: The predicate is in  `O(max(|B|,|B'|))`:math:
+* If B and B' are *Digital balls* `\Rightarrow`:math: The predicate is in  `O(\max(|B|,|B'|))`:math:
 
 
      `B\subset B'`:math: `\Rightarrow`:math: `(B\cap\mathbb{Z}^2)\subset (B'\cap\mathbb{Z}^2)`:math:
