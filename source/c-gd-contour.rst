@@ -830,7 +830,7 @@ Computational cost
 
 **Preimage = Classical linear programming problem**
 
-* We only have linear constraintes
+* We only have linear constraints
 * `\bar{S}`:math: is convex
 * on-line recognition algorithm in `O(n\log(n))`:math: to maintain `\bar{S}`:math: (`O(\log(n))`:math: per constraint)
 * Detection in `O(n)`:math:
