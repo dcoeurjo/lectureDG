@@ -43,7 +43,6 @@ int main(int argc, char**argv)
       exit(2);
     }
 
-
   //exaeco
   score = it->first;
   while ( (it != scores.begin()) &&
