@@ -54,7 +54,7 @@ The first version of the algorithm can be sketched as follows:
     labels $l_p$ and $l_q$ ($l_p\neq l_q$);
   \item If swapping the labels of $p$ and $q$ \textbf{decreases the
     energy}, we perform the swap  ($l_p\leftrightarrow l_q$) and
-    update the centroids $C_p$ and $C_q$;
+    update the centroids $C_{l_p}$ and $C_{l_q}$;
   \end{itemize}
 \end{enumerate}
 
@@ -64,7 +64,7 @@ swapping the label reduces the distances between the points and their
 new cluster centroids.
 More formally, we define
 \begin{displaymath}
-  \Delta e(p,l_p,l_q) = \|p-l_p\|^2 - \|p-l_q\|^2
+  \Delta e(p,l_p,l_q) = \|p-C_{l_p}\|^2 - \|p-C_{l_q}\|^2
 \end{displaymath}
 as the energy difference when the change the label of $p$ from $l_p$
 to $l_q$. We perform the swap if both $\Delta e(p,l_p,l_q)$ and $\Delta
