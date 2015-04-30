@@ -204,8 +204,9 @@ Convex Hull 1: Graham's Scan 2
 
    Push(p0) to S
    Push(p1) to S
+   Push(p2) to  S
    For i from 3 to N
-     While size(S)>=2 and the angle (head(S / {head(S)}) , head(S), p_i) is convex
+     While the angle (head(S / {head(S)}) , head(S), p_i) is convex
        Pop(S);
      Push(p_i) to S;
 
