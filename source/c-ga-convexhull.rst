@@ -476,7 +476,7 @@ Example: Binary Space Partitions
 
 **Idea**
 
-Given a set of segments `\{s_i\}`:math:, we construct a binary tree partitioning the space such that each segment split the space by its associated line `l(s_i)`:math:
+Given a set of segments `\{s_i\}`:math:, we construct a binary tree partitioning the space such that each segment splits the space by its associated line `l(s_i)`:math:
 
    .. image:: _static/images/CG/bsp-1.*
          :width: 50%
@@ -539,8 +539,8 @@ Randomization
 (instead of `O(n^2)`:math: with naive approach)
 
 
-Observation: The order matter
------------------------------
+Observation: The order matters
+------------------------------
 
    .. image:: _static/images/CG/bsp-2.*
          :width: 100%
@@ -551,7 +551,7 @@ Observation: The order matter
 Proof
 -----
 
-* We want to compute how many fragments is induced by `s_i`:math:
+* We want to compute how many fragments are induced by `s_i`:math:
 * We define `dist_{s_i}(s_j)`:math: the *number of segments intersecting* `l(s_i)`:math: *in between* `s_i`:math: and `s_j`:math:
 
 
@@ -573,7 +573,7 @@ Let us define `k = dist_{s_i}(s_j)`:math: and let `s_{j1}, s_{j2}, \ldots, s_{jk
 Proof (bis)
 -----------
 
-Some segments `s_m`:math: may exist such `l(s_m)`:math:  *shield* `s_j`:math: from `s_i`:math:. Hence, we have a not an equality in the Expectation expression:
+Some segments `s_m`:math: may exist such that `l(s_m)`:math:  *shield* `s_j`:math: from `s_i`:math:. Hence, we do not have an equality in the Expectation expression:
 
    .. math::
       \begin{align}
