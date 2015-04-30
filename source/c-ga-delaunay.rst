@@ -29,7 +29,7 @@ Range Queries
 * Interval queries `[l,r]`:math:, returns  `\{x_j\}\subset S`:math: with  `x_j\in[l,r]`:math:
 * Data structure: *balanced binary search tree*
 
-|imp| O(n) storage and `O(nlogn)`:math: construction time, then `O(k + log(n))`:math: per query (k is number of reported points)
+|imp| `O(n)`:math: storage and `O(n\log n)`:math: construction time, then `O(k + \log(n))`:math: per query (`k`:math: is number of reported points)
 
 
 
@@ -138,7 +138,7 @@ Pseudo-code in 2D:
 .. code-block:: c
 
   BuildKdTree(S, depth)
-    if |P|=1
+    if |S|=1
        return a leaf containing this point
 
     if depth is even
@@ -152,7 +152,7 @@ Pseudo-code in 2D:
     SubTree1 = BuildKdTree(S1,depth + 1)
     SubTree2 = BuildKdTree(S2,depth + 1)
 
-    return Tree( l , SubTree1, SubTree2)
+    return Tree(l , SubTree1, SubTree2)
 
 
 
@@ -166,7 +166,7 @@ Computational cost
 * *Recursive cost* `T(n) = O(n) + 2T(n/2)`:math:
 
 
-|imp| **KdTree construction in** `O(n log n)`:math:, O(n) storage
+|imp| **KdTree construction in** `O(n \log n)`:math:, `O(n)`:math: storage
 
 
 
@@ -256,20 +256,20 @@ Range query in kd-Tree
     if region(leftChild(node)) is fully contained in Range
        return all points in the subtree leftChild(node) //(A)
     else
-       if region(leftChild(node) intersects Range
+       if region(leftChild(node)) intersects Range
          return RangeQueryKdTree( leftChild(node) , Range)
 
     //right child
     if region(rightChild(node)) is fully contained in Range
        return all points in the subtree rightChild(node) //(B)
     else
-       if region(rightChild(node) intersects Range
+       if region(rightChild(node)) intersects Range
          return RangeQueryKdTree( rightChild(node) , Range)
 
 
 **Hints**
 
-* Cases (A) and (B) are in O(k)
+* Cases (A) and (B) are in `O(k)`:math:
 * We need to bound the number of visited nodes which are not in the output (= number of nodes with line intersection Range)
 
 
@@ -278,7 +278,7 @@ Proof Ctd.
 ----------
 
 * We focus on the number of regions intersected by any vertical line `l`:math: (left/right interval in Range)
-* Let Q(n) be the number of such regions in a kdTree with n vertex whose root is a vertical line
+* Let `Q(n)`:math: be the number of such regions in a kdTree with n vertex whose root is a vertical line
 
 **Obs1** If `l`:math: is vertical and the constraint of the root is vertical, `l`:math: only crosses one of the root children regions
 
@@ -295,7 +295,7 @@ Proof Ctd.
 
 .. admonition:: Thm.
 
-   **Range tree structure in dimension d** with `O(nlog^{d-1}n)`:math: storage  constructed in `O(n\log^{d-1}n)`:math: can answer to hyperrectangular range queries in `O(\log^dn + k)`:math:)
+   **Range tree structure in dimension d** with `O(n\log^{d-1}n)`:math: storage  constructed in `O(n\log^{d-1}n)`:math: can answer to hyperrectangular range queries in `O(\log^dn + k)`:math:.
 
 
 Voronoi Diagram / Delaunay Triangulation
@@ -373,11 +373,11 @@ InCircle predicate
          :align: center
 
 
-* true if `s`:math: lies inside the circumscribing circle of the triangle (p,q,r)
+* true if `s`:math: lies inside the circumscribing circle of the triangle `(p,q,r)`:math:
 
 
    .. math::
-     InCircle(p,q,r,s) = sign \left | \begin{array}{cccc} 1 & p_x & p_y & p_x^2+py^2\\1 & q_x & q_y & q_x^2+q_y^2\\1 & r_x & r_y & r_x^2+r_y^2\\1 & s_x & s_y & s_x^2+s_y^2\end{array}\right|
+     InCircle(p,q,r,s) = sign \left | \begin{array}{cccc} 1 & p_x & p_y & p_x^2+p_y^2\\1 & q_x & q_y & q_x^2+q_y^2\\1 & r_x & r_y & r_x^2+r_y^2\\1 & s_x & s_y & s_x^2+s_y^2\end{array}\right|
 
 
 Properties of the Delaunay Triangulation
@@ -525,8 +525,8 @@ Computational Cost
 
 **Straightforward analysis**
 
-* Localization = O(n)
-* Local triangulation + update = O(n)
+* Localization = `O(n)`:math:
+* Local triangulation + update = `O(n)`:math:
 
 |imp| `O(n^2)`:math:
 
@@ -610,7 +610,7 @@ Optimized walks
 **...**
 
 
-**Delaunay Triangulation can be obtained in** `O(nlogn)`:math: (O(n) storage)
+**Delaunay Triangulation can be obtained in** `O(n \log n)`:math: (`O(n)`:math: storage)
 
 
 
