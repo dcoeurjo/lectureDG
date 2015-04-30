@@ -139,7 +139,7 @@ Robustness
 
 
 * Beside capacity issues (`x*y`:math: must be representable), exact computations for integer built-in types (int, long int, ...)
-* IEEE 754 "double": specific bit for sign but issues may appear in product and substraction `\Rightarrow`:math: *uncertainty*
+* IEEE 754 "double": specific bit for sign but issues may appear in product and subtraction `\Rightarrow`:math: *uncertainty*
 
 
 <CF Robustness CGAL>
@@ -444,7 +444,7 @@ QuickHull in 3-space
 * Iterative construction of the convex hull
 
 
-*Quadratric complexity but very efficient*
+* Quadratic complexity but very efficient*
 
 
 
@@ -521,8 +521,8 @@ Randomization
 
   function Random2DBSP(S)
   {
-    Generate random perumtation S'=s1, ..., sn of the set S
-    return 2DBSP(S)
+    Generate random permutation S'=s1, ..., sn of the set S
+    return 2DBSP(S')
   }
 
 
