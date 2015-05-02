@@ -94,6 +94,10 @@ int main( int argc, char** argv )
   if ( ! ( vm.count ( "output" ) ) ) missingParam ( "--output" );
   const std::string  output = vm["output"].as<std::string>();
   const double noise = vm["noise"].as<double>();
+  if (noise <= 0.001) {
+      trace.info() << "Noise should be > 0.\n";
+      return 1;
+  }
   
   typedef functors::IntervalForegroundPredicate<MyImage> Binarizer;
   MyImage image = GenericReader<MyImage>::import( input );
