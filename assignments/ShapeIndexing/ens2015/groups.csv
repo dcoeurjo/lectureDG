@@ -1,13 +1,13 @@
-GroupID,Name1,Name2
-1, Yassine Hamoudi,Quentin Cormier
-2, Nicolas Carion,Romain Versaevel
-3, Valentin Lorentz,Agathe Herrou
-4, Louis Duvivier,Léo Exibard
-5, William AUFORT, Marc CHEVALIER
-6,  Benjamin Gras, Thomas Pellissier Tanon
-7, Pinault Laureline,Raphaël Charrondière
-8, Frédéric Lang, Patrice Coudert
-9, Julien Braine, Valentin Le Fevre
-10,Léo Stefanesco,Maxime Lesourd
-11, Tom Cornebize, Romain Labolle
-12,Antonin Lentz,Willy Quach
+GroupID,Name1,Name2, Received, Archive checked, Robustness1,Robustness2,Robustness3,Classification
+1, Yassine Hamoudi,Quentin Cormier,X,,,,,
+2, Nicolas Carion,Romain Versaevel,X,,,,,
+3, Valentin Lorentz,Agathe Herrou, X,,,,,
+4, Louis Duvivier,Léo Exibard, X,,,,,
+5, William AUFORT, Marc CHEVALIER, X,,,,,
+6,  Benjamin Gras, Thomas Pellissier Tanon, X,,,,,
+7, Pinault Laureline,Raphaël Charrondière, X,,,,,
+8, Frédéric Lang, Patrice Coudert, X,,,,,
+9, Julien Braine, Valentin Le Fevre,X,,,,,
+10,Léo Stefanesco,Maxime Lesourd, X,,,,,
+11, Tom Cornebize, Romain Labolle, X,,,,,
+12,Antonin Lentz,Willy Quach, X,,,,,

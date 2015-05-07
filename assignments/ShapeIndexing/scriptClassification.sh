@@ -2,7 +2,7 @@
 zmodload -i zsh/mathfunc
 
 ##YOUR Classification progname
-CLASSIFPROG=./naiveClassification.sh
+CLASSIFPROG="./naiveClassification.sh"
 
 #nb of source images to test
 NBIMGTESTS=40
@@ -38,7 +38,7 @@ for ((i=0; i < $NBIMGTESTS; i++)); do
             ./imgAddNoise -i tmp2.pgm -o tmp.pgm -n $NOISE  2> /dev/null
 
             ##Running the retrieval
-            $CLASSIFPROG tmp.pgm >! scores_tmp.txt
+            eval `echo $CLASSIFPROG tmp.pgm` >! scores_tmp.txt
             RANK=` ./getRank scores_tmp.txt $CLASSID`
             echo "Rank=$RANK"
             
