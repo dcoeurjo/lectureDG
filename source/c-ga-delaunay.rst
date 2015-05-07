@@ -656,8 +656,8 @@ Alternative algorithms: Divide and Conquer
 **Idea**
 
 * Recursive construction
-* Split the point set according to median (along the x-axis for instance) O(n)
-* Union of two Delaunay triangulations  O(n)
+* Split the point set according to median (along the x-axis for instance) `O(n)`:math:
+* Union of two Delaunay triangulations  `O(n)`:math:
 * |imp| `O(n\log n)`:math:
 
 
