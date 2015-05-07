@@ -47,11 +47,11 @@ Digtial Contour
 
    If the **Euclidean Minimum Spanning Tree** of the input point set,
    the whole triangulation can be constructed in expected time `O(n
-   log^* n)`:math:
+   \log^* n)`:math:
 
 
-(`log^* n=inf\{k;log(k)n\leq 1\}`:math: hence for `16<n\leq 65532`:math:, `log^*
-n=4`:math:,  `log^* n= 5`:math:  for `n<2^{65532}`:math:)
+(`\log^* n=\inf\{k;\log(k)n\leq 1\}`:math: hence for `16<n\leq 65532`:math:, `\log^*
+n=4`:math:,  `\log^* n= 5`:math:  for `n<2^{65532}`:math:)
 
 .. image:: _static/images/CG/DelDiscret/Minimum_spanning_tree.*
       :width: 30%
@@ -76,7 +76,7 @@ Digtial Contour (bis)
 
 .. admonition:: Thm.
 
-    **Expected time for Delaunay construction for digital contour is in** `O(n log^* n)`:math:
+    **Expected time for Delaunay construction for digital contour is in** `O(n \log^* n)`:math:
 
 
 * Deterministic algorithm exists in dimenion 2
@@ -131,13 +131,13 @@ Digital Points
 
 .. admonition:: Thm. [Chan]
 
-    `O(n \sqrt{log M})`:math: expected randmozided time for Delaunay   Triangulation construction
+    `O(n \sqrt{\log M})`:math: expected randmozided time for Delaunay   Triangulation construction
 
 
 **Key Data Structure: Van Emde Boas Tree**
 
 * Associative array with M-bit integer keys
-* Insert/Delete/Find/../ in `O(log M)`:math: !!
+* Insert/Delete/Find/../ in `O(\log M)`:math: !!
 
 
 
