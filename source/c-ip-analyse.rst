@@ -241,7 +241,7 @@ Few Fourier Space Properties
 * *Transaltion*
 
   .. math::
-      h(x) = f(x_0 + x) \Leftrightarrow \mathcal{H}(u)=e^{i2\pi x_0}
+      h(x) = f(x_0 + x) \Leftrightarrow \mathcal{H}(u)=e^{i2\pi x_0 u}
       \mathcal{F}(u)
 
 * *Modulation* for real `u_0`:math:
