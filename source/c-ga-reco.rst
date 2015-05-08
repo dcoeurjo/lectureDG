@@ -38,7 +38,7 @@ Description
   *Can we expect better bounds for Delaunay structure?*
 
 
-Digtial Contour
+Digital Contour
 ---------------
 
 **Delaunay triangulation from minimum spanning tree**
@@ -63,7 +63,7 @@ n=4`:math:,  `\log^* n= 5`:math:  for `n<2^{65532}`:math:)
 * *Even true for any spanning subgraph of the Delaunay structure with
   maximal degree d*
 
-Digtial Contour (bis)
+Digital Contour (bis)
 ---------------------
 
 **Main observation**
@@ -79,7 +79,7 @@ Digtial Contour (bis)
     **Expected time for Delaunay construction for digital contour is in** `O(n \log^* n)`:math:
 
 
-* Deterministic algorithm exists in dimenion 2
+* Deterministic algorithm exists in dimension 2
 
 .. list-table::
 
@@ -104,7 +104,7 @@ Digital Straight Segment Pattern
 **Observation**
 
 For digital straight segment patterns, can we recover the Delaunay
-structure from arthimetic properties ?
+structure from arthimetic properties?
 
 
 .. image:: _static/images/CG/DelDiscret/motif-del.png
@@ -116,7 +116,7 @@ structure from arthimetic properties ?
       :align: center
 
 
-`\Rightarrow`:math: **Yes !** [Roussillon, Lachaud]
+`\Rightarrow`:math: **Yes!** [Roussillon, Lachaud]
 
 
 Digital Points
@@ -131,7 +131,7 @@ Digital Points
 
 .. admonition:: Thm. [Chan]
 
-    `O(n \sqrt{\log M})`:math: expected randmozided time for Delaunay   Triangulation construction
+    `O(n \sqrt{\log M})`:math: expected randomized time for Delaunay   Triangulation construction
 
 
 **Key Data Structure: Van Emde Boas Tree**
@@ -164,7 +164,7 @@ Set `S`:math: with `n`:math: points *sampling/approximating* a smooth 2-manifold
 
 **Variants**
 
-* How to control the sampling ?
+* How to control the sampling?
 
 
     *Example of theorem statement*  If sample set `S`:math: has good sampling properties
@@ -198,7 +198,7 @@ with lfs(x) being the *local feature size* at x: `lfs(x)= d(x,MedialAxis(C))`:ma
 
 
 
-*Question* what does  `d(p,x)< \epsilon \cdot lfs(x)`:math:  mean ?
+*Question* what does  `d(p,x)< \epsilon \cdot lfs(x)`:math:  mean?
 
 
 Example: Power Crust Reconstruction [Amenta] (bis)
