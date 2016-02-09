@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<head>
+  <title>Radon Transform</title>
+  <style>
+    h1 {
+      display: none;
+    }
+    .canvasBox {
+      display: -moz-inline-stack;
+      display: inline-block;
+      padding: 10px;
+      //border: 1px solid #000;
+      //-moz-border-radius-bottomleft: 8px;
+      //-moz-border-radius-bottomright: 8px;
+      //-webkit-border-bottom-left-radius: 8px;
+      //-webkit-border-bottom-right-radius: 8px;
+      vertical-align: bottom;
+      //background-color: #aaa;
+      margin-left: auto;
+      margin-right: auto;
+      cursor: none;
+    }
+
+    .caption {
+      font-family: "Bebas Neue";
+      display: block;
+      //color: white;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+<script type="text/javascript">
+  function currentLoadingSlide() {
+    var slides = document.querySelectorAll('div.slide');
+    return slides == null ? null : slides.item(slides.length - 1);
+  }
+</script>
+
+<div class="presentation">
+  <div class="slide">
+    <h1>Radon Transform</h1>
+    <center>
+    <div class="canvasBox">
+      <canvas id="directImage"></canvas>
+      <p class="caption">Image</p>
+    </div>
+    <div class="canvasBox">
+      <canvas id="sinogram"></canvas>
+      <p class="caption">Sinogramme</p>
+    </div>
+    </center>
+  </div>
+  <script type="text/javascript">
+    var sinogram = new Image();
+    var directImage = new Image();
+
+    var outputData;
+    function mouseOut(event) {
+      canvas = document.getElementById('directImage');
+      context = canvas.getContext('2d');
+      context.drawImage(directImage, 0, 0);
+
+      canvas = document.getElementById('sinogram');
+      context = canvas.getContext('2d');
+      context.drawImage(sinogram, 0, 0);
+    }
+
+    function mouseMoveOverSinogram(event) {
+      var canvas = document.getElementById('sinogram');
+      //canvas.width = sinogram.width;
+      //canvas.height = sinogram.height;
+      var context = canvas.getContext('2d');
+      var x = event.offsetX/sinogram.width - 0.5;
+      var y = event.offsetY/sinogram.height - 0.5;
+      var angle = -Math.PI*x;
+      var rho = Math.sqrt(2)*y;
+      context.drawImage(sinogram, 0, 0);
+      context.fillStyle = 'rgba(255,255,0,1)';
+      context.beginPath();
+      context.arc(event.offsetX, event.offsetY, 4, 0, Math.PI*2, true); 
+      context.closePath();
+      context.fill();
+
+      canvas = document.getElementById('directImage');
+      context = canvas.getContext('2d');
+      context.drawImage(directImage, 0, 0);
+      var l = Math.max(directImage.width, directImage.height);
+      var cx = 0.5 - rho * Math.sin(angle);
+      var cy = 0.5 + rho * Math.cos(angle);
+      context.strokeStyle = 'rgba(255,255,0,0.75)';
+      context.lineWidth = 5;
+      context.beginPath();
+      context.moveTo(l*(cx-Math.cos(angle)),l*(cy-Math.sin(angle)));
+      context.lineTo(l*(cx+Math.cos(angle)),l*(cy+Math.sin(angle)));
+      context.closePath();
+      context.stroke();
+      status = x + ", " + y + ", " +  angle + ", " + rho;
+    }
+      /*
+             d="M 0,0
+          C 0.173771,0.173771 0.347462,0.347461 0.523599,0.500000
+          C 0.699756,0.652557 0.872140,0.778496 1.047198,0.866025
+          C 1.223626,0.954240 1.396092,1.000000 1.570796,1.000000" />
+      */
+    function addSineBow(context, x, y, sx, sy) {
+      sx /= 1.570796;
+      context.bezierCurveTo(x + sx*.173771, y + sy*.173771, x + sx*.347462, y + sy*.347461, x + sx*.523599, y + sy*.500000);
+      context.bezierCurveTo(x + sx*.699756, y + sy*.652557, x + sx*.872140, y + sy*.778496, x + sx*1.047198, y + sy*.866025);
+      context.bezierCurveTo(x + sx*1.223626, y + sy*.954240, x + sx*1.396092, y + sy*1.000000, x + sx*1.570796, y + sy*1.000000);
+    }
+    function addSineBow2(context, x, y, sx, sy) {
+      context.bezierCurveTo(
+        x + sx*(1-1.396092/1.570796), y + sy,
+	x + sx*(1-1.223626/1.570796), y + sy*.954240,
+	x + sx*(1-1.047198/1.570796), y + sy*.866025);
+      context.bezierCurveTo(
+        x + sx*(1-.872140/1.570796), y + sy*.778496,
+	x + sx*(1-.699756/1.570796), y + sy*.652557,
+	x + sx*(1-.523599/1.570796), y + sy*.500000);
+      context.bezierCurveTo(
+        x + sx*(1-.347462/1.570796), y + sy*.347461,
+	x + sx*(1-.173771/1.570796), y + sy*.173771,
+	x + sx, y);
+    }
+
+    // MARK: Firefox compatibility
+    // Simulate event offsetX and offsetY for Firefox
+    var evObj = document.createEvent('MouseEvents');
+    //evObj.initMouseEvent('mousemove', false, true, window, null, 0, 0, 0, 0, false, false, false, false, false, null);
+    if (!evObj.offsetX) {
+      evObj.__proto__.__defineGetter__("offsetX", function() {
+	return this.pageX - this.target.offsetLeft;
+      });
+      evObj.__proto__.__defineGetter__("offsetY", function() {
+	return this.pageY - this.target.offsetTop;
+      });
+    }
+
+    function mouseMoveOverDirectImage(event) {
+      var canvas = document.getElementById('directImage');
+      context = canvas.getContext('2d');
+      context.drawImage(directImage, 0, 0);
+      context.fillStyle = 'rgba(255,255,0,1)';
+      context.beginPath();
+      context.arc(event.offsetX, event.offsetY, 4, 0, Math.PI*2, true); 
+      context.closePath();
+      context.fill();
+
+      var canvas = document.getElementById('sinogram');
+      //canvas.width = sinogram.width;
+      //canvas.height = sinogram.height;
+      var context = canvas.getContext('2d');
+      context.drawImage(sinogram, 0, 0);
+      var x = event.offsetX/directImage.width - 0.5;
+      var y = 0.5 - event.offsetY/directImage.height;
+      var phi = -Math.atan2(x, y)/Math.PI;
+      var h = -sinogram.height*Math.sqrt(x*x + y*y)/Math.sqrt(2);
+
+      context.strokeStyle = 'rgba(255,255,0,0.75)';
+      context.lineWidth = 5;
+      context.beginPath();
+      var bowWidth = sinogram.width/2;
+      var sx = 2*phi*bowWidth - 4*bowWidth;
+      context.moveTo(sx,y+sinogram.height/2);
+      for (var i = 0; 3 > i; i++) {
+	addSineBow(context, sx, y+sinogram.height/2, bowWidth, h);
+	sx += bowWidth;
+	addSineBow2(context, sx, y+sinogram.height/2, bowWidth, h);
+	sx += bowWidth;
+	addSineBow(context, sx, y+sinogram.height/2, bowWidth, -h);
+	sx += bowWidth;
+	addSineBow2(context, sx, y+sinogram.height/2, bowWidth, -h);
+	sx += bowWidth;
+      }
+      //context.closePath();
+      context.stroke();
+
+      status = x + ", " + y + ", " + phi;
+    }
+    var images = [
+      ['sinogram256.gif', 'phantom256.gif'],
+      ['sinogram_dots.png', 'directImage_dots.png'],
+      ['sinogram_dots_translated.png', 'directImage_dots_translated.png'],
+      ['sinogram.png', 'directImage.png'],
+      ['sinogram.jpg', 'directImage.jpg'],
+    ];
+    var imageIndex = 0;
+
+    function init() {
+      var nextImage = function(sinogram, directImage, images) {
+	sinogram.src = 'figures/'+images[imageIndex][0];
+	directImage.src = 'figures/'+images[imageIndex][1];
+	imageIndex = (imageIndex + 1) % images.length;
+	return false;
+      }
+
+      sinogram.onload = sinogramOnload;
+      directImage.onload = directImageOnload;
+      nextImage(sinogram, directImage, images);
+
+      var canvases = currentLoadingSlide().querySelectorAll('canvas');
+      canvases[0].addEventListener('mousemove', mouseMoveOverDirectImage, false);
+      canvases[0].addEventListener('mouseout', mouseOut, false);
+      canvases[0].addEventListener('click', function(event) { return nextImage(sinogram, directImage, images); event.target.blur(); }, true);
+      canvases[1].addEventListener('mousemove', mouseMoveOverSinogram, false);
+      canvases[1].addEventListener('mouseout', mouseOut, false);
+      canvases[1].addEventListener('click', function(event) { return nextImage(sinogram, directImage, images); event.target.blur(); }, true);
+      delete(init);
+    }
+    init();
+
+    function sinogramOnload(event) {
+      var canvas = document.getElementById('sinogram');
+      canvas.height = sinogram.height;
+      canvas.width = sinogram.width;
+      var context = canvas.getContext('2d');
+      // draw the image onto the canvas
+      context.drawImage(sinogram, 0, 0);
+    }
+
+    function directImageOnload(arg) {
+      var canvas = document.getElementById('directImage');
+      canvas.height = directImage.height;
+      canvas.width = directImage.width;
+      var context = canvas.getContext('2d');
+      // draw the image onto the canvas
+      context.drawImage(arg.target, 0, 0);
+    }
+  </script>
+</div>
+
+</body>
+</html>
