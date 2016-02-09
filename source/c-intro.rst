@@ -376,7 +376,7 @@ Bottlenecks/Problems to consider (bis)
 * *Manifold* cf later
 * *Quality*
 
-  * distance to samples (which métrique ? how to be robust to noise ?...)
+  * distance to samples (which metric ? how to be robust to noise ?...)
   * Smoothness of the reconstruction
   * Geometrical and topological certificate of the  reconstruction
 * ...
