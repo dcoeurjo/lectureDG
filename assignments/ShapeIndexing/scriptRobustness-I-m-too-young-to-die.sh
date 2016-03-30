@@ -22,7 +22,7 @@ for ((i=0; i < $NBIMGTESTS; i++)); do
     echo "Classname: "$CLASSNAME
 
     ##Pick a random image in this class
-    IMGID=`expr $RANDOM % 14 + 1`
+    IMGID=`expr $RANDOM % 10 + 1`
     IMGNAME=database/$CLASSNAME-$IMGID.pgm
     echo $IMGNAME
 
@@ -31,7 +31,7 @@ for ((i=0; i < $NBIMGTESTS; i++)); do
             ##Random scale+rotation
             ANGLE=$((rand48()*3.1415))
             SCALE=$((rand48()*3))
-            NOISE=$((rand48()*0.5))
+            NOISE=$((rand48()*MAXNOISE))
             ./imgRotate -i $IMGNAME -o tmp.pgm -a $ANGLE 2>/dev/null
             ./imgScale -i tmp.pgm -o tmp2.pgm -s $SCALE 2>/dev/null
             ./imgAddNoise -i tmp2.pgm -o tmp.pgm -n $NOISE 2>/dev/null
