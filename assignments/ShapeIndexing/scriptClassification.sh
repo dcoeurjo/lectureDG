@@ -11,7 +11,7 @@ NBIMGTESTS=40
 NBTESTS=5
 
 #No noise here
-MAXNOISE=0.0
+MAXNOISE=0.5
 sum=0.0
 variance=0.0
 cpt=0.0
