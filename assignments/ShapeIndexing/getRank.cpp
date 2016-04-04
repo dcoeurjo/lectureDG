@@ -36,7 +36,6 @@ int main(int argc, char**argv)
   while ((it != scores.end() &&
           it->second != realclass))
     ++it;
-  std::cerr << realclass << std::endl;
 
   if (it == scores.end())
     {
