@@ -45,13 +45,10 @@ int main(int argc, char**argv)
 
   //exaeco
   score = it->first;
-  while ( (it != scores.begin()) &&
-          ((--it)->first == score)) {}
-
-    if (it != scores.begin())
-    ++it;
+  while ( (it != scores.end()) &&
+          ((++it)->first == score)) {}
 
   //We output the rank
-  std::cout << (it - scores.begin())+1<<std::endl;
+  std::cout << std::distance(scores.begin(), it)<<std::endl;
   exit(0);
 }
