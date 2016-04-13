@@ -35,7 +35,8 @@ for ((i=0; i < $NBIMGTESTS; i++)); do
             NOISE=$((rand48()*MAXNOISE))
             ./imgRotate -i $IMGNAME -o tmp.pgm -a $ANGLE 2> /dev/null
             ./imgScale -i tmp.pgm -o tmp2.pgm -s $SCALE 2> /dev/null
-            ./imgAddNoise -i tmp2.pgm -o tmp.pgm -n $NOISE  2> /dev/null
+            #./imgAddNoise -i tmp2.pgm -o tmp.pgm -n $NOISE  2> /dev/null
+            mv tmp2.pgm tmp.pgm
 
             ##Running the retrieval
             eval `echo $CLASSIFPROG tmp.pgm` >! scores_tmp.txt
