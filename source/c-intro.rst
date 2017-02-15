@@ -104,7 +104,7 @@ CCD Device
 element accumulate some electrical charges proportional to the
 intensity of received light
 
-    *photon -> electron charges*
+*photon -> electron charges*
 
 .. list-table::
    :class: columns
@@ -191,7 +191,7 @@ Tomography (bis)
 
 **Basic Idea**  Radon's Theorem
 
-    `[Rf](t,\theta) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x,y)\delta(t-x \cos(\theta) - y \sin(\theta)) dxdy`:math:
+`[Rf](t,\theta) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x,y)\delta(t-x \cos(\theta) - y \sin(\theta)) dxdy`:math:
 
 `\delta`:math:  Dirac measures
 

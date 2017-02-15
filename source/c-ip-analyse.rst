@@ -249,7 +249,7 @@ Few Fourier Space Properties
   .. math::
      \mathcal{H}(u)=\mathcal{F}(u+u_0) \Leftrightarrow h(x) = e^{i2\pi xu_0}f(x)
 
-* *Convolution* 
+* *Convolution*
 
   .. math::
      h(x) = (f*g)(x) = \int_{-\infty}^\infty f(t)g(x-t)dx\Leftrightarrow \mathcal{H}(u)=\mathcal{F}(u)\cdot\mathcal{G}(u)
@@ -273,7 +273,7 @@ Illustrations
   * - .. image:: _static/images/Fourier/cosines.*
 
     - .. image:: _static/images/Fourier/phase.*
-     
+
     - .. image:: _static/images/Fourier/brks_blks.*
 
 
@@ -282,7 +282,7 @@ Illustrations
     - Real image example
 
 
-      
+
 Illustrations
 -------------
 (http://www.cs.unm.edu/~brayer/vision/fourier.html)
@@ -678,17 +678,18 @@ Contour Extraction
 
 * Naive approach:  `(x,y)`:math: belongs to a contour iff
 
-
-         `\|\nabla f(x,y)\| > \sigma`:math:
+   .. math::
+      \|\nabla f(x,y)\| > \sigma
 
 * From hysteresis : `(x,y)`:math: belongs to a contour iff
 
-        `\|\nabla f(x,y)\| > \sigma_1`:math:
+    .. math::
+       \|\nabla f(x,y)\| > \sigma_1
 
 or
 
-         `\|\nabla f(x,y)\| > \sigma_2`:math: and `\exists
-         (x',y')`:math: neighbor of `\exists (x,y)`:math: such that `\|\nabla f(x',y')\| > \sigma_1`:math:
+`\|\nabla f(x,y)\| > \sigma_2`:math: and `\exists
+(x',y')`:math: neighbor of `\exists (x,y)`:math: such that `\|\nabla f(x',y')\| > \sigma_1`:math:
 
 
 * Using gradient orientation (we follow the contour in a direction
