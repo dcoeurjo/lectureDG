@@ -710,13 +710,53 @@ Bilateral Filter
 
 **Non-linear filter with a pair of spatial  intensity kernels**
 
+   .. math::
+       I^*(x) = \frac{1}{W} \sum_{y \in \Omega_x}
+       I(y)f(|I(y)-I(x)|)g(|y-x|)
+
+* `W= \sum_{y\in \Omega_x}{f(\|I(y)-I(x)\|)g(\|y-x\|)}`:math:
+
+* `\Omega_x`:math: is a window around `x`:math:
+* `f`:math: and `g`:math: are decreasing functions
+  `[0,+\infty]\rightarrow\mathbb{R}^+`:math:  (e.g. Gaussian kernels)
+
+  
+
+ .. image:: _static/images/Bilateral_Filter.*
+       :width: 50%
+       :align: center
 
 
 
-
-
-Variational Approaches
+Bilateral Filter (bis)
 ----------------------
+
+
+ .. image:: _static/images/Bilateral2.*
+       :width: 100%
+       :align: center
+          
+*(From [Bilateral Filtering: Theory and Applications
+Sylvain Paris, Pierre Kornprobst, Jack Tumblin, and Frédo Durand
+Foundations and Trends in Computer Graphics and Vision, 2009])*
+
+
+Question: **How to efficiently implement bilateral filtering ?**
+
+
+
+
+Variational Approaches: Anisotropic diffusion
+---------------------------------------------
+*[Perona, Malik]*
+
+* Images as functions `\Omega\rightarrow\mathbb{R}^2`:math:
+* Diffusion process defined on time-varying images: `I(\cdot ,t):\Omega \rightarrow {\mathbb  {R}}`:math:
+* Diffusion operator defined as:
+   .. math::
+     {\frac  {\partial I}{\partial t}}={\mathrm  {div}}\left(c(x,y,t)\nabla I\right)=\nabla c\cdot \nabla I+c(x,y,t)\Delta I
+
+
 
 
 
