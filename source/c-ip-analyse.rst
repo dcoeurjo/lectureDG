@@ -217,12 +217,13 @@ Fourier Space
 
 
 .. math::
-      \mathcal{F}(u)=\int_{-\infty}^\infty f(x)\cdot e^{-2i\pi k u}dx
-      \qquad {f}(x)=\int_{-\infty}^\infty \mathcal{F}(u)\cdot e^{-2i\pi k x}du
+      \mathcal{F}(u)=\int_{-\infty}^\infty f(x)\cdot e^{-i u x}dx
+      \qquad {f}(x)=\int_{-\infty}^\infty \mathcal{F}(u)\cdot e^{i u x}du
 
 .. math::
-      {\mathcal  {F}}(k)=\sum _{{n=0}}^{{{\mathrm  {N}}-1}}f(n)\cdot e^{{-2i\pi k{\frac  {n}{{\mathrm  {N}}}}}}\qquad
-      f(n)={\frac  {1}{{\mathrm  {N}}}}\sum _{{k=0}}^{{{\mathrm  {N}}-1}}{\mathcal  {F}}(k)\cdot e^{{2i\pi n{\frac  {k}{{\mathrm  {N}}}}}}
+      F_k=\sum _{{n=0}}^{{{\mathrm  {N}}-1}}x_n\cdot e^{{-2i\pi kn / N}}\qquad
+      x_n={\frac  {1}{{\mathrm  {N}}}}\sum _{{k=0}}^{{{\mathrm
+      {N}}-1}}{ {F}}_k\cdot e^{{2i\pi n k /{N}}}
 
 (for `0\leqslant k<{\mathrm  {N}}`:math:)
 
@@ -696,6 +697,30 @@ or
   perpendicular to the gradient)
 
 
+
+Advanced Image Processing
+=========================
+
+
+
+Bilateral Filter
+----------------
+
+*[Tomasi & Manduchi, 98]*
+
+**Non-linear filter with a pair of spatial  intensity kernels**
+
+
+
+
+
+
+Variational Approaches
+----------------------
+
+
+
+  
 Mathematical Morphology
 =======================
 
