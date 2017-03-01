@@ -756,11 +756,96 @@ Variational Approaches: Anisotropic diffusion
    .. math::
      {\frac  {\partial I}{\partial t}}={\mathrm  {div}}\left(c(x,y,t)\nabla I\right)=\nabla c\cdot \nabla I+c(x,y,t)\Delta I
 
+with for example:
+
+  .. math::
+    c\left(\|\nabla I\|\right)=e^{{-\left(\|\nabla I\|/K\right)^{2}}}
 
 
+**Anisotropic diffusion process that removes noise preserving edges**
 
+*Rationale: for some* `g\mathbb{R}\rightarrow \mathbb{R}`:math: *we want
+to minimize*
+
+  .. math::
+     E[I]={\frac  {1}{2}}\int _{{\Omega }}g\left(\|\nabla I(x)\|^{2}\right)\,dx
+
+and thus
+
+  .. math::
+     {\frac  {\partial I}{\partial t}}=-\nabla E_{I}={\mathrm
+     {div}}(g'\left(\|\nabla I(x)\|^{2}\right)\nabla I)
+
+
+Examples
+--------
+
+
+.. list-table::
+
+  *  - .. image:: _static/images/len_bruitG.*
+        :align: center
+        :width: 100%
+     - .. image:: _static/images/peronna.*
+        :align: center
+        :width: 100%
+     - .. image:: _static/images/peronna2.*
+        :align: center
+        :width: 100%
+
+
+                
+*N.B* Bilateral filtering is asymptotically close to Perona-Malik's diffusion
+
+
+Mumford-Shah functional
+-----------------------
+
+**Idea** Variational formulation edge aware smoothing
+
+  .. math::
+     \mathcal{MS} (K,u)= \underbrace{ \alpha \int_{{M\backslash K}} | u - g |^2 dx}_{\text{attachment term}}  + \underbrace{\int_{{M\backslash K}} | \nabla u |^2 dx}_{\text{smoothness term}} + {\underbrace{\lambda \mathcal{H}^{1}(K \cap M)}_{\text{discontinuities length}}}
+
+
+* `\mathcal{M}`:math: is the function domain
+* `{g}`:math: is the input raw image
+* `{u}`:math: is the regularized image
+* `{K}`:math: is the discontinuities support set
+* `\mathcal{H}^{1}`:math: is the Hausdorff measure
 
   
+**But:**
+
+* Needs an explicit evaluation of `\mathcal{H}^{1}(K\cap M)`:math:
+* We integrate over `{M\backslash K}`:math:
+* `K`:math: has to be optimized
+	
+
+
+Ambrosio-Tortorelli functional
+------------------------------
+`\Gamma-`:math: **convergence mathemtatical framework**
+
+
+   .. math::
+      \mathcal{AT}_\epsilon(u,v) = {\alpha} \underbrace{\int_{{M}} |u - g|^{{2}} dx}_{\text{attachment term}} + \underbrace{\int_{{M}} |{v} \nabla u|^{{2}} dx}_{\text{smoothness term}} + \underbrace{{\lambda}  \int_{{M}} {\epsilon} |\nabla {v}|^{{2}} + \frac{1}{4 {\epsilon}} |1 - {v}|^{{2}} dx}_{\text{discontinuities length}}
+
+
+* Two functionsTwo functions to optimize: u (regularized image) and v
+  (feature scalar map  to [0,1])
+* v≈1 on smooth parts, v≈0  near features
+* Integration domain does not change
+* No Hausdorff measure
+* Quadratic terms
+* the AT functional Γ−converges to Mumford-Shah's functional as ϵ→0 
+
+:-)
+
+
+*<switch PG presentation>*
+
+  
+     
 Mathematical Morphology
 =======================
 
