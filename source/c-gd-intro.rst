@@ -276,7 +276,7 @@ In 3D:
 
 **Topological approach**
 
-   Two pixels/voxels are *(k)-adjacent* is the intersection of their (closed) cell is of dimension `k`:math:
+Two pixels/voxels are *(k)-adjacent* is the intersection of their (closed) cell is of dimension `k`:math:
 
 
 Mixing all dimensions:

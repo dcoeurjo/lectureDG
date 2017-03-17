@@ -698,8 +698,8 @@ or
 
 
 
-Advanced Image Processing
-=========================
+More Advanced Image Processing
+==============================
 
 
 
