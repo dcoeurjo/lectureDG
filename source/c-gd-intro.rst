@@ -394,11 +394,11 @@ Adjacency pairs
 
 **In dimension 2**
 
-   (0,1) and (1,0)
+(0,1) and (1,0)
 
 **In dimension 3**
 
-   (2,1), (2,0) (1,2) and (0,2)
+(2,1), (2,0) (1,2) and (0,2)
 
 
 Border definition
@@ -597,7 +597,7 @@ Grid intersection models
 
 **Idea** Defined for oriented contours `\partial\mathcal{X}`:math:
 
-   For each intersection  `\partial\mathcal{X}`:math: with a grid edge, we *select* the {closer,inner,outer} grid point
+For each intersection  `\partial\mathcal{X}`:math: with a grid edge, we *select* the {closer,inner,outer} grid point
 
 
 (resp. GIQ -Grid Intersect Quantization-, OBQ -Object Boundary Quantization-, BBQ -Background Boundary Quantization-)

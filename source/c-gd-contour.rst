@@ -88,7 +88,7 @@ Given a (1)-adjacency, let `n_i`:math: be the number of ith-code
 
 .. rst-class:: roundedquote
 
-     A Polyomino `P`:math: tiles the plane if and only if its contours has the following structure (up to cyclic rotations)      `X\cdot Y\cdot Z\cdot \bar{X}\cdot \bar{Y}\cdot \bar{Z}`:math: [Beauquier-Nivat]
+A Polyomino `P`:math: tiles the plane if and only if its contours has the following structure (up to cyclic rotations)      `X\cdot Y\cdot Z\cdot \bar{X}\cdot \bar{Y}\cdot \bar{Z}`:math: [Beauquier-Nivat]
 
 
    .. image:: _static/images/nivat.*
