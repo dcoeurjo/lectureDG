@@ -840,8 +840,7 @@ Computational cost
 
 
 .. admonition:: Thm.
-
-    `\bar{S}`:math: has at most 4 vertices in the dual space
+ `\bar{S}`:math: has at most 4 vertices in the dual space
 
   .. image:: _static/images/structure_ilroy.*
       :width: 60%
