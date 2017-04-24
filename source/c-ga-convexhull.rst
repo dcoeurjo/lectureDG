@@ -311,8 +311,7 @@ Related problem: Line - Convex intersection
 
 
 
-
- <Cf board>
+<Cf board>
 
 
 
@@ -490,7 +489,7 @@ Simple Tree construction
 
 `S=\{s_1,\ldots,s_n\}`:math:
 
-.. code-block:: c
+.. code-block:: C
 
    function 2DBSP(S)
    {

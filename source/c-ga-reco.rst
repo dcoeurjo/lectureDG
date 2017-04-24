@@ -16,11 +16,11 @@ Description
 
 * Points from the digital contour of an object
 
-     *local consistency of points*
+*local consistency of points*
 
 * Points in `[0,N]^d`:math:
 
-     *specific integer based structures*
+*specific integer based structures*
 
 **Let's start with good news**
 
@@ -166,8 +166,7 @@ Set `S`:math: with `n`:math: points *sampling/approximating* a smooth 2-manifold
 
 * How to control the sampling?
 
-
-    *Example of theorem statement*  If sample set `S`:math: has good sampling properties
+*Example of theorem statement*  If sample set `S`:math: has good sampling properties
     parametrized by `\epsilon_0`:math: (e.g. at least `d_H(S,C)<
     \epsilon_0`:math:), then for samplings with
     `\epsilon<\epsilon_0`:math: Algorithm A produces a discrete structure

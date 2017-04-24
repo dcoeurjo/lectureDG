@@ -461,17 +461,17 @@ Incremental Delaunay Construction
 
 * *Localization* of a point in a given Delaunay Triangulation
 
-     returns the triangle T containing p
+returns the triangle T containing p
 
 * *Local Triangulation* of a polygon
 
-    locally triangulate the *one-ring* of T  + p
+locally triangulate the *one-ring* of T  + p
 
 * *Update of invalid triangles*
 
 
 
-    maintain Delaunay property
+maintain Delaunay property
 
 
 Detecting Conflicts
