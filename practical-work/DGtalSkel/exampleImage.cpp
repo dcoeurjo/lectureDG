@@ -25,7 +25,7 @@ parse_options(int argc, char* argv[])
 
   Options options;
 
-  po::options_description po_options("mesh_laplacian_3D [options]");
+  po::options_description po_options("example image reader/writer [options]");
   po_options.add_options()
     ("filename,i", po::value<std::string>(&options.filename)->default_value("church.pgm"), "filename of the image")
     ("help,h", "display this message")
@@ -60,12 +60,17 @@ int main(int argc, char** argv)
   trace.beginBlock("Simple Image Reader Example");
   Options options = parse_options( argc, argv );
 
-  typedef ImageContainerBySTLMap<DGtal::Z2i::Domain, unsigned char> Image;
+  typedef ImageContainerBySTLMap<Z2i::Domain, unsigned char> Image;
 
   trace.info() << "Input Image: " << options.filename << std::endl;
 
-  //Importing the image into DGtal container
+  //Importing grayscale image into DGtal container
   Image image = DGtal::GenericReader<Image>::import(options.filename);
+
+  //Importing a PNG to DGtal container of unsigned char
+  typedef std::function<unsigned char( const DGtal::Color& )> Functor;
+  std::function<unsigned char( const DGtal::Color& )> color_to_char = []( const DGtal::Color& c ) { return ( c.red() + c.green() + c.blue() ) / 3; };
+  Image image_PNG = DGtal::MagickReader<Image, Functor>::importImage( "../church.png", color_to_char );
 
   //Modifying the image
   image.setValue( Z2i::Domain::Point( 10, 10 ), 21 );
