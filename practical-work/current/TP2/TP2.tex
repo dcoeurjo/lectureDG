@@ -1,0 +1,181 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{epsfig}  
+\usepackage{setspace}
+
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 22cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+
+\title{\bf{TP2 \\ Histogram manipulation}}
+\author{}
+\date{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Debut du document %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+\section*{\bf Histogram analysis and transformation}
+
+\subsection*{\bf Exercise 1. \rm Histogram analysis and export}
+
+\par We want to improve the images \texttt{objects-dark.pgm} and \texttt{len\_dark.pgm}.
+
+\begin{enumerate}
+	\item Go back to the code from TP1 to load a PGM image.
+	\item Build a small program that loads an image and that builds its normalized histogram. You will export this histogram into a text file containing a table whose first column is the intensity, and whose second column is [number of pixels which have this intensity] / [Total number of pixels].
+	\item Use \texttt{gnuplot} to generate the drawing of this histogram (cf Appendix). What do you observe in the histograms of the considered PGM pictures?
+\end{enumerate}
+
+% -----------------------------------
+\subsection*{\bf Exercise 2. \rm Transformation}
+
+In the following, we suppose that the histogram intensities are mapped from $[0,M]$  to $[0,1]$.
+
+\par Implement the following histogram transformations: 
+	\begin{itemize}
+		\item Histogram inversion
+		\item Gamma-correction :  $i' = i^\frac{1}{\gamma}$. Check its behavior for $\gamma=2.2$ and $\gamma=\frac{1}{2.2}$ \footnote{Hint: $a^i$ = \texttt{pow(a,i)}, don't forget the \texttt{\#include<math.h>}}
+		\item Linear interpolation $[a,b]\subset[0,1]\rightarrow [0,1]$
+	\end{itemize}
+Every times, you will illustrate the transformation by:
+\begin{itemize}
+	\item A \texttt{gnuplot} drawing of the histogram transformation function $\phi$.
+	\item Two drawing (before/after) of the histograms.
+	\item The modified PGM picture.
+\end{itemize}
+
+
+% -----------------------------------
+\subsection*{\bf Exercise 3. \rm Equalization}
+
+\par As presented during the lesson, our aim is to build a transfer function $\phi$ between the picture histogram (seen as an empirical probabilistic distribution $P(i)$), toward a targeted distribution. Here, we want to maximize the entropy of the image by targeting a uniform distribution.
+
+\par Given an histogram over the intensities of the interval $[0,M]$, we want a distribution such that the probability of each gray level $i'=\phi(i)$ is $P'(i')=\frac{1}{M}$.
+
+\par In the case of continuous variables and distributions and for an increasing transformation $\phi$, we have:
+\begin{equation}
+  P'(\phi(i)) = P(i)\frac{di}{di'}
+\end{equation}
+Thus,
+\begin{equation}
+  di' = M.P(i).di
+\end{equation}
+And,
+\begin{equation}
+  \phi(i) =  M \int_0^i P(\omega)d\omega
+\end{equation}
+
+\par In the discrete case, the transformation $\phi$ is the following:
+\begin{equation}
+  \phi(i) = M\frac{\sum_{j=0}^{i} hist(j)}{\sum_{j=0}^M hist(j)}
+\end{equation}
+
+{\bf Implement the histogram equalization transformation previously described and test this transformation over several pictures (with the corresponding \texttt{gnuplot} drawings of $\phi$ and their histograms before/after transformation)}.
+
+
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+\newpage
+\section*{\bf Image segmentation by using the histogram}
+
+\subsection*{\bf Exercise 1. \rm Naive Threshold (fr: Seuillage naif)}
+
+\begin{itemize}
+	\item Build a small program that loads a picture, computes its histogram and threshold the initial image according to a given intensity.
+\end{itemize}
+
+
+
+\subsection*{\bf Exercise 2. \rm Variance minimization}
+
+\par We will focus on different techniques to automatize the search of a \emph{good} threshold.
+
+\par Fisher's method aims at minimizing the intra-class variance of the two classes (objects / background). More formally, let us consider a normalized histogram $H$ whose intensities are in $[0,M]$. Let us consider a threshold $t$ defining 2 classes (\emph{B=background, O=object}) of values in the histogram. We want to minimize the functional:
+\begin{equation}
+  \sigma^2_{intra}(t) = n_B(t)\sigma^2_B(t) + n_O(t)\sigma^2_O(t)
+\end{equation}
+where
+\begin{align}
+  n_B(t)  &= \sum_{i=0}^{t-1} H(i)\\
+  n_O(t)  &= \sum_{i=t}^{M} H(i)\\
+\mu_B(t) &= \frac{1}{n_B(t)} \sum_{i=0}^{t-1} H(i).i\\
+\mu_O(t) &= \frac{1}{n_O(t)} \sum_{i=t}^{M} H(i).i\\
+\sigma^2_B(t) &= \frac{1}{n_B(t)} \sum_{i=0}^{t-1}(i-\mu_B(t))^2 H(i)\\
+\sigma^2_O(t) &= \frac{1}{n_O(t)} \sum_{i=t}^{M}(i-\mu_O(t))^2 H(i)
+\end{align}
+
+
+{\bf Question 1} Write a function which computes $\sigma^2_{intra}(t)$. Then, for a given image, write down a program which computes $argmin_{t\in{0..M}}(\sigma^2_{intra}(t))$, and use the corresponding threshold.
+
+\smallskip
+\par Otsu observed that minimizing the intra-class variance is equivalent to maximizing the variance between the classes defined by:
+\begin{equation}
+   \sigma^2_{entre}(t) = n_B(t)n_O(t)\left(\mu_B(t) - \mu_O(t) \right ) ^2
+\end{equation}
+
+{\bf Question 2} Similarly, write down a program that maximizes $\sigma^2_{entre}(t)$. You should not find another optimal threshold value, but you should compute it more effectively. To be effective, do not forget to update incrementally  $n_i$ et $\mu_i$, for example by using the following identities:
+\begin{align}
+  n_B(t+1) & = n_B(t) + H(t+1)\\
+  \mu_B(t+1)& = ....
+\end{align}
+
+
+\newpage
+\section*{\bf Appendix - \rm Crash-course \texttt{Gnuplot}}
+
+Given a text file with tabular data (several columns, separated by spaces or tabs..) \texttt{toto.txt}
+\begin{itemize}
+\item Display a graph where abscissa/ordinate  are mapped to first/third column  
+\begin{verbatim}
+  plot "toto.txt" using 1:3 with points
+\end{verbatim}
+
+\item Same graph with lines and points between datum
+\begin{verbatim}
+  plot "toto.txt" using 1:3 with linespoints
+\end{verbatim}
+
+\item Y-axis is the sum of the second and third column and we limit the x-axis range to $[0,10]$
+\begin{verbatim}
+  plot [0:10] "toto.txt" using 1:($3+$2) with linespoints
+\end{verbatim}
+
+\item Labels
+\begin{verbatim}
+  set xlabel "Abscisse"
+  set ylabel "Ordonnee"
+\end{verbatim}
+
+\item The next ``plot'' command will output the graph in a PDF file (with enhanced and color properties)
+\begin{verbatim}
+  set terminal pdf enhanced color
+  set output "glop.pdf"
+\end{verbatim}
+
+\item To use the X11 terminal (default one)
+\begin{verbatim}
+  set terminal X11
+  unset output
+\end{verbatim}
+
+\item Need some help on the plot command
+\begin{verbatim}
+  help plot
+\end{verbatim}
+
+\end{itemize}
+
+\end{document}
+
