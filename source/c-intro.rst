@@ -16,6 +16,8 @@ Introduction, numerical images and geometrical representation
           :width: 80%
      - .. image:: ./_static/images/snapshot-K.png
           :width: 80%
+     - .. image:: ./_static/images/bunnyReg.png
+          :width: 100%
 
 
 Preliminaries
@@ -54,7 +56,7 @@ Infrastructure
 
 **Practical work**
 
-* Mostly based on DGtal (http://libdgtal.org)
+* Mostly based on DGtal (http://dgtal.org)
 
    .. image:: ./_static/images/logoDGtal.png
        :width: 50%
