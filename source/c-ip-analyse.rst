@@ -867,7 +867,7 @@ Examples
 
 
  .. image:: _static/images/AT3.*
-       :width: 70%
+       :width: 100%
        :align: center
           
 3D Examples
@@ -875,7 +875,7 @@ Examples
 
 
  .. image:: _static/images/ATMesh1.*
-       :width: 70%
+       :width: 100%
        :align: center
           
   
@@ -884,7 +884,7 @@ Examples
 
 
  .. image:: _static/images/ATMesh2.*
-       :width: 70%
+       :width: 100%
        :align: center
 
   
@@ -893,7 +893,7 @@ Examples
 
 
  .. image:: _static/images/ATMesh3.*
-       :width: 70%
+       :width: 100%
        :align: center
           
                
