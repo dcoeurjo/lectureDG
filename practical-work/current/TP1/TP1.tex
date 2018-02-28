@@ -1,0 +1,230 @@
+\documentclass[a4paper, 11pt]{article}
+
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 23cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+\usepackage{epsfig}
+\usepackage{setspace}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{environ}
+
+\newif\ifhinting\hintingtrue % hints are on by defautl
+\NewEnviron{hints}{\ifhinting\textbf{Hint} \BODY\fi}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+	\LARGE \textbf{TD5: DGtal, Tracing and Border Extraction}
+\end{center}
+
+\bigskip
+\par In this TP, we introduce \texttt{DGtal} and do some elementary image processing like reading, writting and format conversion.
+
+\section*{\bf Introduction. \rm "Portable BitMap" formats}
+
+\par The image file format \texttt{PBM} (portable bitmap), \texttt{PGM} (portable grayscalemap) and \texttt{PPM} (portable pixmap) propose a simple solution to manipulate image files. In these three formats, an image is considered as a matrix where the values represent the light intensity in each pixel of the image: black or white (\texttt{PBM}), level of gray (\texttt{PGM}) or three level of colors RGB (Red, Green, Blue) (\texttt{PPM}).
+
+\bigskip
+\bigskip
+\noindent \textbf{Definition:} The corresponding files are composed of the following elements:
+\begin{enumerate}
+	\item A "magical number" to identify the type of file: P1 or P4 for {\tt PBM}, P2/P5 for {\tt PGM} and P3/P6 for {\tt PPM}.
+	\item A whitespace character (white, TABs, CRs, LFs).
+	\item The image \textbf{lenght} (decimal value, encoded in ASCII) followed by a whitespace character. Then the image \textbf{height} (decimal value, ASCII) followed by a whitespace character.
+	\item Only for {\tt PGM} and {\tt PPM} : the maximum intensity (decimal value between 0 and 255, encoded in ASCII) followed by a whitespace character.
+	\item A matrix of number of size $length \times height$. These number are either:
+	\begin{itemize}
+		\item (For P1/P2/P3) Decimal values (encoded in ASCII) separated by whitespace
+		\item (For P4/P5/P6) Binary values directly encoded on 1 or 2 octets. In this case, there is no whitespace between values.
+	\end{itemize}
+\end{enumerate}
+
+\noindent \textbf{Remarks:}
+\begin{itemize}
+	\item The lines starting by the character "\#" are ignored.
+	\item The lines have to contain less than 70 characters.
+\end{itemize}
+
+
+\subsection*{Examples}
+
+\begin{verbatim}
+P1
+# feep.pbm
+24 7
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 1 1 1 1 0 0 1 1 1 1 0 0 1 1 1 1 0 0 1 1 1 1 0
+0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 1 0
+0 1 1 1 0 0 0 1 1 1 0 0 0 1 1 1 0 0 0 1 1 1 1 0
+0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0
+0 1 0 0 0 0 0 1 1 1 1 0 0 1 1 1 1 0 0 1 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+\end{verbatim}
+{\it File \texttt{PBM} of an image  24$\times$7 whose values are coded in ASCII}
+\begin{verbatim}
+P2
+# feep.pgm
+24 7
+15
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+0  3  3  3  3  0  0  7  7  7  7  0  0 11 11 11 11  0  0 15 15 15 15  0
+0  3  0  0  0  0  0  7  0  0  0  0  0 11  0  0  0  0  0 15  0  0 15  0
+0  3  3  3  0  0  0  7  7  7  0  0  0 11 11 11  0  0  0 15 15 15 15  0
+0  3  0  0  0  0  0  7  0  0  0  0  0 11  0  0  0  0  0 15  0  0  0  0
+0  3  0  0  0  0  0  7  7  7  7  0  0 11 11 11 11  0  0 15  0  0  0  0
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+\end{verbatim}
+{\it File \texttt{PGM} of an image  24$\times$7. The intensity values coded in ASCII are at most 15}
+\begin{verbatim} 
+P3
+# pasbeau.ppm
+4 4
+15
+0  0  0    0  0  0    0  0  0   15  0 15
+0  0  0    0 15  7    0  0  0    0  0  0
+0  0  0    0  0  0    0 15  7    0  0  0
+15  0 15   0  0  0    0  0  0    0  0  0
+\end{verbatim}
+{\it File \texttt{PPM} of an image 4$\times$4. The intensity values coded in ASCII are at most 15}
+
+
+% -------------------------------------------------------
+\section*{The \texttt{DGtal} Project}
+
+\par \texttt{DGtal} is an open-source library focusing on digital geometry tools (\url{http://dgtal.org}).
+You must first clone \texttt{DGtal} from \url{https://github.com/DGtal-team/DGtal}
+\begin{verbatim}
+  git clone https://github.com/DGtal-team/DGtal /path/to/DGtal
+\end{verbatim}
+then compile it with ImageMagick enabled
+\begin{verbatim}
+  cd /path/to/DGtal
+  mkdir build
+  cmake .. -DWITH_MAGICK=ON -DBUILD_EXAMPLES=OFF
+  make
+\end{verbatim}
+You can see every options of the library using ccmake (the curse interface to cmake) instead of cmake.
+
+Then you have to set up your environment:
+\begin{itemize}
+	\item Get the DGtal \texttt{cmake} project skeleton:
+\begin{verbatim}
+  git clone  https://github.com/dcoeurjo/lectureDG.git
+\end{verbatim}
+\item Go to \texttt{practical-work/} folder.
+	\item Compile the examples using \texttt{cmake}\footnote{\texttt{cmake} is a project generator (e.g. makefiles on Unix, Xcode projects on MacOS, VisualStudio projects on MS) from a very simple recipe file (see \texttt{CMakeLists.txt})} "out-of-source-build principle":
+\begin{verbatim}
+  cd DGtalSkel
+  mkdir build 
+  cd build
+  cmake .. -DDGtal_DIR=/path/to/DGtal/build
+  make
+\end{verbatim}
+	The \texttt{make} command will build examples located in the source folder (path ".." here). If you want to clean your build, just remove the \texttt{build} folder (a "make clean" command also exists in the build folder).
+	%\item Execute: in the build folder, you should have \texttt{simpleboard} executable. Run it and you should see several new test.* files (EPS, SVG, ...).
+	%\item Have a look to  \texttt{simpleboard.cpp}, \texttt{testSet.cpp} and the EPS files they generates. You will see a very simple description of elementary DGtal objects that will be used here (\texttt{Board2D}, \texttt{Point} and \texttt{DigitalSet}).
+	%\item To add a new C++ file, copy and rename one of the example and add its name into the \texttt{CMakeLists.txt} file (\texttt{SRCs} variable). In the build folder, the next \texttt{make} command will build the brand new file.
+	%\item If you want to install DGtal and DGtalSkel on your own machine, please see below.
+\end{itemize}
+
+\section*{\bf Exercise 1. \rm Conversion from \texttt{PGM} to \texttt{PBM}}
+
+You can find some image manipulations (loading, modifying and writting) in the file exampleImage.cpp.
+Implement a conversion from \texttt{PGM} to \texttt{PBM} format using the GenericReader to load the image,
+and the MagickWriter combined with a functor to convert unsigned char values to either black or white (0 or 1).
+You can for example use a threshold function to do the conversion.
+
+\section*{\bf Exercise 2. \rm Conversion from \texttt{PGM} to \texttt{PNG}}
+
+An example of conversion from \texttt{PGM} to \texttt{PNG} is given in exampleImage.cpp.
+Implement your own functor from unsigned char to DGtal::Color.
+
+\section*{\bf Exercise 3. \rm Conversion from \texttt{PNG} to \texttt{PGM}}
+
+An example of conversion from \texttt{PGM} to \texttt{PNG} is given in exampleImage.cpp.
+You can use the container ImageContainerBySTLVector<Z2i::Domain, DGtal::Color> of \texttt{DGtal} to load a PNG image.
+Then implement your functor from DGtal::Color to unsigned char to convert the image.
+You can test your code with other input types (like JPEG).
+
+\section*{\bf Exercise 4. \rm Image modifications.}
+
+Once an image is loaded into the container, you can modify a value using the function setValue.
+It takes two argument: the first one is the coordinate of the point you want to modify, and the second one is the new value.
+
+Load a \texttt{PGM} image, modify some random pixels with new values and write it to a new image.
+
+\section*{\bf Exercise 5. \rm Can you draw ?}
+
+You are asked here to draw simple cartesian equation.
+Assuming the center of the image is in $(0,0)$,
+draw a circle into an image (remember that the cartesian equation of a circle is $(x - a)^2 + (y - b)^2 = r^2$ with $(a,b)$ the center and $r$ the radius).
+
+\begin{hints}
+  Consider testing if a pixel is inside the circle.
+\end{hints}
+
+Here is a code to convert HSV values (see \url{https://en.wikipedia.org/wiki/HSL_and_HSV}) to RGB one (the rgb values lies in $[0;1]$)
+
+\begin{verbatim}
+DGtal::Z3i::RealPoint HSVtoRGB( const DGtal::Z3i::RealPoint& HSV )
+{
+  double fC = hsv[2] * hsv[1]; // Chroma
+  double fHPrime = fmod(hsv[0] / 60.f, 6.f);
+  double fX = fC * (1.f - fabs(fmod(fHPrime, 2.f) - 1.f));
+  double fM = hsv[2] - fC;
+
+  RealPoint rgb;
+
+  if(0 <= fHPrime && fHPrime < 1) {
+    rgb[0] = fC;
+    rgb[1] = fX;
+    rgb[2] = 0;
+  } else if(1 <= fHPrime && fHPrime < 2) {
+    rgb[0] = fX;
+    rgb[1] = fC;
+    rgb[2] = 0;
+  } else if(2 <= fHPrime && fHPrime < 3) {
+    rgb[0] = 0;
+    rgb[1] = fC;
+    rgb[2] = fX;
+  } else if(3 <= fHPrime && fHPrime < 4) {
+    rgb[0] = 0;
+    rgb[1] = fX;
+    rgb[2] = fC;
+  } else if(4 <= fHPrime && fHPrime < 5) {
+    rgb[0] = fX;
+    rgb[1] = 0;
+    rgb[2] = fC;
+  } else if(5 <= fHPrime && fHPrime < 6) {
+    rgb[0] = fC;
+    rgb[1] = 0;
+    rgb[2] = fX;
+  } else {
+    rgb[0] = 0;
+    rgb[1] = 0;
+    rgb[2] = 0;
+  }
+
+  rgb += RealPoint( fM, fM, fM );
+
+  return rgb;
+}
+\end{verbatim}
+
+You can use it to shade you circle: considering a pixel $(x,y)$ in the image, compute its polar angle in degree.
+Calling HSVtoRGB( angle, 1., 1. ) will return a nice shading value !
+
+\end{document}

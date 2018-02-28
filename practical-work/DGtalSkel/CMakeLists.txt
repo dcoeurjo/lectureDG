@@ -29,7 +29,8 @@ SET(SRCs
   PGMReader
   simpleboard
   helloworld
-  PGMObject)
+  PGMObject
+  exampleImage)
 
 IF ((WITH_QGLVIEWER) OR (WITH_VISU3D_QGLVIEWER))
   SET(SRCs
