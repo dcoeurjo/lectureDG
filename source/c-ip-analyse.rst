@@ -842,9 +842,61 @@ Ambrosio-Tortorelli functional
 :-)
 
 
-*<switch PG presentation>*
+Examples
+--------
+
+
+ .. image:: _static/images/AT1.*
+       :width: 70%
+       :align: center
+          
+  
+
+Examples
+--------
+
+
+ .. image:: _static/images/AT2.*
+       :width: 70%
+       :align: center
+
+               
+
+Examples
+--------
+
+
+ .. image:: _static/images/AT3.*
+       :width: 70%
+       :align: center
+          
+3D Examples
+-----------
+
+
+ .. image:: _static/images/ATMesh1.*
+       :width: 70%
+       :align: center
+          
+  
+3D Examples
+-----------
+
+
+ .. image:: _static/images/ATMesh2.*
+       :width: 70%
+       :align: center
 
   
+3D Examples
+-----------
+
+
+ .. image:: _static/images/ATMesh3.*
+       :width: 70%
+       :align: center
+          
+               
      
 Mathematical Morphology
 =======================
