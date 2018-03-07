@@ -58,8 +58,18 @@ and the erosion $P_{(\sigma)}$ is
   P_{(\sigma)}(p) = \min_{q\in\sigma(p)} P(q).
 \]
 
-Implement the two operations and test them using different masks.
+\paragraph{Question} Implement the two operations and test them using different masks.
 
+\paragraph{Question} Use an operation of erosion to disconnect blobs in blobs2.pgm and then apply your connected component algorithm to count them.
+
+\section*{\bf Morphologic Opening}
+
+An opening is defined as an erosion followed by a dilation using the same structuring element for both operations.
+The opening operator therefore requires two inputs: an image to be opened, and a structuring element.
+
+\paragraph{Question} Use the opening operation to remove lines in art3.pgm
+
+\paragraph{Question} Use the opening operation to isolate the big blobs in cell4.pgm and then count them.
 
 \end{document}
 
