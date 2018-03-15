@@ -26,14 +26,12 @@
 \begin{document}
 \maketitle
 
-You must first finish the implementation of the connected components extraction viewed in TP4.
-
 \section*{\bf Counting blobs}
 
-The goal here is to count the number of blobs in the image blobs.pgm using the connected component algorithm.
-Once you can identify each blob, compute their respective centroid and their volume (by counting the number of pixels).
+The goal here is to count the number of blobs in the image blobs.pgm using the connected component algorithm viewed in TP4.
+Once you can identify each blob, compute their respective centroid and their volume (simply count the number of pixels inside each connected component).
 
-If we suppose that a blob is an ellipse, can you compute its major and minor axis ?
+\paragraph{Question} If we suppose that a blob is an ellipse, can you compute its major and minor axis ?
 
 \begin{figure}
   \centering
@@ -58,18 +56,26 @@ and the erosion $P_{(\sigma)}$ is
   P_{(\sigma)}(p) = \min_{q\in\sigma(p)} P(q).
 \]
 
-\paragraph{Question} Implement the two operations and test them using different masks.
+\paragraph{Question} Implement the two operations and test them using different masks (a line, a circl or a square for example).
 
 \paragraph{Question} Use an operation of erosion to disconnect blobs in blobs2.pgm and then apply your connected component algorithm to count them.
 
-\section*{\bf Morphologic Opening}
+\section*{\bf Morphological Opening}
+
+Opening and closing are two important operators from mathematical morphology. 
+They are both derived from the fundamental operations of erosion and dilation. 
+Like those operators they are normally applied to binary images, although there are also graylevel versions. 
+The basic effect of an opening is somewhat like erosion in that it tends to remove some of the foreground (bright) pixels from the edges of regions of foreground pixels. 
+However it is less destructive than erosion in general. As with other morphological operators, the exact operation is determined by a structuring element. 
+The effect of the operator is to preserve foreground regions that have a similar shape to this structuring element, or that can completely contain the structuring element, 
+while eliminating all other regions of foreground pixels.
 
 An opening is defined as an erosion followed by a dilation using the same structuring element for both operations.
 The opening operator therefore requires two inputs: an image to be opened, and a structuring element.
 
-\paragraph{Question} Use the opening operation to remove lines in art3.pgm
+\paragraph{Question} Use the opening operation to remove lines in art3.pgm (try different masks and see the results)
 
-\paragraph{Question} Use the opening operation to isolate the big blobs in cel4.pgm and then count them.
+\paragraph{Question} Use the opening operation to isolate the big cells in cel4.pgm and then count them.
 
 \end{document}
 
