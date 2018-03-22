@@ -203,6 +203,15 @@ void compute( Options& options, TShape shape )
 
   trace.endBlock();
 
+  trace.beginBlock("Computing the estimated curvature");
+
+  //TODO
+
+  trace.endBlock();
+
+  for( int i = 0; i < sCells1.size(); ++i )
+    trace.info() << curvature_vector[i] << " " << estimated_curvature_vector[i] << std::endl;
+
   trace.beginBlock("Shape output");
 
   typedef DGtal::GradientColorMap<double> Gradient;
