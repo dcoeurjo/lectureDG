@@ -88,6 +88,8 @@ An existing result for digital area approximation is
 where $\text{Card}$ is simply the number of digital points within $\mathtt{D}_h(X)$. Therefore, to estimate $V_r(x)$ we can count the number of digital points in the intersection
 between $B_r(x)$ and $\mathtt{D}_h(X)$.
 
+In order to achieve convergence of the estimator $\tilde{\kappa}$, the ball radius $r$ must be set to $k h^{\frac{1}{3}}$ where $k$ depends on the shape.
+
 \section*{Assignment}
 
 You have to implement the integral invariant curvature estimator $\tilde{\kappa}$ on 2D digital curves. To do so, have a look at the file generate\_digital\_contour.cpp in DGtalSkel.
