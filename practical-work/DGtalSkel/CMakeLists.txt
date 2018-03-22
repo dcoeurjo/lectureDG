@@ -30,7 +30,8 @@ SET(SRCs
   simpleboard
   helloworld
   PGMObject
-  exampleImage)
+  exampleImage
+  generate_digital_contour)
 
 IF ((WITH_QGLVIEWER) OR (WITH_VISU3D_QGLVIEWER))
   SET(SRCs
