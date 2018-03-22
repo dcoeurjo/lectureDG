@@ -29,7 +29,7 @@
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{gauss}
-  \caption{The Gauss Digitization $\mathtt{D}_h(X)$ of and Euclidean shape $X$ (in gray) is the set of black points that lies within $X$.
+  \caption{The Gauss Digitization $\mathtt{D}_h(X)$ of and Euclidean shape $X$ (in gray) is the set of black points that lies within $X$ (that are the embedded centers of 2-cells).
   The set of surfels of the Gauss Digitization is pictured in red. }
   \label{fig:gauss}
 \end{figure}
@@ -96,10 +96,10 @@ You have to implement the integral invariant curvature estimator $\tilde{\kappa}
 This program computes the Gauss Digitization $\mathtt{D}_h(X)$ (where $X$ can be here either a Ball, a Flower or and Accelerated Flower), extracts its digital border
 and finally gives the real curvature by projecting digital points onto $X$.
 
-\paragraph{Question} Given a surfel $\bf{s}$, implement the estimator of the volumetric integral (it must be parametrized by the ball radius $r$)
+\paragraph{Question} Given a 2-cell $\bf{s}$, implement the estimator of the volumetric integral $V_r(\bf{s})$ (it must be parametrized by the ball radius $r$)
 
-\paragraph{Question} Implement the curvature estimator $\tilde{\kappa}$. For each linels $l$, compute the mean of the volumetric integral estimator of the two adjacent surfels.
+\paragraph{Question} Implement the curvature estimator $\tilde{\kappa}$. For each linels $l$, compute the mean of the volumetric integral estimator of the two adjacent 2-cell.
 
-\paragraph{Question} Plot (using gnuplot for example) the maximum error between the real curvature $\kappa$ and the estimated one $\tilde{\kappa}$ with a decreasing grid-step $h$.
+\paragraph{Question} Plot (using gnuplot for example) the maximum error between the real curvature $\kappa$ and the estimated one $\tilde{\kappa}$ with a decreasing grid-step $h$ (in logscale).
 
 \end{document}
