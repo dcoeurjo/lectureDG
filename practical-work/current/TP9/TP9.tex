@@ -65,7 +65,7 @@ Experiment your intersection test on all cases (regular intersection, alignement
         \item First, find the left lowest point using a simple scan in $O(n)$.
         \item Then, sort the points by polar angle (use the C++ \texttt{std::sort} to do the sort).
             As discussed in the lecture, you would just have to replace the comparison function/functor by the Orientation predicate with fixed $p_0$.
-		\item The last step consists in a simple stack based removal (using for example \texttt{std::queue}).
+		\item The last step consists in a simple stack based removal (using for example \texttt{std::stack}).
 		\end{itemize}
 \end{itemize}
 
