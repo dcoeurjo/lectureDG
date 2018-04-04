@@ -1,0 +1,81 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{hyperref}
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 23cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+\usepackage{epsfig}
+\usepackage{setspace}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+	\LARGE \textbf{TP9: Convex Hulls and Digital Convex Hulls}
+\end{center}
+
+\bigskip
+\par In this TP, the idea is to implement a convex hull algorithm and to experiment its complexity (number of edges) on digital objects.
+
+% -------------------------------------------------------
+\section*{Exercise 1 \rm Orientation predicate}
+
+{\bf Question:} Implement the $Orientation(p,q,r)$ predicate as discussed in the lecture (consider only $\mathbb{Z}^2$ points that is DGtal::Z2i::Point).
+
+\noindent
+{\bf Question:} Test the $Orientation$ predicate with an implementation of the segment-segment intersection detection (cf lecture). 
+Experiment your intersection test on all cases (regular intersection, alignement, no intersection, intersection point is a vertex, ...).
+
+\bigskip
+\bigskip
+\bigskip
+
+\par The rest of the TP focuses on the implementation and the experimentation of a \emph{convex hull algorithm}. 
+    You can choose any variant of the algorithm you want to implement. At the end we would like you:
+	\begin{itemize}
+	\item To test the convex hull construction on point sets defined by the digitization (at a given resolution $h$) of a disc or an ellipse defined as digital sets.
+        To do so, you can use the file \texttt{compute\_digital\_contour.cpp} which extract and store digital points in a \texttt{std::vector} (you can see the program's options using -h).
+	\item To plot (using \texttt{gnuplot}) the number of edges when $h\rightarrow 0$ in log-scale. 
+        The aim is to observe the $N^{2/3}$ behavior we discussed in the lecture for convex hull in $N\times N$ 
+            domains (also, express the relationships between $N, h$ and the slope of the best fitting straight line in log-scale) ?
+	\end{itemize}
+
+\par The first variant is a Graham's scan implementation on the point set ($O(n.logn)$), the second variant is based on the Melkman's algorithm on the contour points 
+(extracted using a contour tracker) in $O(n)$. Both should only use the $Orientation(p,q,r)$ predicate and point coordinate comparisons.
+
+\section*{Exercise 2 (Rookie Mode) - \rm Convex hull}
+
+\noindent {\bf Questions:}
+\begin{itemize}
+	\item Implement the Graham's scan algorithm as described in the lecture:
+		\begin{itemize}
+        \item First, find the left lowest point using a simple scan in $O(n)$.
+        \item Then, sort the points by polar angle (use the C++ \texttt{std::sort} to do the sort).
+            As discussed in the lecture, you would just have to replace the comparison function/functor by the Orientation predicate with fixed $p_0$.
+		\item The last step consists in a simple stack based removal (using for example \texttt{std::queue}).
+		\end{itemize}
+\end{itemize}
+
+\par Note that Graham's scan can be speed up just considering border point and not interior points (for disc/ellipse experiment).
+
+\section*{Exercise 2 (Advanced Mode) - \rm Convex hull}
+
+\noindent {\bf Questions:}
+\begin{itemize}
+	\item Implement Melkman's technique (cf lecture) using the \texttt{std::deque} as data structure to store the convex hull vertices.
+\end{itemize}
+
+\end{document}
