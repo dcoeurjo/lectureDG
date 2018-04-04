@@ -5,6 +5,8 @@
 
 #include <DGtal/topology/DigitalSurface.h>
 #include <DGtal/topology/DigitalSetBoundary.h>
+#include <DGtal/topology/CanonicCellEmbedder.h>
+#include <DGtal/topology/CanonicSCellEmbedder.h>
 
 #include <DGtal/shapes/Shapes.h>
 
@@ -16,6 +18,8 @@
 #include <boost/program_options/variables_map.hpp>
 #include <boost/program_options/parsers.hpp>
 #include <boost/program_options/errors.hpp>
+
+#include <stack>
 
 enum SHAPE_TYPE
 {
@@ -60,6 +64,7 @@ struct Options
 {
   SHAPE_TYPE shape_type;
   double h;
+  bool contour_points;
 };
 
 Options
@@ -76,6 +81,7 @@ parse_options(int argc, char* argv[])
   po_options.add_options()
     ("shape-type,t", po::value<SHAPE_TYPE>(&options.shape_type)->default_value(BALL), "ball, flower or accFlower")
     ("grid-step,s", po::value<double>(&options.h)->default_value(0.1), "grid step")
+    ("contour-points,c", po::value<bool>(&options.contour_points)->default_value(true), "true: only contour points, false: all points")
     ("help,h", "display this message")
     ;
 
@@ -102,7 +108,7 @@ parse_options(int argc, char* argv[])
 }
 
 template <typename TShape>
-void compute( Options& options, TShape shape )
+void generate_points( Options& options, TShape shape, std::vector<DGtal::Z2i::Space::Point>& v )
 {
   using namespace DGtal;
 
@@ -114,11 +120,10 @@ void compute( Options& options, TShape shape )
   typedef typename Digitizer::Domain Domain;
   typedef KhalimskySpaceND<Space::dimension, int> KSpace;
   typedef KSpace::SCell SCell;
+  typedef KSpace::Cell Cell;
   typedef SurfelAdjacency<Space::dimension> SurfelAdjacency;
 
-  trace.beginBlock("Computing");
-
-  trace.beginBlock("Digitizing the shape");
+  trace.beginBlock("Extracting Contour Points");
 
   trace.info() << "h=" << options.h << std::endl;
 
@@ -128,117 +133,31 @@ void compute( Options& options, TShape shape )
 
   Domain domain = digitizer.getDomain();
 
-  KSpace kspace;
-  bool ok = kspace.init(domain.lowerBound(), domain.upperBound(), true);
-  if( !ok ) trace.error() << "KSpace init failed" << std::endl;
-
-  SurfelAdjacency SAdj(true);
-  typename KSpace::Surfel bel = Surfaces<KSpace>::findABel(kspace, digitizer, 100000);
-
-  typedef CanonicSCellEmbedder<KSpace> CanonicSCellEmbedder;
-  CanonicSCellEmbedder canonicSCellEmbedder( kspace );
-
-  std::vector<SCell> sCells0, sCells1;
-  Surfaces<KSpace>::track2DBoundary(sCells1, kspace, SAdj, digitizer, bel);
+  if( options.contour_points )
   {
-    typedef std::vector<Point> Points;
-    Points points;
-    Surfaces<KSpace>::track2DBoundaryPoints(points, kspace, SAdj, digitizer, bel);
-    const SCell point_ref = kspace.sCell(Point(0,0));
-    for(auto pi = points.begin(), pe = points.end(); pi != pe; ++pi) sCells0.push_back(kspace.sCell(*pi, point_ref));
+    KSpace kspace;
+    bool ok = kspace.init(domain.lowerBound(), domain.upperBound(), true);
+    if( !ok ) trace.error() << "KSpace init failed" << std::endl;
+
+    SurfelAdjacency SAdj(true);
+    typename KSpace::Surfel bel = Surfaces<KSpace>::findABel(kspace, digitizer, 100000);
+
+    typedef CanonicSCellEmbedder<KSpace> CanonicSCellEmbedder;
+    CanonicSCellEmbedder canonicSCellEmbedder( kspace );
+
+    std::vector<SCell> sCells1;
+    Surfaces<KSpace>::track2DBoundary(sCells1, kspace, SAdj, digitizer, bel);
+
+    for( int i = 0; i < sCells1.size(); i++ )
+    {
+      const auto sCells = kspace.sUpperIncident( sCells1[i] );
+      for( auto const& s : sCells )
+        if( digitizer( canonicSCellEmbedder( s ) ) ) v.push_back( canonicSCellEmbedder( s ) );
+    }
   }
-
-  trace.info() << "Shape has " << sCells0.size() << " pointels and " << sCells1.size() << " surfels." << std::endl;
-
-  trace.endBlock();
-
-  trace.beginBlock("Computing the real curvature");
-
-  //Given any points in R² projects it onto the smooth contour
-  const auto projection_function = [&]( const int& i )
-  {
-    functors::SCellToInnerPoint<KSpace> sCellToInnerPoint( kspace );
-    functors::SCellToOuterPoint<KSpace> sCellToOuterPoint( kspace );
-
-    const int prev = (i + sCells1.size() - 6) % sCells1.size(), next = (i + 6) % sCells1.size();
-
-    RealPoint inner_prev = sCellToInnerPoint( sCells1[ prev ] );
-    RealPoint inner_next = sCellToInnerPoint( sCells1[ next ] );
-
-    RealPoint outer_prev = sCellToOuterPoint( sCells1[ prev ] );
-    RealPoint outer_next = sCellToOuterPoint( sCells1[ next ] );
-
-    inner_prev *= options.h;
-    inner_next *= options.h;
-
-    outer_prev *= options.h;
-    outer_next *= options.h;
-
-    RealPoint q_prev = shape.findIntersection( inner_prev, outer_prev, options.h * 0.008 );
-    RealPoint q_next = shape.findIntersection( inner_next, outer_next, options.h * 0.008 );
-    return shape.closestPointWithWitnesses( options.h * canonicSCellEmbedder( sCells1[i] ), q_prev, q_next, 400 );
-  };
-
-  std::vector<double> curvature_vector;
-  curvature_vector.reserve( sCells1.size() );
-
-  for( int i = 0; i < sCells1.size(); ++i )
-  {
-    //Computing the closest point on the surface
-    const RealPoint p = projection_function( i );
-
-    //Retrieving the shape parameter from p
-    const double t = shape.parameter( p );
-
-    //Computing the real curvature
-    const double curvature = shape.curvature( t );
-
-    //storing it
-    curvature_vector.push_back( curvature );
-  }
-
-  const auto min_max = std::minmax_element( curvature_vector.begin(), curvature_vector.end() );
-
-  trace.info() << "Curvature (min/max): " << *min_max.first << " " << *min_max.second << std::endl;
-
-  trace.endBlock();
-
-  trace.beginBlock("Computing the estimated curvature");
-
-  //TODO
-
-  trace.endBlock();
-
-  for( int i = 0; i < sCells1.size(); ++i )
-    trace.info() << curvature_vector[i] << " " << estimated_curvature_vector[i] << std::endl;
-
-  trace.beginBlock("Shape output");
-
-  typedef DGtal::GradientColorMap<double> Gradient;
-  Gradient color( *min_max.first, *min_max.second );
-  color.addColor( DGtal::Color( 50, 50, 255 ) );
-  color.addColor( DGtal::Color( 255, 0, 0 ) );
-  color.addColor( DGtal::Color( 255, 255, 10 ) );
-
-  Board2D board;
-  board.backgroundColor( Color::White );
-  board << domain;
-
-  for( int i = 0; i < sCells1.size(); ++i )
-  {
-    board << CustomStyle( sCells1[i].className(), new CustomColors( color( curvature_vector[i] ), color( curvature_vector[i] ) ) );
-    board << sCells1[i];
-  }
-
-  for( int i = 0; i < sCells0.size(); ++i )
-  {
-    board << CustomStyle( sCells0[i].className(), new CustomColors( Color::Black, Color::Black ) );
-    board << sCells0[i];
-  }
-
-  board.saveSVG( "curvature.svg" );
-
-  trace.endBlock();
+  else
+    for( auto const& p : domain )
+      if( digitizer( p ) ) v.push_back( p );
 
   trace.endBlock();
 }
@@ -247,7 +166,27 @@ int main( int argc, char** argv )
 {
   Options options = parse_options( argc, argv );
 
-  if( options.shape_type == BALL )       compute( options, DGtal::Ball2D< DGtal::Z2i::Space >( DGtal::Z2i::Point(0., 0.), 1. ) );
-  if( options.shape_type == FLOWER )     compute( options, DGtal::Flower2D< DGtal::Z2i::Space >( DGtal::Z2i::Point(0., 0.), 1., 0.3, 5, 0. ) );
-  if( options.shape_type == ACC_FLOWER ) compute( options, DGtal::AccFlower2D< DGtal::Z2i::Space >( DGtal::Z2i::Point(0., 0.), 1., 0.3, 5, 0. ) );
+  using namespace DGtal;
+
+  typedef Z2i::Space::Point Point;
+
+  trace.beginBlock("Convex Hull");
+
+  std::vector<Point> points;
+
+  if( options.shape_type == BALL )       generate_points( options,
+          DGtal::Ball2D< DGtal::Z2i::Space >( DGtal::Z2i::Point(0., 0.), 1. ),
+          points );
+  if( options.shape_type == FLOWER )     generate_points( options,
+          DGtal::Flower2D< DGtal::Z2i::Space >( DGtal::Z2i::Point(0., 0.), 1., 0.3, 5, 0. ),
+          points );
+  if( options.shape_type == ACC_FLOWER ) generate_points( options,
+          DGtal::AccFlower2D< DGtal::Z2i::Space >( DGtal::Z2i::Point(0., 0.), 1., 0.3, 5, 0. ),
+          points );
+
+  trace.info() << "Extracted " << points.size() << " points." << std::endl;
+
+  //TODO
+
+  trace.endBlock();
 }

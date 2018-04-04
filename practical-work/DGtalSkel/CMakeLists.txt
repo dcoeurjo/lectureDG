@@ -31,7 +31,8 @@ SET(SRCs
   helloworld
   PGMObject
   exampleImage
-  generate_digital_contour)
+  generate_digital_contour
+  mean_curvature)
 
 IF ((WITH_QGLVIEWER) OR (WITH_VISU3D_QGLVIEWER))
   SET(SRCs
