@@ -28,11 +28,6 @@ or
 
 Then, the output is given in the *build* folder.
 
-Examples:
-  - HTML pages: https://liris.cnrs.fr/david.coeurjolly/cours/ENS2015/html/
-  - HTML5 slides: https://liris.cnrs.fr/david.coeurjolly/cours/ENS2015/html/slides/
-  - PDF single document: https://liris.cnrs.fr/david.coeurjolly/cours/ENS2015/latex/Images.pdf
-
 
 Author
 ------
