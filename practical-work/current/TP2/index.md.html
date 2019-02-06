@@ -1,0 +1,41 @@
+**TP2: Image Filtering and Bilateral Filter**
+
+In this TP, we will implement image enhancing and filtering techniques. 
+Please refer to the GitHub project for the materials.
+
+# Gaussian convolution
+
+1. Implement a simple averaging filter that just average the pixel values in a given 3x3 or 5x5 neighborhood (in RGB space, just average each channel).
+
+2. Implement a Gaussian filter that can be parametrized  by the kernel standard deviation $\sigma$. Remember, the Gaussian filter being separable, only a 1D filter is needed here.
+
+3. Observe the filtering results on the cat while increasing the $\sigma$.
+
+
+
+
+# Bilateral Filter
+
+The idea now is to implement a bilateral filter:
+$$
+  I^*(x) = \frac{1}{W} \sum_{y \in \Omega_x} I(y)f(|I(y)-I(x)|)g(\|y-x\|),
+$$
+with
+
+* $W= \sum_{y\in \Omega_x}{f(|I(y)-I(x)|)g(\|y-x\|)}$;
+* $\Omega_x$ is a window around $x$;
+* $f$ and $g$ are decreasing functions $[0,+\infty]\rightarrow\mathbb{R}^+$.
+
+In the context of this TP, both $f$ and $g$ will be (halves of) Gaussian kernels.
+
+1. Is the bilateral filter separable?
+2. Provide a direct implementation of the bilateral filter and use it on the noisy cat.
+3. A fast implementation of the bilateral filter has been proposed by [#Chen], please have a look to the paper. The basic idea is to transform the anisotropic bilateral filter into a simple Gaussian filtering in higher dimensions. Using the separable Gaussian filter you may already have, implement such approach and compare its performances with respect to the direct implementation.
+
+
+# References
+
+[#Chen]: Chen, Jiawen, Sylvain Paris, and Fredo Durand. "Real-time edge-aware image processing with the bilateral grid." ACM Transactions on Graphics (TOG). Vol. 26. No. 3. ACM, 2007. [PDF](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.220.8101&rep=rep1&type=pdf)
+
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

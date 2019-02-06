@@ -170,6 +170,12 @@ Let's go back to initial image:
   *best* threshold (variance minimization, entropic thresholding, ...)
 * Use cases are quite limited
 
+
+Color transfer using Optimal Transport
+--------------------------------------
+
+<slides>
+
 Local Approaches
 ================
 
@@ -720,7 +726,7 @@ Bilateral Filter
 * `f`:math: and `g`:math: are decreasing functions
   `[0,+\infty]\rightarrow\mathbb{R}^+`:math:  (e.g. Gaussian kernels)
 
-  
+
 
  .. image:: _static/images/Bilateral_Filter.*
        :width: 50%
@@ -735,7 +741,7 @@ Bilateral Filter (bis)
  .. image:: _static/images/Bilateral2.*
        :width: 100%
        :align: center
-          
+
 *(From [Bilateral Filtering: Theory and Applications
 Sylvain Paris, Pierre Kornprobst, Jack Tumblin, and Frédo Durand
 Foundations and Trends in Computer Graphics and Vision, 2009])*
@@ -794,7 +800,7 @@ Examples
         :width: 100%
 
 
-                
+
 *N.B* Bilateral filtering is asymptotically close to Perona-Malik's diffusion
 
 
@@ -813,13 +819,13 @@ Mumford-Shah functional
 * `{K}`:math: is the discontinuities support set
 * `\mathcal{H}^{1}`:math: is the Hausdorff measure
 
-  
+
 **But:**
 
 * Needs an explicit evaluation of `\mathcal{H}^{1}(K\cap M)`:math:
 * We integrate over `{M\backslash K}`:math:
 * `K`:math: has to be optimized
-	
+
 
 
 Ambrosio-Tortorelli functional
@@ -837,7 +843,7 @@ Ambrosio-Tortorelli functional
 * Integration domain does not change
 * No Hausdorff measure
 * Quadratic terms
-* the AT functional Γ−converges to Mumford-Shah's functional as ϵ→0 
+* the AT functional Γ−converges to Mumford-Shah's functional as ϵ→0
 
 :-)
 
@@ -849,8 +855,8 @@ Examples
  .. image:: _static/images/AT1.*
        :width: 70%
        :align: center
-          
-  
+
+
 
 Examples
 --------
@@ -860,7 +866,7 @@ Examples
        :width: 70%
        :align: center
 
-               
+
 
 Examples
 --------
@@ -869,7 +875,7 @@ Examples
  .. image:: _static/images/AT3.*
        :width: 100%
        :align: center
-          
+
 3D Examples
 -----------
 
@@ -877,8 +883,8 @@ Examples
  .. image:: _static/images/ATMesh1.*
        :width: 100%
        :align: center
-          
-  
+
+
 3D Examples
 -----------
 
@@ -887,7 +893,7 @@ Examples
        :width: 100%
        :align: center
 
-  
+
 3D Examples
 -----------
 
@@ -895,9 +901,9 @@ Examples
  .. image:: _static/images/ATMesh3.*
        :width: 100%
        :align: center
-          
-               
-     
+
+
+
 Mathematical Morphology
 =======================
 

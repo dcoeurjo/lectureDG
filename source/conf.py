@@ -25,10 +25,10 @@ import sys, os
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.todo', 'sphinx.ext.mathjax', 'sphinx.ext.ifconfig',
+extensions = ['sphinx.ext.todo', 'sphinx.ext.imgmath', 'sphinx.ext.ifconfig',
               'hieroglyph']
 
-
+#mathjax_path = 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
 #Static mathjax
 #mathjax_path = ['_']
 
