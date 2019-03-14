@@ -1,0 +1,98 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{hyperref}
+\voffset -0cm
+\hoffset 0.0cm
+\textheight 23cm
+\textwidth 16cm
+\topmargin 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+
+\usepackage{epsfig}
+\usepackage{setspace}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+	\LARGE \textbf{TP6: Voronoi Map/Distance Transformation via Jump Flooding}
+\end{center}
+
+\bigskip
+\par In this TP, the idea is to implement a Voronoi map algorithm called \emph{jump flooding algorithm} (JFA). This algorithm is not exact in the sense that it may contains errors and is not optimal in terms of computational cost. However, it has several properties which makes it useful in some applications.
+
+
+
+% -------------------------------------------------------
+\section*{Exercise 1 \rm Jump Flooding Algorithm}
+
+{\bf Warm up} Create a program which constructs an image with $-1$  values everywhere and a positive  value at some random sites (one unique value per site, this value will be used to characterize each site). The generating function is thus parameterized by $n$, the image width, and $N$ the number of sites. 
+
+
+\par The \emph{JFA of step $k$} (denoted $JFA(k)$) is defined as follow. For each point $p=(x,y)$ in the image:
+	\begin{itemize}
+	\item Compute the distance between $p$ and the eight sites stored at pixel $q = p + (i,j)$ with $i,j \in \{-k, 0, k\}$ (when $q$ is outside of the image bounds or when no site has been stored at $q$, consider this distance to be $+\infty$).
+	\item Store the site with closest distance at $p$ in another image.
+	\end{itemize}
+
+
+\bigskip
+{\bf Questions:}
+\begin{itemize}
+	\item Implement the $JFA(k)$ method. Save the iterations of the algorithm using stb image (cf Fig. 1).
+	\item What is the computational cost of one JFA step ?
+	\item The overall JFA algorithm consist in JFA(k) steps with $k=\{\frac{n}{2}, \frac{n}{4}, \ldots, 1\}$ (see Fig. 1). Sometimes, we consider a $JFA+1$ in which the last step ($k=1$) is performed twice. What is the overall complexity of such algorithm ?
+	\item Implement the JFA algorithm.
+	\item Implement the exact "brute force" Voronoi map algorithm (for each point, scan all sites and store the closest). Compare the result and return the average distance error.
+	\item From the JFA Voronoi map, output the distance transformation.
+\end{itemize}
+
+\begin{figure}[h]
+  \centering  \includegraphics[width=15cm]{jfa}
+  \caption{JFA illustration.}
+\end{figure}
+
+
+\paragraph{Discussion}
+\par JFA (or JFA+1) is not optimal for the Voronoi map/Distance transformation problem. However, each jump can be implemented in a fine grain parallelism framework: during step $k$, each pixels can be processed in parallel (4 pixels are read and there is a final write). Hence, JFA is perfect for implementations on GPU where each
+parallel core runs on texture map pixels (roughly). Note that optimal algorithm discussed in the lecture requires 1D propagation which could be tricky to implement on such GPU model.
+
+
+% ----------------------------------------------------------------------
+\section*{Exercise 2 \rm Lloyd's Relaxation}
+
+\par In this exercise, we implement Lloyd's relaxation (also called $k-$means algorithm).  In many computer graphics applications, Lloyd's relaxation is widely used in order to ``uniformize'' point distributions.
+
+The brute-force process is quite simple:
+\begin{enumerate}
+	\item Throw $N$ random points in the domain
+	\item Compute the Voronoi map (here using JFA)
+	\item For each cell:
+	\begin{itemize}
+		\item Compute its barycenter
+		\item Move the corresponding site to the barycenter
+	\end{itemize}
+	\item Goto step 2 until ``stability''
+\end{enumerate}
+
+\par Beside this naive description, Lloyd's relaxation is related to an explicit energy function with many links to several fields (geometry processing, data-mining, \ldots). The convergence in the continuous plane can be obtained and the limit point distribution has many interesting properties.
+
+\bigskip
+{\bf Question} Implement the Lloyd's relaxation and at each step, output the site map.
+
+\bigskip
+\par You should observe that starting from uniform point distribution, the point set tends to a low discrepancy point distribution (points cover uniformly the space) and later toward hexagonal structures. At this point, the \emph{stability} criterion could just be a number of steps in the iterative process.
+
+\par An example of the Lloyd's approach can be seen here: \url{http://www.youtube.com/watch?v=S0sAnabdCLg}
+
+
+
+\end{document}
