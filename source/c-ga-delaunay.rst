@@ -95,12 +95,13 @@ Implementation: Pointerless Trees (again)
 
 
 * Final encoding: hash map on binary morton codes
+
    .. math::
-        \begin{align*}
-          x &= x_1x_2\ldots x_m\\
-          y &= y_1y_2\ldots x_m\\
-          morton_l(x,y) &= \bar{0}1 y_1x_1y_2x_2\ldots y_lx_l
-        \end{align*}
+      
+          x = x_1x_2\ldots x_m\\
+          y = y_1y_2\ldots x_m\\
+          morton_l(x,y) = \bar{0}1 y_1x_1y_2x_2\ldots y_lx_l
+      
 
 
 
