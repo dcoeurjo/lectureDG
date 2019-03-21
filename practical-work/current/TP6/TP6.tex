@@ -39,7 +39,7 @@
 
 \par The \emph{JFA of step $k$} (denoted $JFA(k)$) is defined as follow. For each point $p=(x,y)$ in the image:
 	\begin{itemize}
-	\item Compute the distance between $p$ and the eight sites stored at pixel $q = p + (i,j)$ with $i,j \in \{-k, 0, k\}$ (when $q$ is outside of the image bounds or when no site has been stored at $q$, consider this distance to be $+\infty$).
+	\item Compute the distance between $p$ and the nine sites stored at pixel $q = p + (i,j)$ with $i,j \in \{-k, 0, k\}$ (when $q$ is outside of the image bounds or when no site has been stored at $q$, consider this distance to be $+\infty$).
 	\item Store the site with closest distance at $p$ in another image.
 	\end{itemize}
 
