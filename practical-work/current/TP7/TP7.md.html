@@ -12,16 +12,23 @@ To visualize the OBJ, you can use **meshlab** or https://3dviewer.net
  * the normalization of the geometry into a $[0,1]^3$ unit box.
 2. Count the number of edges of an OBJ.
 
+3. We would like now to normalize the object with respect to its principal axis:
+ * Compute the barycenter of the object vertices $\mu$
+ * Compute the covariance matrix:
+  * Let use consider the geometrical moment $m_{pqr} = \sum (x_i-\mu_x)^p(y_i-\mu_y)^q(z_i-\mu_z)^r$
+  * Define covariance matrix from the order-2 moments $$\b
 
-# Smoothing 
+
+
+# Smoothing
 
 
 Construct a mesh smoothing tool that performs a smoothing of the
 geometry: for each vertex, we replace its coordinates by the
-(possibly weighted) barycenter of its neighbors. 
+(possibly weighted) barycenter of its neighbors.
 
 
-# Subdivision 
+# Subdivision
 
 Implement a [Loop subdivision process](https://en.wikipedia.org/wiki/Loop_subdivision_surface):
 
