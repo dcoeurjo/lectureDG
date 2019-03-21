@@ -14,10 +14,9 @@ To visualize the OBJ, you can use **meshlab** or https://3dviewer.net
 
 3. We would like now to normalize the object with respect to its principal axis:
  * Compute the barycenter of the object vertices $\mu$
- * Compute the covariance matrix:
-  * Let use consider the geometrical moment $m_{pqr} = \sum (x_i-\mu_x)^p(y_i-\mu_y)^q(z_i-\mu_z)^r$.
-  * Define covariance matrix $C$ from the order-2 moments.
-  * Align the object such that the basis vectors match with the eigenvector of the covariance matrix.
+ * Let use consider the geometrical moment $m_{pqr} = \sum (x_i-\mu_x)^p(y_i-\mu_y)^q(z_i-\mu_z)^r$.
+ * Define covariance matrix $C$ from the order-2 moments.
+ * Align the object such that the basis vectors match with the eigenvector of the covariance matrix.
 
 \begin{equation}
 C = \begin{pmatrix}
