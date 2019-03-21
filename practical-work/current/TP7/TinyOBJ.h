@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <vector>
 #include <fstream>
+#include <cstring>
 
 class TriangleIndices {
 public:
